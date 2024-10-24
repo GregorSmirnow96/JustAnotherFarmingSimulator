@@ -28,12 +28,12 @@ public class CraftButton : MonoBehaviour
                         string itemName = componentQuantity.Key;
                         int itemQuantity = componentQuantity.Value;
 
-                        string[,] inventoryItems = Inventory.instance.inventoryItemIds;
-                        string[] toolbarItems = Inventory.instance.toolbarItemIds;
-                        string[] flattenedInventoryItems = inventoryItems.Cast<string>().ToArray();
-                        string[] flattenedItems = flattenedInventoryItems.Concat(toolbarItems).ToArray();
+                        Item[,] inventoryItems = Inventory.instance.inventoryItems;
+                        Item[] toolbarItems = Inventory.instance.toolbarItems;
+                        Item[] flattenedInventoryItems = inventoryItems.Cast<Item>().ToArray();
+                        Item[] flattenedItems = flattenedInventoryItems.Concat(toolbarItems).Where(item => item != null).ToArray();
 
-                        int ownedItemCount = flattenedItems.Count(item => item == itemName);
+                        int ownedItemCount = flattenedItems.Count(item => item.type.id == itemName);
                         return ownedItemCount >= itemQuantity;
                     });
 
@@ -58,16 +58,16 @@ public class CraftButton : MonoBehaviour
                     string itemName = componentQuantity.Key;
                     int itemQuantity = componentQuantity.Value;
 
-                    string[,] inventoryItems = inventory.inventoryItemIds;
-                    string[] toolbarItems = inventory.toolbarItemIds;
-                    string[] flattenedInventoryItems = inventoryItems.Cast<string>().ToArray();
-                    List<string> flattenedItems = flattenedInventoryItems.Concat(toolbarItems).ToList();
+                    Item[,] inventoryItems = inventory.inventoryItems;
+                    Item[] toolbarItems = inventory.toolbarItems;
+                    Item[] flattenedInventoryItems = inventoryItems.Cast<Item>().ToArray();
+                    List<Item> flattenedItems = flattenedInventoryItems.Concat(toolbarItems).ToList();
 
                     int itemIndex = 0;
                     List<int> componentIndices = flattenedItems
                         .ToDictionary(item => itemIndex++, item => item)
                         .ToList()
-                        .Where(kvp => kvp.Value == itemName)
+                        .Where(kvp => kvp.Value?.type.id == itemName)
                         .Select(kvp => kvp.Key)
                         .Take(itemQuantity)
                         .ToList();
@@ -89,6 +89,7 @@ public class CraftButton : MonoBehaviour
                     }
                 });
 
-        inventory.AddItemToInventory(selectedCard.craftableItemName);
+        Item craftableItem = new Item(selectedCard.craftableItemName);
+        inventory.AddItemToInventory(craftableItem);
     }
 }

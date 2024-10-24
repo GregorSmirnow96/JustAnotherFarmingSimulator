@@ -1,7 +1,7 @@
 using UnityEngine;
 using TMPro;
 
-public class ResetInputField : MonoBehaviour
+public class CraftingMenuSearchBar : MonoBehaviour
 {
     public TMP_InputField inputField;
     public string defaultValue = "Search...";

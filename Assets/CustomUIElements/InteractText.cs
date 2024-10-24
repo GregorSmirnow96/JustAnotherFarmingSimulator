@@ -7,6 +7,7 @@ public class InteractText : MonoBehaviour
 {
     public Vector3 offset = new Vector3(0, 0, 0);
     public GameObject textPrefab;
+    public string interactionText = "'E' to interact";
 
     private Canvas rootCanvas;
     private Text floatingText;
@@ -21,6 +22,8 @@ public class InteractText : MonoBehaviour
         floatingText = textObject.GetComponent<Text>();
 
         textRectTransform = textObject.GetComponent<RectTransform>();
+
+        floatingText.text = interactionText;
 
         Disable();
     }

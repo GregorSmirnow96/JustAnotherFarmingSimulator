@@ -93,8 +93,8 @@ public class InventoryCanvas : MonoBehaviour, IPointerDownHandler, IPointerUpHan
                 hoveredTile = tile;
             }
 
-            string? tileItemId = Inventory.instance.GetItemId(y, x);
-            bool tileItemIsNull = tileItemId == null;
+            Item tileItem = Inventory.instance.GetItem(y, x);
+            bool tileItemIsNull = tileItem == null;
 
             Image itemImage = tile.transform.GetChild(0).GetComponent<Image>();
             Color itemImageColor = itemImage.color;
@@ -107,7 +107,7 @@ public class InventoryCanvas : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             
             ItemType equippedItemType = tileItemIsNull
                 ? null
-                : ItemTypeRepo.GetInstance().TryFindItemType(tileItemId);
+                : tileItem.type;
             itemImage.sprite = equippedItemType?.inventorySprite;
         }
     }
@@ -169,8 +169,8 @@ public class InventoryCanvas : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             GameObject sourceTile = clickedItemImageObject.transform.parent.gameObject;
             (int, int) sourceTileCoord = inventoryTileCoords[sourceTile];
 
-            string sourceItemId = Inventory.instance.GetItemId(sourceTileCoord.Item1, sourceTileCoord.Item2);
-            string targetItemId = Inventory.instance.GetItemId(targetTileCoord.Item1, targetTileCoord.Item2);
+            Item sourceItemId = Inventory.instance.GetItem(sourceTileCoord.Item1, sourceTileCoord.Item2);
+            Item targetItemId = Inventory.instance.GetItem(targetTileCoord.Item1, targetTileCoord.Item2);
 
             Inventory.instance.SetInventoryItem(targetTileCoord.Item1, targetTileCoord.Item2, sourceItemId);
             Inventory.instance.SetInventoryItem(sourceTileCoord.Item1, sourceTileCoord.Item2, targetItemId);

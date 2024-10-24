@@ -33,8 +33,7 @@ public class CraftingMenuModel : MonoBehaviour
     {
         recipes = new List<Recipe>()
         {
-            new Recipe("Axe", new Dictionary<string, int>() { { "Log", 2 }, { "Mushroom2", 1 } }, new List<string>(){ "Wood" }),
-            new Recipe("Mushroom2", new Dictionary<string, int>() { { "Log", 2 } }, new List<string>(){ "Wood" })
+            new Recipe("Bowl", new Dictionary<string, int>() { { "Log", 1 } }, new List<string>(){ "Wood" })
         };
 
         defaultSearchText = searchInput.text;
