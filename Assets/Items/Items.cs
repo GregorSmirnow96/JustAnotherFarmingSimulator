@@ -22,14 +22,35 @@ namespace ItemMetaData
             items = new List<ItemType>();
             items.Add(new Shovel());
             items.Add(new Axe());
+            items.Add(new Pickaxe());
+            items.Add(new Staff());
+            items.Add(new WaterStaff());
+            items.Add(new IronOre());
+            items.Add(new CopperOre());
             items.Add(new Log());
+            items.Add(new Bowl());
+            items.Add(new BowlOfWater());
             items.Add(new Mushroom2());
-            items.Add(new CarrotSeed());
-            items.Add(new Carrot());
-            items.Add(new RedYellerSeed());
+
+            items.AddRange(ItemImplementations.BUSHES);
+            items.AddRange(ItemImplementations.CROPS);
+            items.AddRange(ItemImplementations.FERNS);
+            items.AddRange(ItemImplementations.FLOWERS);
+            items.AddRange(ItemImplementations.HERBS);
+            items.AddRange(ItemImplementations.FRUIT_TREES);
+            items.AddRange(ItemImplementations.TREES);
         }
 
-        public ItemType TryFindItemType(string itemId) => items?.FirstOrDefault(item => item.id.Equals(itemId));
+        public ItemType TryFindItemType(string itemId) //=> items?.FirstOrDefault(item => item.id.Equals(itemId));
+        {
+            if (itemId == "OrangeBerry")
+            {
+                Debug.Log("----------------------------");
+                items.ForEach(i => Debug.Log(i.id));
+                Debug.Log("----------------------------");
+            }
+            return items?.FirstOrDefault(item => item.id.Equals(itemId));
+        }
     }
 
     public abstract class ItemType
@@ -70,6 +91,24 @@ namespace ItemMetaData
             "EquippedItems/Axe/Axe") {}
     }
 
+    public class Pickaxe : ItemType
+    {
+        public Pickaxe() : base(
+            "Pickaxe",
+            "Tools/Pickaxe/GroundItem",
+            "Tools/Pickaxe/Sprite",
+            "EquippedItems/Pickaxe/Equipped") {}
+    }
+
+    public class Staff : ItemType
+    {
+        public Staff() : base(
+            "Staff",
+            "CraftedItems/Wood/Staff/GroundItem",
+            "CraftedItems/Wood/Staff/Sprite",
+            "CraftedItems/Wood/Staff/Equipped") {}
+    }
+
     public class Log : ItemType
     {
         public Log() : base(
@@ -77,6 +116,24 @@ namespace ItemMetaData
             "Environment/ProxyGames/Logs/Log",
             "Environment/ProxyGames/Logs/Sprite",
             "EquippedItems/Logs/Log") {}
+    }
+
+    public class Bowl : ItemType
+    {
+        public Bowl() : base(
+            "Bowl",
+            "CraftedItems/Wood/Bowl/GroundItem",
+            "CraftedItems/Wood/Bowl/Sprite",
+            "CraftedItems/Wood/Bowl/EquippedItem") {}
+    }
+
+    public class BowlOfWater : ItemType
+    {
+        public BowlOfWater() : base(
+            "BowlOfWater",
+            "CraftedItems/Wood/BowlOfWater/GroundItem",
+            "CraftedItems/Wood/BowlOfWater/Sprite",
+            "CraftedItems/Wood/BowlOfWater/EquippedItem") {}
     }
 
     public class Mushroom2 : ItemType
