@@ -24,7 +24,8 @@ public class RenderEquippedItem : MonoBehaviour
     {
         instance = this;
 
-        string equippedItemId = playerToolbar.GetEquippedItemId();
+        Item equippedItem = playerToolbar.GetEquippedItem();
+        string equippedItemId = equippedItem?.type.id;
         if (equippedItemId == null)
         {
             if (renderedItem != null)

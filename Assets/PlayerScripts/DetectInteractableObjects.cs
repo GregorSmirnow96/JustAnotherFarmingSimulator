@@ -5,6 +5,7 @@ using UnityEngine;
 public class DetectInteractableObjects : MonoBehaviour
 {
     public float maxInteractionRange = 4;
+    public LayerMask ignoreLayer;
 
     private IInteractable previousInteractable;
     private IInteractable currentInteractable;
@@ -21,8 +22,9 @@ public class DetectInteractableObjects : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
 
         RaycastHit hit;
-        if (Physics.Raycast(ray, out hit, maxInteractionRange))
+        if (Physics.Raycast(ray, out hit, maxInteractionRange, ~ignoreLayer))
         {
+            Harvestable harv = hit.collider.GetComponent<Harvestable>();
             IInteractable interactable = hit.collider.GetComponent<IInteractable>();
             if (interactable == null)
             {
@@ -50,7 +52,10 @@ public class DetectInteractableObjects : MonoBehaviour
 
         if (previousInteractable != null && currentInteractable != previousInteractable)
         {
-            previousInteractable.HideIndicator();
+            if (previousInteractable != null)
+            {
+                previousInteractable.HideIndicator();
+            }
         }
 
         previousInteractable = currentInteractable;

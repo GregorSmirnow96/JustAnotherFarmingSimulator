@@ -12,15 +12,17 @@ public class ItemAttractor : MonoBehaviour
     public float minAttractSpeed = 2.0f;
     public float maxAttractSpeed = 7.0f;
     private Toolbar playerToolbar;
+    private Inventory playerInventory;
 
     void Start()
     {
         playerToolbar = gameObject.GetComponent<Toolbar>();
+        playerInventory = gameObject.GetComponent<Inventory>();
     }
 
     void Update()
     {
-        if (playerToolbar.IsFull)
+        if (playerToolbar.IsFull && playerInventory.IsFull())
         {
             return;
         }
@@ -35,7 +37,13 @@ public class ItemAttractor : MonoBehaviour
             if (distanceToPlayer <= pickupRange)
             {
                 string groundItemId = groundItem.GetComponent<GroundItem>().itemId;
-                bool succeeded = playerToolbar.AddItem(groundItemId);
+                Item itemToAdd = new Item(groundItemId);
+                bool succeeded = playerInventory.AddItemToInventory(itemToAdd);
+                if (!succeeded)
+                {
+                    succeeded = playerToolbar.AddItem(itemToAdd);
+                }
+
                 if (succeeded)
                 {
                     Destroy(groundItem);

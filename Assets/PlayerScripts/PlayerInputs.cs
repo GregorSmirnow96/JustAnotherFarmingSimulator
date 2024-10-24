@@ -16,10 +16,14 @@ public class PlayerInputs : MonoBehaviour
     public Dictionary<string, Action> gameplayListeners = new Dictionary<string, Action>();
     public Dictionary<string, Action> inventoryListeners = new Dictionary<string, Action>();
 
-    private Inventory playerInventory;
+    private UIManager uiManager;
 
     public const string INTERACT = "INTERACT";
     public const string USE_ITEM = "USE_ITEM";
+    public const string CAST_SPELL_1 = "CAST_SPELL_1";
+    public const string CAST_SPELL_2 = "CAST_SPELL_2";
+    public const string CAST_SPELL_3 = "CAST_SPELL_3";
+    public const string CAST_SPELL_4 = "CAST_SPELL_4";
     public const string TOGGLE_INVENTORY = "TOGGLE_INVENTORY";
     public const string FORCE_CLOSE_INVENTORY = "FORCE_CLOSE_INVENTORY";
 
@@ -29,11 +33,14 @@ public class PlayerInputs : MonoBehaviour
         {
             { INTERACT, KeyCode.E },
             { USE_ITEM, KeyCode.Mouse0 },
+            { CAST_SPELL_1, KeyCode.Alpha1 },
+            { CAST_SPELL_2, KeyCode.Alpha2 },
+            { CAST_SPELL_3, KeyCode.Alpha3 },
+            { CAST_SPELL_4, KeyCode.Alpha4 },
             { TOGGLE_INVENTORY, KeyCode.I },
             { FORCE_CLOSE_INVENTORY, KeyCode.Escape }
         };
-
-        playerInventory = GetComponent<Inventory>();
+        uiManager = UIManager.instance;
     }
 
     void Update()
@@ -44,7 +51,7 @@ public class PlayerInputs : MonoBehaviour
             KeyCode keyCode = kvp.Value;
 
             Dictionary<string, Action> activeActionSet =
-                playerInventory.inventoryOpen
+                uiManager.menuIsOpen
                     ? inventoryListeners
                     : gameplayListeners;
 
@@ -57,7 +64,7 @@ public class PlayerInputs : MonoBehaviour
                 }
                 else
                 {
-                    // Debug.Log($"No function is mapped to {action}.");
+                    Debug.Log($"No function is mapped to {action}.");
                 }
             }
         }

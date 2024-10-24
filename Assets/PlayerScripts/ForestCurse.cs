@@ -12,6 +12,8 @@ public class ForestCurse : MonoBehaviour
 
     void Update()
     {
+        var obit = ItemMetaData.ItemTypeRepo.GetInstance().TryFindItemType("OrangeBerryBush");
+        Debug.Log(obit.id);
         // THIS WON'T WORK!
         // The player will be teleported infinitely because the new position will also trigger this condition.
         // If you teleport them to the opposite side, but a little closer to the center, this could work, but consider camera orientation.

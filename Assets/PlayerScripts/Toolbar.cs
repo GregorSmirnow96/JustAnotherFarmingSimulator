@@ -11,28 +11,13 @@ public class Toolbar : MonoBehaviour
     public static Toolbar instance;
 
     public const int inventorySize = 5;
-    private const float equippedTileAlpha = 255.0f / 255.0f;
-    private const float unequippedTileAlpha = 176.0f / 255.0f;
-    private const float equippedItemAlpha = 229.5f / 255.0f;
-    private const float unequippedItemAlpha = 176.0f / 255.0f;
-    public Canvas inventoryCanvas;
-    private List<Image> toolbarTiles;
-    private List<Image> itemImages;
     public int equippedItemIndex = 0;
 
-    public bool IsFull => Inventory.instance.toolbarItemIds.All(id => id != null);
+    public bool IsFull => Inventory.instance.toolbarItems.All(id => id != null);
 
-    void Start()
+    void Awake()
     {
         instance = this;
-
-        toolbarTiles = inventoryCanvas
-            .GetComponentsInChildren<Image>()
-            .Where(component => component.gameObject.name.Contains("ToolbarSlot"))
-            .ToList();
-        itemImages = toolbarTiles
-            .Select(tile => tile.gameObject.transform.GetChild(0).GetComponent<Image>())
-            .ToList();
     }
 
     void Update()
@@ -46,59 +31,17 @@ public class Toolbar : MonoBehaviour
         {
             equippedItemIndex = (equippedItemIndex + inventorySize - 1) % inventorySize;
         }
-
-        for (int i = 0; i < inventorySize; i++)
-        {
-            string itemId = Inventory.instance.toolbarItemIds[i];
-            Image itemImage = itemImages[i];
-
-            if (itemId == null)
-            {
-                itemImage.sprite = null;
-                continue;
-            }
-
-            ItemType equippedItemType = ItemTypeRepo.GetInstance().TryFindItemType(itemId);
-
-            itemImage.sprite = equippedItemType?.inventorySprite;
-        }
-
-        // Set the alphas:
-        //      The tile alpha is simple. Set it to equipped or unequipped alpha based on equipped index.
-        //      The itemSpriteAlpha has 3 states instead of 2.
-        //          If the sprite exists, set it to the equipped or unequipped alpha just like the tile.
-        //          If the sprite doesn't exist, set the alpha to 0.
-        for (int i = 0; i < inventorySize; i++)
-        {
-            bool isEquippedSlot = i == equippedItemIndex;
-            
-            Image toolbarTile = toolbarTiles[i];
-            Color toolbarTileColor = toolbarTile.color;
-            toolbarTileColor.a = isEquippedSlot ? equippedTileAlpha : unequippedTileAlpha;
-            toolbarTile.color = toolbarTileColor;
-
-            string itemId = Inventory.instance.toolbarItemIds[i];
-            float alpha = 0;
-            if (itemId != null)
-            {
-                alpha = isEquippedSlot ? equippedItemAlpha : unequippedTileAlpha;
-            }
-            Image itemImage = itemImages[i];
-            Color itemImageColor = itemImage.color;
-            itemImageColor.a = alpha;
-            itemImage.color = itemImageColor;
-        }
     }
 
-    public string GetItemId(int i) => Inventory.instance.toolbarItemIds[i];
+    public Item GetItem(int i) => Inventory.instance.toolbarItems[i];
 
-    public bool AddItem(string newItemId)
+    public bool AddItem(Item newItem)
     {
         int nextOpenIndex = -1;
         int currentIndex = 0;
-        foreach (string itemId in Inventory.instance.toolbarItemIds)
+        foreach (Item item in Inventory.instance.toolbarItems)
         {
-            if (itemId == null)
+            if (item == null)
             {
                 nextOpenIndex = currentIndex;
                 break;
@@ -113,26 +56,25 @@ public class Toolbar : MonoBehaviour
             return false;
         }
 
-        SetInventorySlot(nextOpenIndex, newItemId);
+        SetInventorySlot(nextOpenIndex, newItem);
         return true;
     }
 
-    public void SetInventorySlot(int index, string itemId)
+    public void SetInventorySlot(int index, Item item)
     {
-        if (index < 0 && index >= Inventory.instance.toolbarItemIds.Length)
+        if (index < 0 && index >= Inventory.instance.toolbarItems.Length)
         {
             Debug.Log($"Cannot set item in inventory at index {index}. This is out of bounds");
             return;
         }
 
-        string currentItemId = Inventory.instance.toolbarItemIds[index];
-        if (currentItemId != null && itemId != null)
+        Item currentItem = Inventory.instance.toolbarItems[index];
+        if (currentItem != null && item != null)
         {
             Debug.Log($"Overwrote an item in the inventory at index: {index}. Should the item be dropped? Should this operation fail?");
         }
 
-        Inventory.instance.toolbarItemIds[index] = itemId;
-        string itemText = itemId == null ? "null" : itemId.ToString();
+        Inventory.instance.SetToolbarItem(index, item);
     }
 
     public void DeleteItemInSlot(int index)
@@ -140,9 +82,9 @@ public class Toolbar : MonoBehaviour
         SetInventorySlot(index, null);
     }
 
-    public string GetEquippedItemId()
+    public Item GetEquippedItem()
     {
-        return Inventory.instance.toolbarItemIds[equippedItemIndex];
+        return Inventory.instance.toolbarItems[equippedItemIndex];
     }
 
     public void DeleteEquippedItem() => DeleteItemInSlot(equippedItemIndex);
