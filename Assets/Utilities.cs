@@ -7,9 +7,12 @@ public static class SceneProperties
     public static float clearingRadius = 57f;
     public static Vector3 sceneCenter = new Vector3(200f, 0f, 200f);
 
+    public   static Transform cameraTransform = GameObject.Find("Camera").transform;
     public   static Transform playerTransform = GameObject.Find("Player").transform;
     public static Vector2 playerXZPosition => playerTransform.position.ToXZ();
     public static float playerDistanceFromCenter => (playerXZPosition - sceneCenter.ToXZ()).magnitude;
+    public static float distanceToPlayer(Transform transform) => (playerTransform.position - transform.position).magnitude;
+    public static float distanceToPlayerXZ(Transform transform) => (playerTransform.position.ToXZ() - transform.position.ToXZ()).magnitude;
 
     private static Terrain terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
     public static float TerrainHeightAtPosition(Vector2 position) => terrain.SampleHeight(new Vector3(position.x, 0f, position.y));
