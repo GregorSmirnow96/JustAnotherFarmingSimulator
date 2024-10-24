@@ -1,77 +1,91 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DayNightCycle : MonoBehaviour
+public class DayNightCycle2 : MonoBehaviour
 {
-    private Light celestialLight;
-    private Transform celestialTransform;
-    public Color dawnColor = new Color(255f / 255f, 255f / 255f, 200f / 255f);
-    public Color noonColor = new Color(255f / 255f, 237f / 255f, 186f / 255f);
-    public Color duskColor = new Color(121f / 255f, 13f / 255f, 20f / 255f);
-    public Color midnightColor = new Color(37f / 255f, 29f / 255f, 58f / 255f);
-    public float dawnIntensity = 0.2f;
-    public float noonIntensity = 1.2f;
-    public float duskIntensity = 0.2f;
-    public float midnightIntensity = -2.0f;
-    private Color[] colorSequence;
-    private float[] intensitySequence;
+    public Quaternion startRotation;
+    public Quaternion endRotation;
+    public float startTime;
+    public float endTime;
+    public float intensity;
+    public float intensityChangeDuration;
 
-    private float time;
-    private float fastforwardScale;
-    private float phaseDuration => Clock.globalClock.dayDuration / colorSequence.Length;
+    private Clock clock;
+    private GameObject lightSource;
+    private Light light;
+    private bool lightSourceWasOut;
+    private float phaseProgress;
+    private float phaseStart;
+    private float phaseEnd;
+    private float duration;
+    private float lastClockTime;
 
-    private int phaseIndex = 0;
-    private float previousPhaseProgress = 0.0f;
-    private Color currentColor => colorSequence[phaseIndex];
-    private Color nextColor => colorSequence[(phaseIndex + 1) % colorSequence.Length];
-    private float currentIntensity => intensitySequence[phaseIndex];
-    private float nextIntensity => intensitySequence[(phaseIndex + 1) % intensitySequence.Length];
-    public float rotationOffset = 0.0f;
-
+    private float timeOfDay => clock.time % clock.dayDuration;
 
     void Start()
     {
-        celestialLight = gameObject.GetComponent<Light>();
-        celestialTransform = gameObject.GetComponent<Transform>();
-        colorSequence = new Color[] { dawnColor, noonColor, duskColor, midnightColor };
-        intensitySequence = new float[] { dawnIntensity, noonIntensity, duskIntensity, midnightIntensity };
+        lightSource = gameObject;
+        light = GetComponent<Light>();
     }
 
     void Update()
     {
-        time = Clock.globalClock.time;
-
-        float phaseProgress = ProgressToNextPhase();
-
-        if (phaseProgress < previousPhaseProgress)
+        // This is being done here because globalClock may still be null during Start().
+        if (clock == null && Clock.globalClock != null)
         {
-            phaseIndex = (phaseIndex + 1) % 4;
+            clock = Clock.globalClock;
+            lastClockTime = clock.time;
+
+            duration = endTime < startTime
+                ? (endTime + clock.dayDuration) - startTime
+                : endTime - startTime;
         }
 
-        float t = Mathf.SmoothStep(0f, 1f, phaseProgress);
-        Color celestialColor = Color.Lerp(currentColor, nextColor, t);
-        celestialLight.color = celestialColor;
-        float celestialIntensity = Mathf.Lerp(currentIntensity, nextIntensity, t);
-        celestialLight.intensity = celestialIntensity <= 0 ? 0 : (float)Math.Sqrt(celestialIntensity);
-        float rotation = time * 360f / Clock.globalClock.dayDuration;
-        celestialTransform.eulerAngles = new Vector3(
-            rotation + rotationOffset,
-            celestialTransform.rotation.y,
-            celestialTransform.rotation.z);
+        bool lightSourceIsOut = LightSourceIsOut();
 
-        previousPhaseProgress = phaseProgress;
-        Shader.SetGlobalColor("_Color", celestialLight.color);
-        Shader.SetGlobalFloat("_Intensity", celestialLight.intensity);
+        if (lightSourceIsOut)
+        {
+            float lightDeltaPerHour = intensity / intensityChangeDuration;
+            float intensityDelta = lightDeltaPerHour * (clock.time - lastClockTime);
+            float newIntensity = light.intensity + intensityDelta;
+            if (newIntensity <= intensity)
+            {
+                light.intensity = newIntensity;
+            }
+        }
+        else
+        {
+            float lightDeltaPerHour = intensity / intensityChangeDuration;
+            float intensityDelta = lightDeltaPerHour * (clock.time - lastClockTime);
+            float newIntensity = light.intensity - intensityDelta;
+            light.intensity = newIntensity >= 0
+                ? newIntensity
+                : 0;
+        }
+
+        if (lightSourceIsOut && !lightSourceWasOut)
+        {
+            lightSourceIsOut = true;
+            phaseStart = clock.time - (clock.time % clock.dayDuration) + startTime;
+            phaseEnd = phaseStart + duration;
+        }
+
+        phaseProgress = (clock.time - phaseStart) / duration;
+        if (phaseProgress >= 0 && phaseProgress <= 1)
+        {
+            lightSource.transform.rotation = Quaternion.Lerp(startRotation, endRotation, phaseProgress);
+        }
+
+        lightSourceWasOut = lightSourceIsOut;
+        lastClockTime = clock.time;
     }
 
-    private float ProgressToNextPhase()
+    private bool LightSourceIsOut()
     {
-        float dayTime = time % Clock.globalClock.dayDuration;
-        float phaseTime = dayTime % phaseDuration;
-        float phaseProgress = phaseTime / phaseDuration;
-
-        return phaseProgress;
+        bool comesOutAtNight = startTime > endTime;
+        return comesOutAtNight
+            ? timeOfDay >= startTime || timeOfDay <= endTime
+            : timeOfDay >= startTime && timeOfDay <= endTime;
     }
 }

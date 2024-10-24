@@ -33,7 +33,6 @@ public class Campfire : MonoBehaviour
 
             timer = 0;
         }
-        Debug.Log(timer);
     }
 
     public void turnOn()

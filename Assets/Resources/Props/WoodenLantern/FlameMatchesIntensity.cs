@@ -18,7 +18,6 @@ public class FlameMatchesIntensity : MonoBehaviour
     void Update()
     {
         float intensity = light.intensity;
-        Debug.Log(intensity);
 
         var flameMain = flameParticleSystem.main;
         flameMain.startLifetime = intensity / initialIntensity;

@@ -12,8 +12,6 @@ public class Clock : MonoBehaviour
     public float fastforwardScale = 0.1f;
     public float freezeTime = 25f;
 
-    public Text clockText;
-
     void Awake()
     {
         globalClock = GameObject.Find("CelestialBodies").GetComponent<Clock>();
@@ -24,7 +22,5 @@ public class Clock : MonoBehaviour
         if (freezeTime <= 24f && time >= freezeTime) return;
 
         time += Time.deltaTime * fastforwardScale;
-
-        clockText.text = time.ToString();
     }
 }
