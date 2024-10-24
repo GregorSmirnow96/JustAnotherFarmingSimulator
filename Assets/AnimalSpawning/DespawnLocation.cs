@@ -11,6 +11,7 @@ public class DespawnLocation : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        // TODO: Refactor this. For some reason the animal isn't being destroyed, just one piece of them.
         Destroy(other.gameObject);
     }
 }
