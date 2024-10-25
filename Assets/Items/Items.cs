@@ -43,12 +43,6 @@ namespace ItemMetaData
 
         public ItemType TryFindItemType(string itemId) //=> items?.FirstOrDefault(item => item.id.Equals(itemId));
         {
-            if (itemId == "OrangeBerry")
-            {
-                Debug.Log("----------------------------");
-                items.ForEach(i => Debug.Log(i.id));
-                Debug.Log("----------------------------");
-            }
             return items?.FirstOrDefault(item => item.id.Equals(itemId));
         }
     }

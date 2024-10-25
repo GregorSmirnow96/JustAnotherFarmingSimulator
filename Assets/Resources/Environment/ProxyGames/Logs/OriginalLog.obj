@@ -1,6 +1,6 @@
 # Blender 3.1.0
 # www.blender.org
-mtllib Log.mtl
+mtllib OriginalLog.mtl
 o Cylinder.003
 v -2.354005 1.412576 0.827140
 v -2.361656 1.807399 0.221334
