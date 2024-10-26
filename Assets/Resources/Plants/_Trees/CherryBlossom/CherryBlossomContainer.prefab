@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1431233808920933653}
   - component: {fileID: 359341030024621561}
   - component: {fileID: 4243138312323991492}
-  - component: {fileID: 4568721917752182416}
+  - component: {fileID: -7980816637368073580}
   m_Layer: 0
   m_Name: CherryBlossomContainer
   m_TagString: Untagged
@@ -51,10 +51,13 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 7922147171006606277, guid: c58c9333de14e7343a4147f2b43763a3, type: 3}
     timeToGrow: 24
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 8758286702558665290, guid: 47a3d374c8b7ac340962e79c519b1610, type: 3}
     timeToGrow: 24
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 5011772705318262745, guid: 7228d0733f425b040b4f2ba56b251aeb, type: 3}
     timeToGrow: 24
+    growthAnimationTime: 2.1666667
   plantName: CherryBlossom
 --- !u!114 &359341030024621561
 MonoBehaviour:
@@ -80,30 +83,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d561d369494c37e4c899d429497e480b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.42, z: 0}
+  offset: {x: 0, y: 1, z: 0}
   textPrefab: {fileID: 8652166246190109560, guid: fe57cc8352bf17046962584658d5d8bf, type: 3}
   showInCenterOfScreen: 0
   textObject: {fileID: 0}
---- !u!136 &4568721917752182416
-CapsuleCollider:
+--- !u!114 &-7980816637368073580
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8217922107328948916}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 4
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1559bc8d3a8f544094931dc1adcd0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 2

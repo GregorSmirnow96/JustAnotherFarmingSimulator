@@ -64,7 +64,7 @@ PrefabInstance:
       addedObject: {fileID: -8052928660734475033}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: ead8d15551fdb7c4cbcfcd8f55a6e3fc, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -4610815512494546854}
+      addedObject: {fileID: -3484626331910284779}
   m_SourcePrefab: {fileID: 100100000, guid: ead8d15551fdb7c4cbcfcd8f55a6e3fc, type: 3}
 --- !u!1 &1557145429993515700 stripped
 GameObject:
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defa2cad592f19845b2d0b43929275d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: PlumTree
+  itemId: Plum
   regrows: 1
   harvestedPrefab: {fileID: 2577569319222392602, guid: 570da5a69e3cebf42b7f636e03ad6dd2, type: 3}
 --- !u!114 &-8052928660734475033
@@ -98,11 +98,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d561d369494c37e4c899d429497e480b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.42, z: 0}
+  offset: {x: 0, y: 1.5, z: 0}
   textPrefab: {fileID: 8652166246190109560, guid: fe57cc8352bf17046962584658d5d8bf, type: 3}
   showInCenterOfScreen: 0
   textObject: {fileID: 0}
---- !u!136 &-4610815512494546854
+--- !u!136 &-3484626331910284779
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Height: 4
+  m_Radius: 1.4
+  m_Height: 6
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

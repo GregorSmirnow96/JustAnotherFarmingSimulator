@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defa2cad592f19845b2d0b43929275d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: PeachTree
+  itemId: Peach
   regrows: 1
   harvestedPrefab: {fileID: 2965863343228724714, guid: 0550a83a0f02d674fa33b5c9ee0315eb, type: 3}
 --- !u!114 &6413382420765686869
@@ -98,7 +98,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d561d369494c37e4c899d429497e480b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.42, z: 0}
+  offset: {x: 0, y: 1.5, z: 0}
   textPrefab: {fileID: 8652166246190109560, guid: fe57cc8352bf17046962584658d5d8bf, type: 3}
   showInCenterOfScreen: 0
   textObject: {fileID: 0}
@@ -121,7 +121,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Height: 4
+  m_Radius: 1.4
+  m_Height: 6
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

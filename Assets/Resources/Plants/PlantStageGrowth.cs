@@ -8,6 +8,7 @@ public class GrowthStage
 {
     public GameObject stagePrefab;
     public float timeToGrow;
+    public float growthAnimationTime = 52f / 24f;
 }
 
 public class PlantStageGrowth : MonoBehaviour, IWaterable
@@ -26,7 +27,7 @@ public class PlantStageGrowth : MonoBehaviour, IWaterable
 
     void Start()
     {
-        plantObject = Instantiate(initialPrefab, transform.position, Quaternion.identity);
+        plantObject = Instantiate(initialPrefab, transform.position, initialPrefab.transform.rotation);
         plantObject.transform.parent = transform;
         growthTimer = 0;
         stageIndex = 0;
@@ -84,11 +85,11 @@ public class PlantStageGrowth : MonoBehaviour, IWaterable
         controller.SetTrigger("Grow");
 
         // You should probably dynamically use the animation length...
-        yield return new WaitForSeconds(52f / 24f);
+        GrowthStage nextStage = GetNextStage();
+        yield return new WaitForSeconds(nextStage.growthAnimationTime);
 
         Destroy(plantObject);
 
-        GrowthStage nextStage = GetNextStage();
         GameObject nextPlantPrefab = nextStage.stagePrefab;
         plantObject = Instantiate(nextPlantPrefab, transform.position, nextPlantPrefab.transform.rotation);
         plantObject.transform.parent = transform;
@@ -99,7 +100,6 @@ public class PlantStageGrowth : MonoBehaviour, IWaterable
         {
             Debug.Log("Destroying Waterable Component");
             Destroy(GetComponent<Waterable>());
-            gameObject.AddComponent<Harvestable>().itemId = plantName;
         }
 
         isWatered = false;

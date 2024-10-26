@@ -12,7 +12,9 @@ GameObject:
   - component: {fileID: 5134443192318202228}
   - component: {fileID: 3128034169769566238}
   - component: {fileID: 5822865212967535955}
+  - component: {fileID: -8583650003641609108}
   - component: {fileID: 1330458434843121765}
+  - component: {fileID: -2378483059534220781}
   m_Layer: 0
   m_Name: RedBerryBushContainer
   m_TagString: Untagged
@@ -82,6 +84,19 @@ MonoBehaviour:
   textPrefab: {fileID: 8652166246190109560, guid: fe57cc8352bf17046962584658d5d8bf, type: 3}
   showInCenterOfScreen: 0
   textObject: {fileID: 0}
+--- !u!114 &-8583650003641609108
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120061048104131103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1559bc8d3a8f544094931dc1adcd0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 2
 --- !u!136 &1330458434843121765
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -101,7 +116,30 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
+  m_Radius: 0.3
   m_Height: 4
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!136 &-2378483059534220781
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9120061048104131103}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

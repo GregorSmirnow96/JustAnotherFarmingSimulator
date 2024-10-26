@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: cfeef88633ac5244fa54fee7510607c8
+guid: 57b13e66606b4ee4c8e11671e8390c65
 ModelImporter:
   serializedVersion: 22200
   internalIDToNameTable: []
@@ -8,12 +8,17 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Bark
-    second: {fileID: 2100000, guid: bdfc42feded92494ea76916f74cf2ba9, type: 2}
+    second: {fileID: 2100000, guid: 7e9ab3edd86acb94f927ba56c1004f92, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: BarkEmission
-    second: {fileID: 2100000, guid: 476c824928b875f4e8394e0263848c85, type: 2}
+    second: {fileID: 2100000, guid: 277ec560c8d147c42980b3eea9f382db, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaf
+    second: {fileID: 2100000, guid: 76abc324be01e1d4790cf20dd79811cd, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

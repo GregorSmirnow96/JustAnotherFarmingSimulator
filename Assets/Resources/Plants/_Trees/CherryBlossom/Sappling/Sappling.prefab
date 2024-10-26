@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: fb9db620824e3b14ead4a96d7dda0076, type: 3}
       propertyPath: m_Name
-      value: SapplingCherryBlossom
+      value: Sappling
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -87,6 +87,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fb9db620824e3b14ead4a96d7dda0076, type: 3}
       insertIndex: -1
       addedObject: {fileID: -5162647519430262254}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fb9db620824e3b14ead4a96d7dda0076, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5050936802735447492}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: fb9db620824e3b14ead4a96d7dda0076, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2913233292091097546}
   m_SourcePrefab: {fileID: 100100000, guid: fb9db620824e3b14ead4a96d7dda0076, type: 3}
 --- !u!1 &7922147171006606277 stripped
 GameObject:
@@ -114,3 +120,49 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &-5050936802735447492
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7922147171006606277}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.68
+  m_Height: 4
+  m_Direction: 1
+  m_Center: {x: -0.2, y: 0, z: 0}
+--- !u!136 &2913233292091097546
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7922147171006606277}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}

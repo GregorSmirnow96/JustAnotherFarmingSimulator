@@ -78,7 +78,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: f222e356151e8c6478d91fe74ee81ee6, type: 3}
       propertyPath: m_Name
-      value: YoungAdultCherryBlossom
+      value: YoungAdult
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -87,6 +87,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f222e356151e8c6478d91fe74ee81ee6, type: 3}
       insertIndex: -1
       addedObject: {fileID: -8623858135139760845}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: f222e356151e8c6478d91fe74ee81ee6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 649941796540851554}
   m_SourcePrefab: {fileID: 100100000, guid: f222e356151e8c6478d91fe74ee81ee6, type: 3}
 --- !u!1 &8758286702558665290 stripped
 GameObject:
@@ -114,3 +117,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!136 &649941796540851554
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8758286702558665290}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 1.22
+  m_Height: 4.17
+  m_Direction: 1
+  m_Center: {x: -0.65, y: 0, z: 0}

@@ -31,7 +31,14 @@ public class Harvestable : MonoBehaviour, IInteractable
 
     public void ShowIndicator()
     {
-        interactText.Enable();
+        if (interactText == null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            interactText.Enable();
+        }
     }
 
     public void HideIndicator()
@@ -41,10 +48,12 @@ public class Harvestable : MonoBehaviour, IInteractable
 
     void OnDestroy()
     {
-        // TODO: This first Destroy call throws an error.
-        //  The gameObject is null (destroyed) already?? But when I don't call Destroy,
-        //  the object doesn't get destroyed. If this causes errors later, come back.
-        Destroy(transform.parent.gameObject);
+        Debug.Log($"Hello? {regrows}");
+        if (!regrows)
+        {
+            Destroy(gameObject.transform.parent.gameObject);
+            Debug.Log("Hello!");
+        }
         Destroy(interactText.textObject);
     } 
 }

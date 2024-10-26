@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3942669649396427549}
   - component: {fileID: 7673437347056414883}
   - component: {fileID: 203456203412436242}
-  - component: {fileID: 5580034292179805434}
+  - component: {fileID: -2625436252869782586}
   m_Layer: 0
   m_Name: PlumTreeContainer
   m_TagString: Untagged
@@ -51,8 +51,10 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 4232863478300701268, guid: cf8b4ff54e6c5d44c94228628c20ffe0, type: 3}
     timeToGrow: 36
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 1557145429993515700, guid: 1bff53193eec5974cae10306785eb4e7, type: 3}
     timeToGrow: 36
+    growthAnimationTime: 2.1666667
   plantName: PlumTree
 --- !u!114 &7673437347056414883
 MonoBehaviour:
@@ -82,26 +84,16 @@ MonoBehaviour:
   textPrefab: {fileID: 8652166246190109560, guid: fe57cc8352bf17046962584658d5d8bf, type: 3}
   showInCenterOfScreen: 0
   textObject: {fileID: 0}
---- !u!136 &5580034292179805434
-CapsuleCollider:
+--- !u!114 &-2625436252869782586
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 412051763639096176}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 4
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1559bc8d3a8f544094931dc1adcd0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 2

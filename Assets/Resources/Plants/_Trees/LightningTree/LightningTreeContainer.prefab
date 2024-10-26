@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5739404668446058184}
   - component: {fileID: 8587417742179131602}
   - component: {fileID: 4616785626193441980}
-  - component: {fileID: 7478987779427414041}
+  - component: {fileID: 8023985904699005346}
   m_Layer: 0
   m_Name: LightningTreeContainer
   m_TagString: Untagged
@@ -51,10 +51,13 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 4248723451561176535, guid: 17eadfb0aef3e4545b34b7abeba123cd, type: 3}
     timeToGrow: 24
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 6997637969470270804, guid: 44abd401affbd3341ae81fabdf33faab, type: 3}
     timeToGrow: 24
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 5329543572914633475, guid: fd8750534214a00489c4d423101f498f, type: 3}
     timeToGrow: 24
+    growthAnimationTime: 2.1666667
   plantName: LightningTree
 --- !u!114 &8587417742179131602
 MonoBehaviour:
@@ -80,30 +83,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d561d369494c37e4c899d429497e480b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  offset: {x: 0, y: 0.42, z: 0}
+  offset: {x: 0, y: 1, z: 0}
   textPrefab: {fileID: 8652166246190109560, guid: fe57cc8352bf17046962584658d5d8bf, type: 3}
   showInCenterOfScreen: 0
   textObject: {fileID: 0}
---- !u!136 &7478987779427414041
-CapsuleCollider:
+--- !u!114 &8023985904699005346
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 638363304431758969}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
   m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 1
-  m_Height: 4
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a1559bc8d3a8f544094931dc1adcd0ae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  radius: 2

@@ -64,7 +64,7 @@ PrefabInstance:
       addedObject: {fileID: -1417643346075091780}
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bee55b87bb611846a56ba03cea09068, type: 3}
       insertIndex: -1
-      addedObject: {fileID: -8024751674379679365}
+      addedObject: {fileID: -3710963703586256883}
   m_SourcePrefab: {fileID: 100100000, guid: 2bee55b87bb611846a56ba03cea09068, type: 3}
 --- !u!1 &389180079552757980 stripped
 GameObject:
@@ -83,7 +83,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defa2cad592f19845b2d0b43929275d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: OrangeTree
+  itemId: Orange
   regrows: 1
   harvestedPrefab: {fileID: 8865859496956904677, guid: aad4aac5fce5b9743911ff91880bb395, type: 3}
 --- !u!114 &-1417643346075091780
@@ -102,7 +102,7 @@ MonoBehaviour:
   textPrefab: {fileID: 8652166246190109560, guid: fe57cc8352bf17046962584658d5d8bf, type: 3}
   showInCenterOfScreen: 0
   textObject: {fileID: 0}
---- !u!136 &-8024751674379679365
+--- !u!136 &-3710963703586256883
 CapsuleCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -121,7 +121,7 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 1
-  m_Height: 4
+  m_Radius: 1.4
+  m_Height: 6
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}

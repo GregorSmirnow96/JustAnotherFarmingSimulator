@@ -226,7 +226,7 @@ Material:
     - _ThresholdMapScale: 1
     - _UVSec: 0
     - _VertexAnimation: 2
-    - _VertexAnimationIntensity: 0.03
+    - _VertexAnimationIntensity: 0.05
     - _VertexAnimationStutter: 0
     - _WrappedLighting: 1
     - _ZTest: 4
