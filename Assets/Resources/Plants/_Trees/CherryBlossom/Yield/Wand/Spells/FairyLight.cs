@@ -5,6 +5,7 @@ using UnityEngine;
 public class FairyLight : MonoBehaviour
 {
     public float heightAbovePlayer = 1.56f;
+    public float movementDelay = 0.8f;
     public float maxSpeedDistance = 3f;
     public float minSpeedDistance = 0.2f;
     public float maxSpeed = 12f;
@@ -36,6 +37,7 @@ public class FairyLight : MonoBehaviour
 
         glowPSTransform = transform.Find("GlowWide");
 
+        StartCoroutine(DelayLightMovement());
         StartCoroutine(Pulse());
     }
 
@@ -50,6 +52,14 @@ public class FairyLight : MonoBehaviour
 
         Vector3 delta = movementDirection.normalized * speed * Time.deltaTime;
         transform.position = transform.position + delta;
+    }
+
+    private IEnumerator DelayLightMovement()
+    {
+        float initialMaxSpeed = maxSpeed;
+        maxSpeed = 0f;
+        yield return new WaitForSeconds(movementDelay);
+        maxSpeed = initialMaxSpeed;
     }
 
     private IEnumerator Pulse()

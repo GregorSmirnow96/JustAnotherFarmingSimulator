@@ -97,6 +97,8 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
             + cameraTransform.up * 0.282f
             + cameraTransform.right * 0.196f
             + cameraTransform.forward * 0.92f;
+        Instantiate(spell1LightPrefab, startPosition, Quaternion.identity);
+        /*
         GameObject fairyLightPS = Instantiate(spell1LightPrefab, startPosition, Quaternion.identity);
 
         FairyLight fairyLight = fairyLightPS.GetComponent<FairyLight>();
@@ -104,6 +106,7 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
         fairyLight.maxSpeed = 0f;
         yield return new WaitForSeconds(0.8f);
         fairyLight.maxSpeed = initialMaxSpeed;
+        */
 
         inAnimation = false;
     }
