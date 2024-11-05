@@ -9,7 +9,7 @@ public class RemovesGrass : MonoBehaviour
 
     void Start()
     {
-        GameObject grassRemoverPrefab = AssetDatabase.LoadAssetAtPath<GameObject>($"Assets/StixGames/GrassRemovalSphere.prefab");
+        GameObject grassRemoverPrefab = AssetDatabase.LoadAssetAtPath<GameObject>($"Assets/GrassRemovalSphere.prefab");
         GameObject grassRemover = Instantiate(grassRemoverPrefab, transform);
         grassRemover.transform.localScale = new Vector3(radius, radius, radius);
     }
