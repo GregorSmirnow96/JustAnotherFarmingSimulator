@@ -25,9 +25,10 @@ public class InteractText : MonoBehaviour
 
         floatingText.text = interactionText;
 
-        Disable();
+        //Disable();
     }
 
+/*
     void Update()
     {
         Vector3 worldPosition = transform.position + offset;
@@ -47,4 +48,5 @@ public class InteractText : MonoBehaviour
         floatingText.gameObject.SetActive(false);
         enabled = false;
     }
+*/
 }

@@ -15,11 +15,13 @@ public class ModularInteractText : MonoBehaviour
     private Canvas rootCanvas;
     private TMP_Text floatingText;
     private RectTransform textRectTransform;
+    private bool enableTextAfterUpdatingPosition;
 
     void Awake()
     {
         rootCanvas = GameObject.Find("UICanvas").GetComponent<Canvas>();
 
+        Debug.Log(gameObject.name);
         textObject = Instantiate(textPrefab, rootCanvas.transform);
         floatingText = textObject.GetComponent<TMP_Text>();
 
@@ -50,24 +52,18 @@ public class ModularInteractText : MonoBehaviour
         }
 
         textRectTransform.position = screenPosition;
+
+        floatingText.enabled = enableTextAfterUpdatingPosition;
     }
 
     public void Enable()
     {
-        if (floatingText != null)
-        {
-            floatingText.gameObject.SetActive(true);
-            enabled = true;
-        }
+        enableTextAfterUpdatingPosition = true;
     }
 
     public void Disable()
     {
-        if (floatingText != null)
-        {
-            floatingText.gameObject.SetActive(false);
-            enabled = false;
-        }
+        enableTextAfterUpdatingPosition = false;
     }
 
     void OnDestroy()

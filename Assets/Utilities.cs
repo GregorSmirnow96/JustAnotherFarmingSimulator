@@ -37,6 +37,27 @@ public static class SceneProperties
             ? tangentPoint1
             : tangentPoint2;
     }
+
+    public static Vector3 GetViewIntersectionWithTerrain(float maxInteractionRange)
+    {
+        Vector3 screenCenter = new Vector3(Screen.width / 2, Screen.height / 2, 0);
+        Ray ray = Camera.main.ScreenPointToRay(screenCenter);
+
+        RaycastHit hit;
+        int layerMask = LayerMask.GetMask("Terrain");
+        if (Physics.Raycast(ray, out hit, maxInteractionRange, layerMask))
+        {
+            GameObject hitObject = hit.collider.gameObject;
+            return hit.point;
+        }
+
+        // This assumes no collision should return the point on the terrain at max interaction range in the direction the player is looking.
+        Vector2 cameraDirectionIgnoringY = cameraTransform.forward.ToXZ().normalized;
+        Vector2 xZIntersection = playerTransform.position.ToXZ() + cameraDirectionIgnoringY * maxInteractionRange;
+        float terrainHeightAtIntersection = TerrainHeightAtPosition(xZIntersection);
+
+        return new Vector3(xZIntersection.x, terrainHeightAtIntersection, xZIntersection.y);
+    }
 }
 
 public static class Calculations
