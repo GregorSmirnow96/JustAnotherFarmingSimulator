@@ -9,6 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5327221052168311675}
+  - component: {fileID: -6304576461268845588}
+  - component: {fileID: 7450574583192947292}
   m_Layer: 0
   m_Name: Equipped
   m_TagString: Untagged
@@ -32,6 +34,45 @@ Transform:
   - {fileID: 6293334086074935948}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &-6304576461268845588
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252466765605313166}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8775bea26dd23504dab69435495e58fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell1Cooldown: 4
+  spell2Cooldown: 4
+  spell3Cooldown: 4
+  spell4Cooldown: 4
+  spell1_Prefab: {fileID: 3148454274223458888, guid: ad29c4e55fa8a454f8178d6227d88539, type: 3}
+  spell2AuraPrefab: {fileID: 6490743096400489979, guid: 781eefadb3f5da547ab41975a0dd4765, type: 3}
+--- !u!95 &7450574583192947292
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 252466765605313166}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: c7ec7c1814a1e67478a9c2e806eb117d, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &3017488164660230583
 GameObject:
   m_ObjectHideFlags: 0

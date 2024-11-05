@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Waterable : MonoBehaviour, IInteractable
 {
@@ -22,7 +23,6 @@ public class Waterable : MonoBehaviour, IInteractable
         GameObject waterLevelIconPrefab = Resources.Load<GameObject>("Plants/WaterLevelUI/WaterLevelPanel");
         GameObject mainCanvas = GameObject.Find("UICanvas");
         waterLevelIcon = Instantiate(waterLevelIconPrefab, mainCanvas.transform);
-        waterLevelIcon.SetActive(false);
 
         waterLevelIndicator = waterLevelIcon.GetComponent<WaterLevelIcon>();
         waterLevelIndicator.waterableTransform = gameObject.transform;
@@ -68,7 +68,8 @@ public class Waterable : MonoBehaviour, IInteractable
             interactText.Disable();
         }
 
-        waterLevelIcon.SetActive(true);
+        WaterLevelIcon waterIconScript = waterLevelIcon.GetComponent<WaterLevelIcon>();
+        waterIconScript.ShowIndicator();
     }
 
     public void HideIndicator()
@@ -76,7 +77,8 @@ public class Waterable : MonoBehaviour, IInteractable
         interactText.Disable();
         if (waterLevelIcon != null)
         {
-            waterLevelIcon.SetActive(false);
+            WaterLevelIcon waterIconScript = waterLevelIcon.GetComponent<WaterLevelIcon>();
+            waterIconScript.HideIndicator();
         }
     }
 

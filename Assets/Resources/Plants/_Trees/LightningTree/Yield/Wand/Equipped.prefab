@@ -143,8 +143,59 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 6568247741341206206}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7541990195691757036}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5584712151634425283}
   m_SourcePrefab: {fileID: 100100000, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
+--- !u!1 &2873898808235449118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
+  m_PrefabInstance: {fileID: 3108409998574085711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7541990195691757036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873898808235449118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16745687d23b2b44b961f6032dcd10a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell1Cooldown: 4
+  spell2Cooldown: 4
+  spell3Cooldown: 4
+  spell4Cooldown: 4
+  spell1BlackHolePrefab: {fileID: 8965208332992602297, guid: 3998c6c16dce162468f24b7d4c52c72a, type: 3}
+  spell2ProjectilePrefab: {fileID: 8965208332992602297, guid: 13bb0465a4971f0488c4dc83d933a6f8, type: 3}
+  spell2MuzzleFlashPrefab: {fileID: 1967549377227616157, guid: 8dd5411338f93d3439763151358a55dc, type: 3}
+--- !u!95 &-5584712151634425283
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873898808235449118}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 304e9c70472662548a357ed28017ae8a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!4 &3218370666495115684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}

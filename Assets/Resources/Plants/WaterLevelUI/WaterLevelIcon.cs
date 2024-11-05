@@ -7,10 +7,16 @@ public class WaterLevelIcon : MonoBehaviour
     public RectTransform waterImageTransform;
     public float waterLevel = 0.5f;
     public Transform waterableTransform;
+    public GameObject iconBackgroundObject;
+    public GameObject iconForegroundObject;
 
     private float originalImageHeight;
     private Vector2 originalImagePosition;
     private RectTransform iconContainerRectTransform;
+    private Image icon;
+    private Image iconBackground;
+    private Image iconForeground;
+    private bool showIndicator;
 
     void Start()
     {
@@ -18,6 +24,10 @@ public class WaterLevelIcon : MonoBehaviour
         originalImagePosition = waterImageTransform.anchoredPosition;
 
         iconContainerRectTransform = GetComponent<RectTransform>();
+
+        icon = GetComponent<Image>();
+        iconBackground = iconBackgroundObject.GetComponent<Image>();
+        iconForeground = iconForegroundObject.GetComponent<Image>();
     }
 
     void Update()
@@ -30,5 +40,19 @@ public class WaterLevelIcon : MonoBehaviour
         float maskOffset = originalImagePosition.y - (originalImageHeight * (1 - waterLevel));
         waterMaskTransform.anchoredPosition = new Vector2(originalImagePosition.x, maskOffset);
         waterImageTransform.anchoredPosition = new Vector2(originalImagePosition.x, -maskOffset);
+
+        icon.enabled = showIndicator;
+        iconBackground.enabled = showIndicator;
+        iconForeground.enabled = showIndicator;
+    }
+
+    public void ShowIndicator()
+    {
+        showIndicator = true;
+    }
+
+    public void HideIndicator()
+    {
+        showIndicator = false;
     }
 }

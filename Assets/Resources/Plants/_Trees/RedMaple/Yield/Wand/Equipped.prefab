@@ -143,8 +143,58 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
       insertIndex: -1
       addedObject: {fileID: 5828901159897861253}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 9185917674667969527}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 2428195822893536747}
   m_SourcePrefab: {fileID: 100100000, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
+--- !u!1 &2873898808235449118 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
+  m_PrefabInstance: {fileID: 3108409998574085711}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &9185917674667969527
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873898808235449118}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dcd752673c715cb4ba4bac925f490f73, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &2428195822893536747
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2873898808235449118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5d3a3df6e9ef2b546b4b6a7d43d5252b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spell1Cooldown: 4
+  spell2Cooldown: 4
+  spell3Cooldown: 4
+  spell4Cooldown: 4
+  spell1FireBallPrefab: {fileID: 4933006124039178470, guid: 5a9cafef1977ea04c9784e2d530d729a, type: 3}
+  spell2FireBlastPrefab: {fileID: 8767641651849710635, guid: 5baa0cd42be69074e91db76965f8505c, type: 3}
 --- !u!4 &3218370666495115684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}

@@ -70,7 +70,7 @@ public class PlantStageGrowth : MonoBehaviour, IWaterable
 
     private GrowthStage GetNextStage() => stageIndex < growthStages.Count ? growthStages[stageIndex] : null;
 
-    private void IncrementPhase()
+    public void IncrementPhase()
     {
         if (!growing)
         {
@@ -81,29 +81,33 @@ public class PlantStageGrowth : MonoBehaviour, IWaterable
 
     private IEnumerator Grow()
     {
-        Animator controller = plantObject.GetComponent<Animator>();
-        controller.SetTrigger("Grow");
-
-        // You should probably dynamically use the animation length...
-        GrowthStage nextStage = GetNextStage();
-        yield return new WaitForSeconds(nextStage.growthAnimationTime);
-
-        Destroy(plantObject);
-
-        GameObject nextPlantPrefab = nextStage.stagePrefab;
-        plantObject = Instantiate(nextPlantPrefab, transform.position, nextPlantPrefab.transform.rotation);
-        plantObject.transform.parent = transform;
-
-        stageIndex++;
-
-        if (GetNextStage() == null)
+        bool canGrow = stageIndex < growthStages.Count;
+        if (canGrow)
         {
-            Debug.Log("Destroying Waterable Component");
-            Destroy(GetComponent<Waterable>());
-        }
+            Animator controller = plantObject.GetComponent<Animator>();
+            controller.SetTrigger("Grow");
 
-        isWatered = false;
-        growing = false;
+            // You should probably dynamically use the animation length...
+            GrowthStage nextStage = GetNextStage();
+            yield return new WaitForSeconds(nextStage.growthAnimationTime);
+
+            Destroy(plantObject);
+
+            GameObject nextPlantPrefab = nextStage.stagePrefab;
+            plantObject = Instantiate(nextPlantPrefab, transform.position, nextPlantPrefab.transform.rotation);
+            plantObject.transform.parent = transform;
+
+            stageIndex++;
+
+            if (GetNextStage() == null)
+            {
+                Debug.Log("Destroying Waterable Component");
+                Destroy(GetComponent<Waterable>());
+            }
+
+            isWatered = false;
+            growing = false;
+        }
     }
 
     private void OnDestroy()
