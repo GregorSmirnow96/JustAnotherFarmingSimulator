@@ -50,12 +50,12 @@ public class UseItem : MonoBehaviour
         playerInputs.RegisterGameplayAction(
             PlayerInputs.CAST_SPELL_2,
             UseEquippedItemSpell2);
-        playerInputs.RegisterGameplayAction(
-            PlayerInputs.CAST_SPELL_3,
-            UseEquippedItemSpell3);
-        playerInputs.RegisterGameplayAction(
-            PlayerInputs.CAST_SPELL_4,
-            UseEquippedItemSpell4);
+        //playerInputs.RegisterGameplayAction(
+        //    PlayerInputs.CAST_SPELL_3,
+        //    UseEquippedItemSpell3);
+        //playerInputs.RegisterGameplayAction(
+        //    PlayerInputs.CAST_SPELL_4,
+        //    UseEquippedItemSpell4);
     }
 
     private void UseEquippedItem()

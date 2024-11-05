@@ -28,22 +28,21 @@ public class Inventory : MonoBehaviour
         toolbarItems = new Item[toolbarSize];
         /* Delete this. I'm just seeding the inventory with items. */
         inventoryItems[0,0] = new Item("Log");
-        inventoryItems[1,2] = new Item("WaterStaff");
+        inventoryItems[1,2] = new Item("BowlOfWater");
         inventoryItems[1,3] = new Item("BlueBerrySeed");
         inventoryItems[1,4] = new Item("Pickaxe");
-        inventoryItems[1,5] = new Item("BowlOfWater");
-        inventoryItems[2,0] = new Item("BowlOfWater");
-        inventoryItems[2,1] = new Item("BowlOfWater");
-        inventoryItems[2,2] = new Item("BowlOfWater");
-        inventoryItems[2,3] = new Item("BowlOfWater");
-        inventoryItems[2,4] = new Item("BowlOfWater");
-        inventoryItems[2,5] = new Item("BowlOfWater");
+        inventoryItems[2,0] = new Item("WaterStaff");
+        inventoryItems[2,1] = new Item("WaterWand");
+        inventoryItems[2,2] = null;
+        inventoryItems[2,3] = null;
+        inventoryItems[2,4] = new Item("LightningWand");
+        inventoryItems[2,5] = new Item("LightningStaff");
 
-        toolbarItems[0] = new Item("BowlOfWater");
-        toolbarItems[1] = new Item("BowlOfWater");
-        toolbarItems[2] = new Item("BowlOfWater");
-        toolbarItems[3] = new Item("BowlOfWater");
-        toolbarItems[4] = new Item("WaterStaff");
+        toolbarItems[0] = new Item("FaeStaff");
+        toolbarItems[1] = new Item("FaeWand");
+        toolbarItems[2] = null;
+        toolbarItems[3] = new Item("FireWand");
+        toolbarItems[4] = new Item("FireStaff");
         /*                                                         */
         playerController = GetComponent<FPSMovement>();
     }

@@ -4,27 +4,28 @@ using UnityEngine;
 
 public class Spell1Collision : MonoBehaviour
 {
-    void Start()
-    {
-        
-    }
-
-    void Update()
-    {
-    }
+    public int damage = 12;
 
     private void OnTriggerEnter(Collider otherCollider)
     {
         GameObject hitObject = otherCollider.gameObject;
 
-        Health healthScript = hitObject.gameObject.GetComponent<Health>();
-        if (healthScript == null)
+        Debug.Log(hitObject.name);
+
+        string collidedLayerName = LayerMask.LayerToName(hitObject.layer);
+        if (collidedLayerName != "Player")
         {
-            healthScript = hitObject.gameObject.transform.parent.gameObject.GetComponentInParent<Health>();
-        }
-        if (healthScript != null)
-        {
-            Debug.Log($"WATER SPELL HIT: {healthScript.gameObject.name}");
+            Health healthScript = hitObject.GetComponent<Health>();
+            Debug.Log($"Tried to get Health script from: {hitObject.name}");
+            if (healthScript == null)
+            {
+                healthScript = hitObject.transform?.parent?.gameObject.GetComponentInParent<Health>();
+            }
+            if (healthScript != null)
+            {
+                Debug.Log($"WATER SPELL HIT: {healthScript.gameObject.name}");
+                healthScript.TakeDamage(damage);
+            }
         }
     }
 }

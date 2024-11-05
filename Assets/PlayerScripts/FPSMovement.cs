@@ -4,16 +4,20 @@ using UnityEngine;
 
 public class FPSMovement : MonoBehaviour
 {
-    public float moveSpeed = 5f;  // Speed of the player movement
-    public float horizontalMouseSensitivity = 300f;  // Sensitivity of the mouse movement
-    public float verticalMouseSensitivity = 120f;  // Sensitivity of the mouse movement
+    public float horizontalMouseSensitivity = 300f;
+    public float verticalMouseSensitivity = 120f;
+
 
     private CharacterController characterController;
     private Transform cameraTransform;
     private float xRotation = 0f;
 
+    private float movementSpeed;
+
     void Start()
     {
+        PlayerStats.instance.RegisterOnMovementSpeedChangeCallback((newValue) => movementSpeed = newValue);
+
         // Get the CharacterController component attached to the player
         characterController = GetComponent<CharacterController>();
 
@@ -57,11 +61,11 @@ public class FPSMovement : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
-        // Create a movement vector based on input and moveSpeed
+        // Create a movement vector based on input and movementSpeed
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
         move.y = -9.81f;
 
         // Move the player using the CharacterController
-        characterController.Move(move * moveSpeed * Time.deltaTime);
+        characterController.Move(move * movementSpeed * Time.deltaTime);
     }
 }
