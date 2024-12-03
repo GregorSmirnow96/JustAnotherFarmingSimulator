@@ -49,7 +49,7 @@ public abstract class PlantEaterBehaviour : MonoBehaviour, IAnimalBehaviour, IAt
         animator = GetComponent<Animator>();
 
         health = GetComponent<Health>();
-        health.RegisterCallback(() => wasDamagedLastFrame = true);
+        health.RegisterHealthChangeCallback(() => wasDamagedLastFrame = true);
 
         stateMachine = new AIStateMachine();
     }
@@ -183,7 +183,7 @@ public abstract class PlantEaterBehaviour : MonoBehaviour, IAnimalBehaviour, IAt
         float timeSinceLastEat = Time.time - lastEatTime;
         if (timeSinceLastEat >= eatInterval)
         {
-            targetHealth.TakeDamage(eatDamage);
+            targetHealth.TakeDamage(eatDamage, DamageType.Physical);
             animator.SetTrigger("Eat");
             lastEatTime = Time.time;
         }

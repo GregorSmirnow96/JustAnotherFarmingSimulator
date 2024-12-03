@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FaeStaffSpells : MonoBehaviour, ISpellProvider
 {
@@ -9,11 +11,13 @@ public class FaeStaffSpells : MonoBehaviour, ISpellProvider
     public float spell2Cooldown = 4f;
     public float spell3Cooldown = 4f;
     public float spell4Cooldown = 4f;
+    public Image spell1Sprite;
+    public Image spell2Sprite;
 
-    private float lastSpell1CastTime;
-    private float lastSpell2CastTime;
-    private float lastSpell3CastTime;
-    private float lastSpell4CastTime;
+    private static float lastSpell1CastTime = Int32.MinValue;
+    private static float lastSpell2CastTime = Int32.MinValue;
+    private static float lastSpell3CastTime = Int32.MinValue;
+    private static float lastSpell4CastTime = Int32.MinValue;
 
     private Animator animator;
     private bool inAnimation;
@@ -32,6 +36,15 @@ public class FaeStaffSpells : MonoBehaviour, ISpellProvider
         return 2;
     }
 
+    public List<Image> GetSpellSprites()
+    {
+        return new List<Image>()
+        {
+            spell1Sprite,
+            spell2Sprite
+        };
+    }
+
     public List<float> GetSpellCooldowns()
     {
         return new List<float>()
@@ -40,15 +53,16 @@ public class FaeStaffSpells : MonoBehaviour, ISpellProvider
             spell2Cooldown,
             spell3Cooldown,
             spell4Cooldown
-        };
+        }.Select(cd => cd * PlayerProperties.GetCDRMulti()).ToList();
     }
 
     public List<float> GetRemainingSpellCooldowns()
     {
-        float remainingSpell1Cooldown = spell1Cooldown - (Time.time - lastSpell1CastTime);
-        float remainingSpell2Cooldown = spell2Cooldown - (Time.time - lastSpell2CastTime);
-        float remainingSpell3Cooldown = spell3Cooldown - (Time.time - lastSpell3CastTime);
-        float remainingSpell4Cooldown = spell4Cooldown - (Time.time - lastSpell4CastTime);
+        List<float> cooldowns = GetSpellCooldowns();
+        float remainingSpell1Cooldown = cooldowns.ElementAt(0) - (Time.time - lastSpell1CastTime);
+        float remainingSpell2Cooldown = cooldowns.ElementAt(1) - (Time.time - lastSpell2CastTime);
+        float remainingSpell3Cooldown = cooldowns.ElementAt(2) - (Time.time - lastSpell3CastTime);
+        float remainingSpell4Cooldown = cooldowns.ElementAt(3) - (Time.time - lastSpell4CastTime);
 
         return new List<float>()
         {
@@ -75,7 +89,8 @@ public class FaeStaffSpells : MonoBehaviour, ISpellProvider
     public void CastSpell1()
     {
         float timeSinceLastCast = Time.time - lastSpell1CastTime;
-        if (timeSinceLastCast >= spell1Cooldown && !inAnimation)
+        float spell1Cd = GetSpellCooldowns().ElementAt(0);
+        if (timeSinceLastCast >= spell1Cd && !inAnimation)
         {
             inAnimation = true;
             lastSpell1CastTime = Time.time;
@@ -87,6 +102,8 @@ public class FaeStaffSpells : MonoBehaviour, ISpellProvider
     {
         // Perform staff animation
         animator.SetTrigger("Spell1");
+
+        PlayerStats.instance.ApplyMultiplicativeSpeedModifier(0.1f, 1f);
 
         // Wait for {spell_particle_spawn_frame} / {fps} (60).
         yield return new WaitForSeconds(33f/60f);
@@ -102,7 +119,8 @@ public class FaeStaffSpells : MonoBehaviour, ISpellProvider
     public void CastSpell2()
     {
         float timeSinceLastCast = Time.time - lastSpell2CastTime;
-        if (timeSinceLastCast >= spell2Cooldown && !inAnimation)
+        float spell2Cd = GetSpellCooldowns().ElementAt(1);
+        if (timeSinceLastCast >= spell2Cd && !inAnimation)
         {
             inAnimation = true;
             lastSpell2CastTime = Time.time;
@@ -114,8 +132,10 @@ public class FaeStaffSpells : MonoBehaviour, ISpellProvider
     {
         animator.SetTrigger("Spell2");
 
+        PlayerStats.instance.ApplyMultiplicativeSpeedModifier(0.5f, 1f);
+
         // Wait for {spell_particle_spawn_frame} / {fps} (60).
-        yield return new WaitForSeconds(34f/60f); // Update cast frame index
+        yield return new WaitForSeconds(34f/60f);
 
         Transform cameraTransform = SceneProperties.cameraTransform;
         Vector3 startPosition = cameraTransform.position

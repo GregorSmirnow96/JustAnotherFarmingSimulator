@@ -36,8 +36,7 @@ public class ItemAttractor : MonoBehaviour
             float distanceToPlayer = vectorToPlayer.magnitude;
             if (distanceToPlayer <= pickupRange)
             {
-                string groundItemId = groundItem.GetComponent<GroundItem>().itemId;
-                Item itemToAdd = new Item(groundItemId);
+                Item itemToAdd = groundItem.GetComponent<GroundItem>().item;
                 bool succeeded = playerInventory.AddItemToInventory(itemToAdd);
                 if (!succeeded)
                 {

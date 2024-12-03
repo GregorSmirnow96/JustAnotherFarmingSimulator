@@ -10,6 +10,8 @@ public class Barrage : MonoBehaviour
     public float slowPercentage = 70f;
     public float slowDuration = 4f;
 
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Water);
+
     private float speed = 1f;
     private float flightTimer = 0f;
 
@@ -49,7 +51,7 @@ public class Barrage : MonoBehaviour
             Health health = collidedObject.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(damage);
+                health.TakeDamage(scaledDamage, DamageType.Water);
             }
 
             ICCable ccable = collidedObject.GetComponent<ICCable>();

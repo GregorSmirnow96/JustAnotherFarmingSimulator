@@ -96,7 +96,11 @@ public class InventoryCanvas : MonoBehaviour, IPointerDownHandler, IPointerUpHan
             Item tileItem = Inventory.instance.GetItem(y, x);
             bool tileItemIsNull = tileItem == null;
 
-            Image itemImage = tile.transform.GetChild(0).GetComponent<Image>();
+            Transform childTransform = tile.transform.GetChild(0);
+
+            childTransform.GetComponent<TooltipOnHover>().item = tileItem;
+
+            Image itemImage = childTransform.GetComponent<Image>();
             Color itemImageColor = itemImage.color;
             itemImageColor.a = tileItemIsNull
                 ? noItemAlpha

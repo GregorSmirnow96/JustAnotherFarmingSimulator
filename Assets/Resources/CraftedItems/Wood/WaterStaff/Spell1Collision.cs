@@ -24,7 +24,7 @@ public class Spell1Collision : MonoBehaviour
             if (healthScript != null)
             {
                 Debug.Log($"WATER SPELL HIT: {healthScript.gameObject.name}");
-                healthScript.TakeDamage(damage);
+                healthScript.TakeDamage(damage, DamageType.Water);
             }
         }
     }

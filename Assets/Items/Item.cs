@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -8,15 +9,18 @@ using ItemMetaData;
 public class Item
 {
     public ItemType type;
+    public Guid guid;
 
     public Item(ItemType itemType)
     {
         type = itemType;
+        guid = Guid.NewGuid();
     }
 
     public Item(string itemId)
     {
         type = ItemTypeRepo.GetInstance().TryFindItemType(itemId);
+        guid = Guid.NewGuid();
     }
 
     // Like item specific data, this can be extended by item specific classes.

@@ -56,20 +56,23 @@ public class Waterable : MonoBehaviour, IInteractable
 
     public void ShowIndicator()
     {
-        Item item = playerToolbar.GetEquippedItem();
-        string itemId = item?.type.id;
-        bool isFullContainer = waterContainers.ItemIsFullContainer(itemId);
-        if (isFullContainer)
+        if (playerToolbar != null)
         {
-            interactText.Enable();
-        }
-        else
-        {
-            interactText.Disable();
-        }
+            Item item = playerToolbar.GetEquippedItem();
+            string itemId = item?.type.id;
+            bool isFullContainer = waterContainers.ItemIsFullContainer(itemId);
+            if (isFullContainer)
+            {
+                interactText.Enable();
+            }
+            else
+            {
+                interactText.Disable();
+            }
 
-        WaterLevelIcon waterIconScript = waterLevelIcon.GetComponent<WaterLevelIcon>();
-        waterIconScript.ShowIndicator();
+            WaterLevelIcon waterIconScript = waterLevelIcon.GetComponent<WaterLevelIcon>();
+            waterIconScript.ShowIndicator();
+        }
     }
 
     public void HideIndicator()

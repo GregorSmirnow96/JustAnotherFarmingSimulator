@@ -48,11 +48,9 @@ public class Harvestable : MonoBehaviour, IInteractable
 
     void OnDestroy()
     {
-        Debug.Log($"Hello? {regrows}");
         if (!regrows)
         {
             Destroy(gameObject.transform.parent.gameObject);
-            Debug.Log("Hello!");
         }
         Destroy(interactText.textObject);
     } 

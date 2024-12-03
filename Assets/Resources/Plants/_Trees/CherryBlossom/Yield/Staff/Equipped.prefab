@@ -71,6 +71,8 @@ MonoBehaviour:
   spell2Cooldown: 4
   spell3Cooldown: 4
   spell4Cooldown: 4
+  spell1Sprite: {fileID: 8088245270586817439, guid: 9acea75e3525f9c4fa675af17b688020, type: 3}
+  spell2Sprite: {fileID: 8088245270586817439, guid: e8d272971b4588044813e03817d2a199, type: 3}
   spell1CharmOrbPrefab: {fileID: 6667154708676442530, guid: b2f12dd9833ad2e48805b9ca0b657083, type: 3}
   spell2OrbPrefab: {fileID: 8074320632460868297, guid: 794caf9c706dabd4893e8ad224f7f6ee, type: 3}
 --- !u!1 &7744392401307907524

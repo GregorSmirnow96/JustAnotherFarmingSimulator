@@ -7,6 +7,8 @@ public class LightningOrbHitbox : MonoBehaviour
     public int damage = 8;
     public float duration = 2f;
 
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Lightning);
+
     void Start()
     {
         StartCoroutine(SelfDestruct());
@@ -25,7 +27,7 @@ public class LightningOrbHitbox : MonoBehaviour
         Health health = collidedObject.GetComponent<Health>();
         if (health != null)
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(scaledDamage, DamageType.Lightning);
         }
     }
 }

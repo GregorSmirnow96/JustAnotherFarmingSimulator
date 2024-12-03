@@ -10,6 +10,8 @@ public class Pickaxe : MonoBehaviour, IUsable
     public float minRockDamage = 1;
     public float maxRockDamage = 3;
 
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Physical);
+
     private float nextSwingTime = 0f;
     private bool isSwinging = false;
     private bool swingCollided = false;
@@ -80,7 +82,7 @@ public class Pickaxe : MonoBehaviour, IUsable
         if (health != null)
         {
             // Do the damage thing
-            health.TakeDamage(damage);
+            health.TakeDamage(scaledDamage, DamageType.Physical);
         }
     }
 }

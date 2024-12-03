@@ -172,6 +172,8 @@ MonoBehaviour:
   spell2Cooldown: 4
   spell3Cooldown: 4
   spell4Cooldown: 4
+  spell1Sprite: {fileID: 8088245270586817439, guid: e181306d49cee9044a48337e3a118fc6, type: 3}
+  spell2Sprite: {fileID: 8088245270586817439, guid: 92b8c129111279e46a9d3313e0df22a6, type: 3}
   spell1BlackHolePrefab: {fileID: 8965208332992602297, guid: 3998c6c16dce162468f24b7d4c52c72a, type: 3}
   spell2ProjectilePrefab: {fileID: 8965208332992602297, guid: 13bb0465a4971f0488c4dc83d933a6f8, type: 3}
   spell2MuzzleFlashPrefab: {fileID: 1967549377227616157, guid: 8dd5411338f93d3439763151358a55dc, type: 3}

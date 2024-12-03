@@ -8,6 +8,8 @@ public class LightningWave : MonoBehaviour
     public float knockBackDuration = 0.8f;
     public int damage = 4;
 
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Lightning);
+
     void OnTriggerEnter(Collider other)
     {
         GameObject collidedObject = other.gameObject;
@@ -18,7 +20,7 @@ public class LightningWave : MonoBehaviour
             Health health = collidedObject.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(damage);
+                health.TakeDamage(scaledDamage, DamageType.Lightning);
             }
 
             ICCable ccable = collidedObject.GetComponent<ICCable>();

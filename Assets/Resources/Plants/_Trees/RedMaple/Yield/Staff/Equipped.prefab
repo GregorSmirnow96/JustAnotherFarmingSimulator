@@ -50,6 +50,8 @@ MonoBehaviour:
   spell2Cooldown: 4
   spell3Cooldown: 4
   spell4Cooldown: 4
+  spell1Sprite: {fileID: 8088245270586817439, guid: f5b2fc5736cdb984f88c3988ce1512c7, type: 3}
+  spell2Sprite: {fileID: 8088245270586817439, guid: 4eef4657c01873d42a7a95ba6c3f8028, type: 3}
   spell1FlameContainerPrefab: {fileID: 913578262313953207, guid: a1321dcf3865f214fa0ce19ea6cb493f, type: 3}
   spell2OrbContainerPrefab: {fileID: 7129568253424300554, guid: d51500305e696554ca158a0ef3f05c87, type: 3}
 --- !u!95 &6171869964746299669

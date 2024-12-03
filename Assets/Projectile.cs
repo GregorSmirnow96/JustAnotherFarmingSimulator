@@ -31,7 +31,7 @@ public class Projectile : MonoBehaviour
         else if (timeElapsed >= travelTime)
         {
             Health healthScript = target.GetComponent<Health>();
-            healthScript.TakeDamage(damage);
+            healthScript.TakeDamage(damage, DamageType.Physical);
             Destroy(gameObject);
             return;
         }

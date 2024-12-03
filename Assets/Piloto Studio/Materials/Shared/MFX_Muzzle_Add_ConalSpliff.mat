@@ -96,6 +96,7 @@ Material:
     - _Cull: 2
     - _CullMode: 2
     - _CullModeForward: 2
+    - _Culling: 0
     - _Cutoff: 0.5
     - _Desaturate: 0
     - _DetailNormalMapScale: 1
@@ -165,6 +166,7 @@ Material:
     - _TransparentZWrite: 0
     - _UVSec: 0
     - _UseAlphaOverride: 1
+    - _UsePixelation: 0
     - _UseRamp: 0
     - _UseShadowThreshold: 0
     - _UseSoftAlpha: 1
@@ -184,6 +186,7 @@ Material:
     - _DetailDistortionChannel: {r: 0, g: 0, b: 0, a: 1}
     - _DetailMultiplyChannel: {r: 1, g: 1, b: 1, a: 0}
     - _DetailNoisePanning: {r: 0, g: 0, b: 0, a: 0}
+    - _DetailVertexOffsetChannel: {r: 1, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FresnelColor: {r: 1, g: 1, b: 1, a: 1}
@@ -192,6 +195,7 @@ Material:
     - _MainTextureChannel: {r: 1, g: 1, b: 1, a: 0}
     - _MainTexturePanning: {r: 0, g: 0, b: 0, a: 0}
     - _MidColor: {r: 1, g: 0.44479147, b: 0, a: 0}
+    - _Resolution: {r: 64, g: 64, b: 0, a: 0}
     - _SoftParticleFadeParams: {r: 0, g: 1, b: 0, a: 0}
     - _TintColor: {r: 1, g: 1, b: 1, a: 1}
     - _UnlitColorMap_MipInfo: {r: 0, g: 0, b: 0, a: 0}

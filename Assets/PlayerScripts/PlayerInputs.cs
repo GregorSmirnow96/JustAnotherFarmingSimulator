@@ -25,7 +25,7 @@ public class PlayerInputs : MonoBehaviour
     public const string CAST_SPELL_3 = "CAST_SPELL_3";
     public const string CAST_SPELL_4 = "CAST_SPELL_4";
     public const string TOGGLE_INVENTORY = "TOGGLE_INVENTORY";
-    public const string FORCE_CLOSE_INVENTORY = "FORCE_CLOSE_INVENTORY";
+    public const string FORCE_CLOSE_UIS = "FORCE_CLOSE_UIS";
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class PlayerInputs : MonoBehaviour
             { CAST_SPELL_3, KeyCode.Alpha3 },
             { CAST_SPELL_4, KeyCode.Alpha4 },
             { TOGGLE_INVENTORY, KeyCode.I },
-            { FORCE_CLOSE_INVENTORY, KeyCode.Escape }
+            { FORCE_CLOSE_UIS, KeyCode.Escape }
         };
         uiManager = UIManager.instance;
     }

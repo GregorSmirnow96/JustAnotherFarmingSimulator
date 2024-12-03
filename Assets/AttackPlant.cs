@@ -73,7 +73,7 @@ public class AttackPlant : MonoBehaviour
             Health health = target.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(damage);
+                health.TakeDamage(damage, DamageType.Physical);
                 targetWasKilled = health.health <= 0;
                 if (targetWasKilled)
                 {

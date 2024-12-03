@@ -6,7 +6,6 @@ public class WateringSphereHitbox : MonoBehaviour
 {
     void OnTriggerEnter(Collider other)
     {
-        Debug.Log(other.gameObject.name);
         IWaterable waterableScript = other.gameObject.GetComponent<IWaterable>();
         if (waterableScript != null)
         {

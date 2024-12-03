@@ -8,6 +8,8 @@ public class FireOrbHitbox : MonoBehaviour
     public GameObject impactPrefab;
     public int damage = 5;
 
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Fire);
+
     private Vector3 lastPlayerPosition;
     private Transform playerTransform;
 
@@ -41,7 +43,7 @@ public class FireOrbHitbox : MonoBehaviour
                 Vector3 collisionPoint = other.ClosestPoint(transform.position);
                 Instantiate(impactPrefab, collisionPoint, Quaternion.identity);
 
-                health.TakeDamage(damage);
+                health.TakeDamage(scaledDamage, DamageType.Fire);
             }
         }
     }

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class ArrowDamageHitbox : MonoBehaviour
 {
-    public int damage = 12;
+    public int damage = 8;
+
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Water);
 
     private List<GameObject> objectsHit = new List<GameObject>();
 
@@ -16,7 +18,6 @@ public class ArrowDamageHitbox : MonoBehaviour
     private IEnumerator SelfDestruct()
     {
         yield return new WaitForSeconds(2f);
-        Debug.Log("Destroying self (arrow dmg)");
         Destroy(gameObject);
     }
 
@@ -24,13 +25,11 @@ public class ArrowDamageHitbox : MonoBehaviour
     {
         GameObject collidedObject = other.gameObject;
 
-        Debug.Log($"Arrows damaging: {collidedObject.name}");
-
         Health health = collidedObject.GetComponent<Health>();
         if (health != null && !objectsHit.Contains(collidedObject))
         {
             objectsHit.Add(collidedObject);
-            health.TakeDamage(damage);
+            health.TakeDamage(scaledDamage, DamageType.Water);
         }
     }
 }

@@ -25,7 +25,7 @@ public class ToolbarImage : MonoBehaviour
     void Update()
     {
         Item item = toolbar.GetItem(slotIndex);
-        ItemType itemType = itemTypeRepo.TryFindItemType(item?.type.id);
+        ItemType itemType = item?.type;
         slotImage.sprite = itemType?.inventorySprite;
 
         bool hasItem = item != null;

@@ -1,0 +1,108 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!21 &2100000
+Material:
+  serializedVersion: 8
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: FAE_Waterfall 5
+  m_Shader: {fileID: 4800000, guid: 50c4f112a3c5bd945bc829e337ee2620, type: 3}
+  m_Parent: {fileID: 0}
+  m_ModifiedSerializedProperties: 0
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
+  m_LightmapFlags: 1
+  m_EnableInstancingVariants: 0
+  m_DoubleSidedGI: 0
+  m_CustomRenderQueue: -1
+  stringTagMap: {}
+  disabledShaderPasses: []
+  m_LockedProperties: 
+  m_SavedProperties:
+    serializedVersion: 3
+    m_TexEnvs:
+    - _Diffuse:
+        m_Texture: {fileID: 2800000, guid: cf6fb875805026b4f8c4df0ded4b341e, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Noise:
+        m_Texture: {fileID: 2800000, guid: 1206ec3b97ff9e043bab9ed180f8a4d7, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Shadermap:
+        m_Texture: {fileID: 2800000, guid: 964c5013108d36140b92e33ff7d68a82, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _Texture0:
+        m_Texture: {fileID: 2800000, guid: 34ebb287809538e449bc8d6ee9dcb781, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureMain:
+        m_Texture: {fileID: 2800000, guid: 0266342b88bb97847b142e0070430666, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _TextureMain2:
+        m_Texture: {fileID: 2800000, guid: 0266342b88bb97847b142e0070430666, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - _texcoord:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    m_Ints: []
+    m_Floats:
+    - _ColorLerpOffset: 0.32
+    - _ColorLerpScale: 1.037
+    - _ColorNoiseOffset: 2
+    - _ColorNoiseScale: 5.87
+    - _DepthFadeDistance: 0.05
+    - _EdgeOffset: -0.49
+    - _EdgeScale: 1.23
+    - _Float1: 0.22
+    - _Float2: 0.17
+    - _Float3: 6.07
+    - _Float4: 0.66
+    - _Float5: 0
+    - _FresnelBias: 0.202
+    - _FresnelPower: 0
+    - _FresnelScale: 0.359
+    - _NoiseSpeedY: 3.84
+    - _NoiseUVTilling: 3.95
+    - _NoiseValue: 0.036
+    - _Offset2X: 1.5
+    - _Opacity: 1
+    - _OpacityValue: 0.729
+    - _Scale2X: 1.49
+    - _Speed: 0.13
+    - _Speed1: 0.66
+    - _SpeedNoise: 1
+    - _Tilling: 1
+    - _Tilling2X: 1.4
+    - _Tilling2Y: 0.37
+    - _TillingX: 2.4
+    - _TillingY: 0.91
+    - _Water2Speed: 0.36
+    - _WaterSpeed: 0.131
+    - _WaterSpeed1: 0.5004215
+    - __dirty: 0
+    m_Colors:
+    - _BottomColor: {r: 0, g: 0.603959, b: 0.9339623, a: 1}
+    - _Color: {r: 0.02205884, g: 0.5548683, b: 1, a: 0}
+    - _Color0: {r: 0.79886085, g: 0.87916744, b: 0.9056604, a: 1}
+    - _Color1: {r: 1, g: 1, b: 1, a: 1}
+    - _Color1Big: {r: 1, g: 0.9669811, b: 0.9669811, a: 1}
+    - _Color1Small: {r: 0.42435032, g: 0.6037736, b: 0.57616997, a: 1}
+    - _Color2: {r: 0.38127446, g: 0.51189184, b: 0.6792453, a: 1}
+    - _Color2BIg: {r: 0.79886085, g: 0.87916744, b: 0.9056604, a: 1}
+    - _Color2Big: {r: 1, g: 1, b: 1, a: 1}
+    - _Color2Small: {r: 0.44054827, g: 0.5503131, b: 0.5660378, a: 1}
+    - _Color3: {r: 0.37126204, g: 0.6262954, b: 0.764151, a: 1}
+    - _FresnelEdgeColor: {r: 0.6468049, g: 0.8050813, b: 0.8962264, a: 1}
+    - _MainColor2ScaleAndOffset: {r: 10, g: 0.43, b: 0, a: 0}
+    - _MainColorScaleAndOffset: {r: 2.76, g: -0.45, b: 0, a: 0}
+    - _MainScaleAndOffset: {r: 0.26, g: -0.07, b: 0, a: 0}
+    - _TopColor: {r: 0, g: 0.9547765, b: 1, a: 1}
+    - _WaterColor: {r: 0.3584906, g: 0.3584906, b: 0.3584906, a: 0}
+  m_BuildTextureStacks: []

@@ -152,6 +152,7 @@ Material:
     - _UVSec: 0
     - _UseAlphaDisolve: 0
     - _UseAlphaOverride: 1
+    - _UsePixelation: 0
     - _UseRamp: 0
     - _UseShadowThreshold: 0
     - _UseSoftAlpha: 0
@@ -172,6 +173,7 @@ Material:
     - _DetailDistortionChannel: {r: 1, g: 0, b: 0, a: 0}
     - _DetailMultiplyChannel: {r: 0, g: 0, b: 0, a: 0}
     - _DetailNoisePanning: {r: 0.5, g: 0.5, b: 0, a: 0}
+    - _DetailVertexOffsetChannel: {r: 1, g: 0, b: 0, a: 0}
     - _DoubleSidedConstants: {r: 1, g: 1, b: -1, a: 0}
     - _EmissionColor: {r: 1, g: 1, b: 1, a: 1}
     - _FlipbooksColumsRows: {r: 1, g: 1, b: 0, a: 0}
@@ -185,6 +187,7 @@ Material:
     - _MainTextureChannel: {r: 1, g: 1, b: 1, a: 0}
     - _MainTexturePanning: {r: 0, g: 0, b: 0, a: 0}
     - _MidColor: {r: 1, g: 0.08363298, b: 0, a: 0}
+    - _Resolution: {r: 64, g: 64, b: 0, a: 0}
     - _ScrollingSpeed: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _SecondTexSpeed_NoiseForce: {r: 0.05, g: 0.05, b: 0.5, a: 0.5}
     - _TintColor: {r: 0.5, g: 0.5, b: 0.5, a: 0.5}

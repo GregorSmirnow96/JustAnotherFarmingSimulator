@@ -2,13 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public static class PlayerProperties
+{
+    public static PlayerStats playerStats = SceneProperties.playerTransform.GetComponent<PlayerStats>();
+    public static float GetPlayerDamageMulti(string damageType) =>
+        playerStats.GetDamageMulti(damageType);
+    public static float GetPlayerResistanceMulti(string damageType) =>
+        playerStats.GetResistanceMulti(damageType);
+    public static int GetScaledPlayerDamage(int damage, string damageType)
+    {
+        return (int) (damage * GetPlayerDamageMulti(damageType));
+    }
+    public static float GetCDRMulti() => playerStats.GetCDRMulti();
+}
+
 public static class SceneProperties
 {
     public static float clearingRadius = 57f;
     public static Vector3 sceneCenter = new Vector3(200f, 0f, 200f);
 
-    public   static Transform cameraTransform = GameObject.Find("Camera").transform;
-    public   static Transform playerTransform = GameObject.Find("Player").transform;
+    public static Transform cameraTransform = GameObject.Find("Camera").transform;
+    public static Transform playerTransform = GameObject.Find("Player").transform;
+    public static Transform equippedItemContainerTransform = GameObject.Find("EquippedItemContainer").transform;
     public static Vector2 playerXZPosition => playerTransform.position.ToXZ();
     public static float playerDistanceFromCenter => (playerXZPosition - sceneCenter.ToXZ()).magnitude;
     public static float distanceToPlayer(Transform transform) => (playerTransform.position - transform.position).magnitude;

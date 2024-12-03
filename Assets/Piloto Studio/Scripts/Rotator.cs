@@ -1,28 +1,31 @@
 ﻿using System.Collections;
 using UnityEngine;
-
-public class Rotator : MonoBehaviour
+namespace PilotoStudio
 {
-	public float x = 0f;
-	public float y = 0f;
-	public float z = 0f;
+	public class Rotator : MonoBehaviour
+	{
+		public float x = 0f;
+		public float y = 0f;
+		public float z = 0f;
 
-	public bool useGlobal;
+		public bool useGlobal;
 
 
 
-    private void Update()
-    {
-		if (!useGlobal) {
-            this.transform.Rotate(new Vector3(x, y, z) * Time.deltaTime);
+		private void Update()
+		{
+			if (!useGlobal)
+			{
+				this.transform.Rotate(new Vector3(x, y, z) * Time.deltaTime);
+
+			}
+			else
+			{
+				this.transform.Rotate(new Vector3(x, y, z) * Time.deltaTime, Space.Self);
+			}
+
 
 		}
-		else
-		{
-            this.transform.Rotate(new Vector3(x, y, z) * Time.deltaTime, Space.Self);
-        }
 
-
-    }
-
+	}
 }

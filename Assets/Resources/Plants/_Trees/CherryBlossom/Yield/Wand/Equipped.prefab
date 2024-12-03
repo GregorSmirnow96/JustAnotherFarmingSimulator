@@ -84,9 +84,12 @@ MonoBehaviour:
   spell2Cooldown: 4
   spell3Cooldown: 4
   spell4Cooldown: 4
+  spell1Sprite: {fileID: 8088245270586817439, guid: aa488752e1b3e0a4598e67424956d0d5, type: 3}
+  spell2Sprite: {fileID: 8088245270586817439, guid: 695dc057ca060bb49ac2ddd4f2dece0c, type: 3}
   spell1LightPrefab: {fileID: 7276763224865822167, guid: bb12c769b52744a43b06e4e2c7431a19, type: 3}
   spell2MuzzleFlashPrefab: {fileID: 846087387448997970, guid: bd864cffe7ce286478c7f53bb8e9989e, type: 3}
   spell2ExplosionPrefab: {fileID: 4997239417617680573, guid: 0b9e914d29d4d194c8088f927859e41b, type: 3}
+  maxGrowSpellDistance: 10
 --- !u!95 &5835940683600218912
 Animator:
   serializedVersion: 5

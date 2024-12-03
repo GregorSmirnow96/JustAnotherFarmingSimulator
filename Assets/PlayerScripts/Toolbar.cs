@@ -12,25 +12,45 @@ public class Toolbar : MonoBehaviour
 
     public const int inventorySize = 5;
     public int equippedItemIndex = 0;
+    public float autoScrollEnableTime = 3f;
+
+    private bool scrollingEnabled;
+    private float scrollDisabledTime;
 
     public bool IsFull => Inventory.instance.toolbarItems.All(id => id != null);
 
     void Awake()
     {
         instance = this;
+        scrollingEnabled = true;
     }
 
     void Update()
     {
-        float scroll = Input.GetAxis("Mouse ScrollWheel");
-        if (scroll > 0.0f)
+        if (!scrollingEnabled)
         {
-            equippedItemIndex = (equippedItemIndex + 1) % inventorySize;
+            if (Time.time - scrollDisabledTime >= autoScrollEnableTime)
+            scrollingEnabled = true;
         }
-        else if (scroll < 0.0f)
+
+        if (scrollingEnabled)
         {
-            equippedItemIndex = (equippedItemIndex + inventorySize - 1) % inventorySize;
+            float scroll = Input.GetAxis("Mouse ScrollWheel");
+            if (scroll > 0.0f)
+            {
+                equippedItemIndex = (equippedItemIndex + 1) % inventorySize;
+            }
+            else if (scroll < 0.0f)
+            {
+                equippedItemIndex = (equippedItemIndex + inventorySize - 1) % inventorySize;
+            }
         }
+    }
+
+    public void SetScrollingEnabled(bool scrollingEnabled)
+    {
+        this.scrollingEnabled = scrollingEnabled;
+        scrollDisabledTime = Time.time;
     }
 
     public Item GetItem(int i) => Inventory.instance.toolbarItems[i];

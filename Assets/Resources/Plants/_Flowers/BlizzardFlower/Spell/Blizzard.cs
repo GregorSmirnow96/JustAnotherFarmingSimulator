@@ -11,6 +11,7 @@ public class Blizzard : MonoBehaviour
     private ParticleSystem particleSystem;
     private List<ParticleSystem.MainModule> mainModules;
     private Clock worldClock;
+    private List<ICCable> slowableCreaturesInRadius;
 
     void Awake()
     {
@@ -26,14 +27,16 @@ public class Blizzard : MonoBehaviour
         }
 
         SetLooping(false);
+
+        slowableCreaturesInRadius = new List<ICCable>();
     }
 
     void Start()
     {
         worldClock = Clock.globalClock;
 
-        // This logic makes sense IF the plant it supposed to run at night (it is).
-        bool isPastStartTime = (worldClock.time % worldClock.dayDuration) >= startTimeOfDay;
+        float timeOfDay = worldClock.time % worldClock.dayDuration;
+        bool isPastStartTime = timeOfDay >= startTimeOfDay || timeOfDay <= endTimeOfDay;
         if (isPastStartTime)
         {
             SetLooping(true);
@@ -55,6 +58,29 @@ public class Blizzard : MonoBehaviour
         {
             SetLooping(false);
         }
+
+        bool isActive = particleSystem.main.loop;
+        if (isActive)
+        {
+            List<ICCable> ccablesToDelete = new List<ICCable>();
+            
+            slowableCreaturesInRadius.ForEach(ccable =>
+            {
+                try
+                {
+                    ccable.Slow(2f, 0.6f);
+                }
+                catch
+                {
+                    ccablesToDelete.Add(ccable);
+                }
+            });
+
+            ccablesToDelete.ForEach(health =>
+            {
+                slowableCreaturesInRadius.Remove(health);
+            });
+        }
     }
 
     private void SetLooping(bool shouldLoop)
@@ -70,6 +96,28 @@ public class Blizzard : MonoBehaviour
         else if (!shouldLoop && wasLooping)
         {
             particleSystem.Stop();
+        }
+    }
+
+    void OnTriggerEnter(Collider other)
+    {
+        GameObject collidedObject = other.gameObject;
+
+        ICCable ccable = collidedObject.GetComponent<ICCable>();
+        if (ccable != null)
+        {
+            slowableCreaturesInRadius.Add(ccable);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        GameObject collidedObject = other.gameObject;
+
+        ICCable ccable = collidedObject.GetComponent<ICCable>();
+        if (ccable != null)
+        {
+            slowableCreaturesInRadius.Remove(ccable);
         }
     }
 }

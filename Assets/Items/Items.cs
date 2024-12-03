@@ -24,8 +24,9 @@ namespace ItemMetaData
             items.Add(new Axe());
             items.Add(new Pickaxe());
             items.Add(new Staff());
-            items.Add(new WaterStaff());
+            items.Add(new Wand());
             items.Add(new IronOre());
+            items.Add(new IronBar());
             items.Add(new CopperOre());
             items.Add(new Log());
             items.Add(new Bowl());
@@ -39,15 +40,20 @@ namespace ItemMetaData
             items.AddRange(ItemImplementations.HERBS);
             items.AddRange(ItemImplementations.FRUIT_TREES);
             items.AddRange(ItemImplementations.TREES);
+
+            items.Add(new Potion());
         }
 
-        public ItemType TryFindItemType(string itemId) //=> items?.FirstOrDefault(item => item.id.Equals(itemId));
+        public ItemType TryFindItemType(string itemId)
         {
-            return items?.FirstOrDefault(item => item.id.Equals(itemId));
+            ItemType queriedType = items?.FirstOrDefault(item => item.id.Equals(itemId));
+            return queriedType == null
+                ? null
+                : new ItemType(queriedType.id, queriedType.groundItemPrefab, queriedType.inventorySprite, queriedType.equippedPrefab);
         }
     }
 
-    public abstract class ItemType
+    public class ItemType
     {
         public string id;
         public GameObject groundItemPrefab;
@@ -64,6 +70,18 @@ namespace ItemMetaData
             this.groundItemPrefab = Resources.Load<GameObject>(groundItemPrefabPath);
             this.inventorySprite = Resources.Load<Sprite>(inventorySpritePath);
             this.equippedPrefab = Resources.Load<GameObject>(equippedPrefabPath);
+        }
+
+        public ItemType(
+            string id,
+            GameObject groundItemPrefab,
+            Sprite inventorySprite,
+            GameObject equippedPrefab)
+        {
+            this.id = id;
+            this.groundItemPrefab = groundItemPrefab;
+            this.inventorySprite = inventorySprite;
+            this.equippedPrefab = equippedPrefab;
         }
     }
 
@@ -101,6 +119,15 @@ namespace ItemMetaData
             "CraftedItems/Wood/Staff/GroundItem",
             "CraftedItems/Wood/Staff/Sprite",
             "CraftedItems/Wood/Staff/Equipped") {}
+    }
+
+    public class Wand : ItemType
+    {
+        public Wand() : base(
+            "Wand",
+            "CraftedItems/Wood/Wand/GroundItem",
+            "CraftedItems/Wood/Wand/Sprite",
+            "CraftedItems/Wood/Wand/Equipped") {}
     }
 
     public class Log : ItemType

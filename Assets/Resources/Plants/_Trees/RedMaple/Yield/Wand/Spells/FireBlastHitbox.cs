@@ -9,6 +9,8 @@ public class FireBlastHitbox : MonoBehaviour
     public float knockBackDuration = 0.6f;
     public float stunDuration = 2f;
 
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Fire);
+
     void OnTriggerEnter(Collider other)
     {
         GameObject collidedObject = other.gameObject;
@@ -19,7 +21,7 @@ public class FireBlastHitbox : MonoBehaviour
             Health health = collidedObject.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(damage);
+                health.TakeDamage(scaledDamage, DamageType.Fire);
             }
 
             ICCable ccable = collidedObject.GetComponent<ICCable>();

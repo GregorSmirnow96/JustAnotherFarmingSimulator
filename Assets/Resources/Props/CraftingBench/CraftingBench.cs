@@ -4,18 +4,38 @@ using UnityEngine;
 
 public class CraftingBench : MonoBehaviour, IInteractable
 {
+    private ModularInteractText interactText;
+
+    void Start()
+    {
+        interactText = GetComponent<ModularInteractText>();
+        interactText.SetText("'E' to Craft");
+    }
+
     public void Interact()
     {
-        Debug.Log("Interact with crafting bench");
+        UIManager.instance.ActivateCraftingMenu();
     }
 
     public void ShowIndicator()
     {
-        Debug.Log("Show indicator");
+        if (interactText == null)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            interactText.Enable();
+        }
     }
 
     public void HideIndicator()
     {
-        Debug.Log("Hide indicator");
+        interactText.Disable();
     }
+
+    void OnDestroy()
+    {
+        Destroy(interactText.textObject);
+    } 
 }

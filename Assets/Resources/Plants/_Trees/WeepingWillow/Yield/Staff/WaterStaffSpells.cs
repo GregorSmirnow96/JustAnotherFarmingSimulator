@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaterStaffSpells : MonoBehaviour, ISpellProvider
 {
@@ -9,17 +11,19 @@ public class WaterStaffSpells : MonoBehaviour, ISpellProvider
     public float spell2Cooldown = 4f;
     public float spell3Cooldown = 4f;
     public float spell4Cooldown = 4f;
+    public Image spell1Sprite;
+    public Image spell2Sprite;
 
-    private float lastSpell1CastTime;
-    private float lastSpell2CastTime;
-    private float lastSpell3CastTime;
-    private float lastSpell4CastTime;
+    private static float lastSpell1CastTime = Int32.MinValue;
+    private static float lastSpell2CastTime = Int32.MinValue;
+    private static float lastSpell3CastTime = Int32.MinValue;
+    private static float lastSpell4CastTime = Int32.MinValue;
 
     private Animator animator;
     private bool inAnimation;
 
-    private GameObject spell1ParticlePrefab;
-    private GameObject spell1HitboxPrefab;
+    public GameObject spell1ParticlePrefab;
+    //private GameObject spell1HitboxPrefab;
 
     private GameObject spell2OrbPrefab;
     private GameObject spell2DropletContainerPrefab;
@@ -27,9 +31,6 @@ public class WaterStaffSpells : MonoBehaviour, ISpellProvider
 
     void Start()
     {
-        spell1ParticlePrefab = Resources.Load<GameObject>("Plants/_Trees/WeepingWillow/Yield/Staff/Spells/Staff1-ElementalSlash_Water");
-        spell1HitboxPrefab = Resources.Load<GameObject>("Plants/_Trees/WeepingWillow/Yield/Staff/Spells/ElementalSlashHitbox");
-
         spell2OrbPrefab = Resources.Load<GameObject>("Plants/_Trees/WeepingWillow/Yield/Staff/Spells/Staff2.1-Orb_Water");
         spell2DropletContainerPrefab = Resources.Load<GameObject>("Plants/_Trees/WeepingWillow/Yield/Staff/Spells/WateringSphereContainer");
         spell2StaffEffectPrefab = Resources.Load<GameObject>("Plants/_Trees/WeepingWillow/Yield/Staff/Spells/Staff2.3-VFX_WaterGuard");
@@ -41,6 +42,15 @@ public class WaterStaffSpells : MonoBehaviour, ISpellProvider
         return 2;
     }
 
+    public List<Image> GetSpellSprites()
+    {
+        return new List<Image>()
+        {
+            spell1Sprite,
+            spell2Sprite
+        };
+    }
+
     public List<float> GetSpellCooldowns()
     {
         return new List<float>()
@@ -49,15 +59,16 @@ public class WaterStaffSpells : MonoBehaviour, ISpellProvider
             spell2Cooldown,
             spell3Cooldown,
             spell4Cooldown
-        };
+        }.Select(cd => cd * PlayerProperties.GetCDRMulti()).ToList();
     }
 
     public List<float> GetRemainingSpellCooldowns()
     {
-        float remainingSpell1Cooldown = spell1Cooldown - (Time.time - lastSpell1CastTime);
-        float remainingSpell2Cooldown = spell2Cooldown - (Time.time - lastSpell2CastTime);
-        float remainingSpell3Cooldown = spell3Cooldown - (Time.time - lastSpell3CastTime);
-        float remainingSpell4Cooldown = spell4Cooldown - (Time.time - lastSpell4CastTime);
+        List<float> cooldowns = GetSpellCooldowns();
+        float remainingSpell1Cooldown = cooldowns.ElementAt(0) - (Time.time - lastSpell1CastTime);
+        float remainingSpell2Cooldown = cooldowns.ElementAt(1) - (Time.time - lastSpell2CastTime);
+        float remainingSpell3Cooldown = cooldowns.ElementAt(2) - (Time.time - lastSpell3CastTime);
+        float remainingSpell4Cooldown = cooldowns.ElementAt(3) - (Time.time - lastSpell4CastTime);
 
         return new List<float>()
         {
@@ -84,7 +95,8 @@ public class WaterStaffSpells : MonoBehaviour, ISpellProvider
     public void CastSpell1()
     {
         float timeSinceLastCast = Time.time - lastSpell1CastTime;
-        if (timeSinceLastCast >= spell1Cooldown && !inAnimation)
+        float spell1Cd = GetSpellCooldowns().ElementAt(0);
+        if (timeSinceLastCast >= spell1Cd && !inAnimation)
         {
             inAnimation = true;
             lastSpell1CastTime = Time.time;
@@ -97,6 +109,8 @@ public class WaterStaffSpells : MonoBehaviour, ISpellProvider
         // Perform staff animation
         animator.SetTrigger("Spell1");
 
+        PlayerStats.instance.ApplyMultiplicativeSpeedModifier(0.6f, 31f/60f);
+
         yield return new WaitForSeconds(0.38f); // Hardcode this for now. 
 
         // Create spell particle system
@@ -105,37 +119,12 @@ public class WaterStaffSpells : MonoBehaviour, ISpellProvider
 
         Vector3 spawnPosition = playerTransform.position + cameraTransform.up * 0.4f;
 
-        Vector3 forwardDirection = cameraTransform.forward; // new Vector3(cameraTransform.forward.x, 0, cameraTransform.forward.z).normalized;
+        Vector3 forwardDirection = cameraTransform.forward;
         Quaternion spawnRotation = Quaternion.LookRotation(forwardDirection);
         Quaternion extraRotation = Quaternion.Euler(0f, 137f, 0f);
         Quaternion finalRotation = spawnRotation * extraRotation;
 
         MonoBehaviour.Instantiate(spell1ParticlePrefab, spawnPosition, finalRotation);
-
-        // Create spell hitbox in parallel with particle system
-        float initialYRotation = 123f;
-        float finalYRotation = 285f;
-        float spawnTime = 0.02f;
-        float despawnTime = 0.18f;
-        Quaternion extraHitBoxRotation = Quaternion.Euler(0f, initialYRotation, 0f);
-        Quaternion finalHitBoxRotation = spawnRotation * extraHitBoxRotation;
-        yield return new WaitForSeconds(spawnTime);
-        GameObject hitbox = MonoBehaviour.Instantiate(spell1HitboxPrefab, spawnPosition, finalHitBoxRotation);
-
-        float startTime = Time.time;
-        float hitBoxDuration = despawnTime - spawnTime;
-        float endTime = Time.time + hitBoxDuration;
-        while (Time.time <= endTime)
-        {
-            yield return null;
-            // Instantiate(hitbox, hitbox.transform.position, hitbox.transform.rotation);
-            float durationDelta = Time.deltaTime / hitBoxDuration;
-            float angleDelta = Mathf.Lerp(initialYRotation, finalYRotation, durationDelta);
-            hitbox.transform.RotateAround(playerTransform.position, cameraTransform.up, angleDelta);
-            // PICK UP HERE!!!! The hitbox seems to work! test it with the mesh renderer removed :)
-            // Add on hit logic with a script attached to the hitbox prefab. It can keep track of what it hits,
-            // and make sure each health script can only be damgaged once. Once that's done, plants!!
-        }
 
         inAnimation = false;
 
@@ -145,7 +134,8 @@ public class WaterStaffSpells : MonoBehaviour, ISpellProvider
     public void CastSpell2()
     {
         float timeSinceLastCast = Time.time - lastSpell2CastTime;
-        if (timeSinceLastCast >= spell2Cooldown && !inAnimation)
+        float spell2Cd = GetSpellCooldowns().ElementAt(1);
+        if (timeSinceLastCast >= spell2Cd && !inAnimation)
         {
             inAnimation = true;
             lastSpell2CastTime = Time.time;
@@ -157,6 +147,8 @@ public class WaterStaffSpells : MonoBehaviour, ISpellProvider
     {
         const float maxCastRange = 6f;
         const float heightOffGround = 4f;
+
+        PlayerStats.instance.ApplyMultiplicativeSpeedModifier(0.2f, 48f/60f);
 
         animator.SetTrigger("Spell2");
 

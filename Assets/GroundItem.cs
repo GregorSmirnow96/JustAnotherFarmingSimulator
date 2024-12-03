@@ -10,8 +10,11 @@ public class GroundItem : MonoBehaviour
 
     public float setTagDelay = 0f;
 
+    public Item item { get; set; }
+
     void Start()
     {
+        item = new Item(itemId);
         StartCoroutine(SetTag());
     }
 

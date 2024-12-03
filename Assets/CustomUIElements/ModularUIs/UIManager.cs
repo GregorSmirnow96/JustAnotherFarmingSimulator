@@ -21,8 +21,16 @@ public class UIManager : MonoBehaviour
     public GameObject craftingMenuPrefab;
     private GameObject craftingMenuUI;
     private RectTransform craftingMenuTransform;
+    // Alchemy Menu
+    public GameObject alchemyMenuPrefab;
+    private GameObject alchemyMenuUI;
+    private RectTransform alchemyMenuTransform;
 
-    public bool menuIsOpen => inventoryUI != null && inventoryUI.active;
+    public bool menuIsOpen =>
+        inventoryUI != null && inventoryUI.active
+        || craftingMenuUI != null && craftingMenuUI.active
+        || alchemyMenuUI != null && alchemyMenuUI.active;
+        // Add new UIs here!!!
 
     void Awake()
     {
@@ -40,18 +48,27 @@ public class UIManager : MonoBehaviour
             if (inventoryUI.active)
             {
                 DeactivateInventory();
-                DeactivateCraftingMenu();
-                ActivateToolbar(new Vector2(0, 0));
+                ActivateToolbar();
             }
             else
             {
-                ActivateInventory(new Vector2(-118, -8));
-                ActivateCraftingMenu(new Vector2(270, 10));
+                DeactivateCraftingMenu();
+                DeactivateAlchemyMenu();
                 DeactivateToolbar();
+                ActivateInventory();
             }
         };
         inputs.RegisterGameplayAction(PlayerInputs.TOGGLE_INVENTORY, toggleInventoryAction);
         inputs.RegisterInventoryAction(PlayerInputs.TOGGLE_INVENTORY, toggleInventoryAction);
+
+        Action closeUIsAction = () => {
+            DeactivateCraftingMenu();
+            DeactivateInventory();
+            DeactivateAlchemyMenu();
+            // Close other UIs!
+            ActivateToolbar();
+        };
+        inputs.RegisterInventoryAction(PlayerInputs.FORCE_CLOSE_UIS, closeUIsAction);
 
         // Set the player controller reference so that movement can be halted / started depending on the active UI(s)
         playerController = SceneProperties.playerTransform.gameObject.GetComponent<FPSMovement>();
@@ -73,17 +90,20 @@ public class UIManager : MonoBehaviour
         craftingMenuUI = Instantiate(craftingMenuPrefab, transform);
         craftingMenuTransform = craftingMenuUI.GetComponent<RectTransform>();
         craftingMenuUI.SetActive(false);
+
+        alchemyMenuUI = Instantiate(alchemyMenuPrefab, transform);
+        alchemyMenuTransform = alchemyMenuUI.GetComponent<RectTransform>();
+        alchemyMenuUI.SetActive(false);
     }
 
     // Inventory
-    public void ActivateInventory(Vector2 center)
+    public void ActivateInventory()
     {
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
         playerController.enabled = false;
 
         inventoryUI.SetActive(true);
-        inventoryTransform.anchoredPosition = center;
     }
 
     public void DeactivateInventory()
@@ -96,10 +116,9 @@ public class UIManager : MonoBehaviour
     }
 
     // Toolbar
-    public void ActivateToolbar(Vector2 center)
+    public void ActivateToolbar()
     {
         toolbarUI.SetActive(true);
-        toolbarTransform.anchoredPosition = center;
     }
 
     public void DeactivateToolbar()
@@ -108,14 +127,44 @@ public class UIManager : MonoBehaviour
     }
 
     // Crafting Menu
-    public void ActivateCraftingMenu(Vector2 center)
+    public void ActivateCraftingMenu()
     {
+        DeactivateToolbar();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        playerController.enabled = false;
+
         craftingMenuUI.SetActive(true);
-        craftingMenuTransform.anchoredPosition = center;
     }
 
     public void DeactivateCraftingMenu()
     {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        playerController.enabled = true;
+
         craftingMenuUI.SetActive(false);
+    }
+
+    // Alchemy Menu
+    public void ActivateAlchemyMenu()
+    {
+        DeactivateToolbar();
+
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
+        playerController.enabled = false;
+
+        alchemyMenuUI.SetActive(true);
+    }
+
+    public void DeactivateAlchemyMenu()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        playerController.enabled = true;
+
+        alchemyMenuUI.SetActive(false);
     }
 }

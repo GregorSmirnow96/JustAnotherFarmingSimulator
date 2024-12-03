@@ -16,6 +16,15 @@ namespace ItemMetaData
             "Environment/MinableRocks/Rocks/Iron/Ore/Equipped") {}
     }
 
+    public class IronBar : ItemType
+    {
+        public IronBar() : base(
+            "IronBar",
+            "Environment/MinableRocks/Rocks/Iron/Bar/GroundItem",
+            "Environment/MinableRocks/Rocks/Iron/Bar/Sprite",
+            "Environment/MinableRocks/Rocks/Iron/Bar/Equipped") {}
+    }
+
     public class CopperOre : ItemType
     {
         public CopperOre() : base(

@@ -45,7 +45,7 @@ public class RabbitBehaviour : MonoBehaviour, IAnimalBehaviour, IAttacker
         animator = GetComponent<Animator>();
 
         health = GetComponent<Health>();
-        health.RegisterCallback(() => wasDamagedLastFrame = true);
+        health.RegisterHealthChangeCallback(() => wasDamagedLastFrame = true);
 
         stateMachine = new AIStateMachine();
         stateMachine.AddState(MOVE_TO_PLANT);
@@ -195,7 +195,7 @@ public class RabbitBehaviour : MonoBehaviour, IAnimalBehaviour, IAttacker
         float timeSinceLastEat = Time.time - lastEatTime;
         if (timeSinceLastEat >= eatInterval)
         {
-            targetHealth.TakeDamage(eatDamage);
+            targetHealth.TakeDamage(eatDamage, DamageType.Physical);
             animator.SetTrigger("Eat");
             lastEatTime = Time.time;
         }

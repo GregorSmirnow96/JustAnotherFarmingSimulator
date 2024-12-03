@@ -193,6 +193,8 @@ MonoBehaviour:
   spell2Cooldown: 4
   spell3Cooldown: 4
   spell4Cooldown: 4
+  spell1Sprite: {fileID: 8088245270586817439, guid: 76ec7a8ef9586e04aaa9bbcdab914865, type: 3}
+  spell2Sprite: {fileID: 8088245270586817439, guid: da007db6f7c801e49b5e2284ec8c59fb, type: 3}
 --- !u!4 &3218370666495115684 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}

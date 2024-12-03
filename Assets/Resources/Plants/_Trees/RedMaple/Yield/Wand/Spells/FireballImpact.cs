@@ -6,6 +6,8 @@ public class FireballImpact : MonoBehaviour
 {
     public int damage = 9;
 
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Fire);
+
     void OnTriggerEnter(Collider other)
     {
         GameObject collidedObject = other.gameObject;
@@ -16,7 +18,7 @@ public class FireballImpact : MonoBehaviour
             Health health = collidedObject.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(damage);
+                health.TakeDamage(scaledDamage, DamageType.Fire);
             }
         }
     }

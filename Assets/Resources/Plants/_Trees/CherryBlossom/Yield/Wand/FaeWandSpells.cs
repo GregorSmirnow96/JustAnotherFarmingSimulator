@@ -1,7 +1,9 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class FaeWandSpells : MonoBehaviour, ISpellProvider
 {
@@ -9,11 +11,13 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
     public float spell2Cooldown = 4f;
     public float spell3Cooldown = 4f;
     public float spell4Cooldown = 4f;
+    public Image spell1Sprite;
+    public Image spell2Sprite;
 
-    private float lastSpell1CastTime;
-    private float lastSpell2CastTime;
-    private float lastSpell3CastTime;
-    private float lastSpell4CastTime;
+    private static float lastSpell1CastTime = Int32.MinValue;
+    private static float lastSpell2CastTime = Int32.MinValue;
+    private static float lastSpell3CastTime = Int32.MinValue;
+    private static float lastSpell4CastTime = Int32.MinValue;
 
     private Animator animator;
     private bool inAnimation;
@@ -22,6 +26,7 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
 
     public GameObject spell2MuzzleFlashPrefab;
     public GameObject spell2ExplosionPrefab;
+    public float maxGrowSpellDistance = 10f;
 
     void Start()
     {
@@ -33,6 +38,15 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
         return 2;
     }
 
+    public List<Image> GetSpellSprites()
+    {
+        return new List<Image>()
+        {
+            spell1Sprite,
+            spell2Sprite
+        };
+    }
+
     public List<float> GetSpellCooldowns()
     {
         return new List<float>()
@@ -41,15 +55,16 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
             spell2Cooldown,
             spell3Cooldown,
             spell4Cooldown
-        };
+        }.Select(cd => cd * PlayerProperties.GetCDRMulti()).ToList();
     }
 
     public List<float> GetRemainingSpellCooldowns()
     {
-        float remainingSpell1Cooldown = spell1Cooldown - (Time.time - lastSpell1CastTime);
-        float remainingSpell2Cooldown = spell2Cooldown - (Time.time - lastSpell2CastTime);
-        float remainingSpell3Cooldown = spell3Cooldown - (Time.time - lastSpell3CastTime);
-        float remainingSpell4Cooldown = spell4Cooldown - (Time.time - lastSpell4CastTime);
+        List<float> cooldowns = GetSpellCooldowns();
+        float remainingSpell1Cooldown = cooldowns.ElementAt(0) - (Time.time - lastSpell1CastTime);
+        float remainingSpell2Cooldown = cooldowns.ElementAt(1) - (Time.time - lastSpell2CastTime);
+        float remainingSpell3Cooldown = cooldowns.ElementAt(2) - (Time.time - lastSpell3CastTime);
+        float remainingSpell4Cooldown = cooldowns.ElementAt(3) - (Time.time - lastSpell4CastTime);
 
         return new List<float>()
         {
@@ -76,7 +91,8 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
     public void CastSpell1()
     {
         float timeSinceLastCast = Time.time - lastSpell1CastTime;
-        if (timeSinceLastCast >= spell1Cooldown && !inAnimation)
+        float spell1Cd = GetSpellCooldowns().ElementAt(0);
+        if (timeSinceLastCast >= spell1Cd && !inAnimation)
         {
             inAnimation = true;
             lastSpell1CastTime = Time.time;
@@ -89,6 +105,8 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
         // Perform staff animation
         animator.SetTrigger("Spell1");
 
+        PlayerStats.instance.ApplyMultiplicativeSpeedModifier(0.3f, 1f);
+
         // Wait for {spell_particle_spawn_frame} / {fps} (60).
         yield return new WaitForSeconds(23f/60f);
 
@@ -98,15 +116,6 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
             + cameraTransform.right * 0.196f
             + cameraTransform.forward * 0.92f;
         Instantiate(spell1LightPrefab, startPosition, Quaternion.identity);
-        /*
-        GameObject fairyLightPS = Instantiate(spell1LightPrefab, startPosition, Quaternion.identity);
-
-        FairyLight fairyLight = fairyLightPS.GetComponent<FairyLight>();
-        float initialMaxSpeed = fairyLight.maxSpeed;
-        fairyLight.maxSpeed = 0f;
-        yield return new WaitForSeconds(0.8f);
-        fairyLight.maxSpeed = initialMaxSpeed;
-        */
 
         inAnimation = false;
     }
@@ -114,7 +123,8 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
     public void CastSpell2()
     {
         float timeSinceLastCast = Time.time - lastSpell2CastTime;
-        if (timeSinceLastCast >= spell2Cooldown && !inAnimation)
+        float spell2Cd = GetSpellCooldowns().ElementAt(1);
+        if (timeSinceLastCast >= spell2Cd && !inAnimation)
         {
             inAnimation = true;
             lastSpell2CastTime = Time.time;
@@ -125,6 +135,8 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
     private IEnumerator Spell2Coroutine()
     {
         animator.SetTrigger("Spell2");
+
+        PlayerStats.instance.ApplyMultiplicativeSpeedModifier(0.3f, 1f);
 
         // Wait for {spell_particle_spawn_frame} / {fps} (60).
         yield return new WaitForSeconds(37f/60f);
@@ -142,9 +154,10 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
         Ray ray = Camera.main.ScreenPointToRay(screenCenter);
 
         RaycastHit hit;
-        int terrainLayer = LayerMask.NameToLayer("Terrain");
+        int terrainLayerMask = LayerMask.GetMask("Terrain");
+        int ignoreSpellMask = terrainLayerMask & ~LayerMask.GetMask("Spell");
         Vector3 hitPoint;
-        if (Physics.Raycast(ray, out hit, terrainLayer))
+        if (Physics.Raycast(ray, out hit, maxGrowSpellDistance + 1, ignoreSpellMask))
         {
             GameObject hitObject = hit.collider.gameObject;
             hitPoint = hit.point;
@@ -152,7 +165,7 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
         else
         {
             Vector2 cameraDirectionXZ = cameraTransform.forward.ToXZ();
-            Vector2 cameraDirectionXZScaled = cameraDirectionXZ.normalized * 8;
+            Vector2 cameraDirectionXZScaled = cameraDirectionXZ.normalized * maxGrowSpellDistance;
             Vector2 hitPointXZ = cameraTransform.position.ToXZ() + cameraDirectionXZScaled;
             float hitPointY = SceneProperties.TerrainHeightAtPosition(hitPointXZ);
             hitPoint = new Vector3(hitPointXZ.x, hitPointY, hitPointXZ.y);

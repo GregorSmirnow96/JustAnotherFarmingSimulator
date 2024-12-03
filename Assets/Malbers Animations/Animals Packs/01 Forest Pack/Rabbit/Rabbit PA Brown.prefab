@@ -506,6 +506,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackerObject: {fileID: 3892354748344490154}
+  attackNames: []
 --- !u!1 &1931438923879620167
 GameObject:
   m_ObjectHideFlags: 0
@@ -605,6 +606,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackerObject: {fileID: 3892354748344490154}
+  attackNames: []
 --- !u!1 &2125168043745407185
 GameObject:
   m_ObjectHideFlags: 0
@@ -872,6 +874,7 @@ GameObject:
   - component: {fileID: 5730116928166511050}
   - component: {fileID: 6052302784665064643}
   - component: {fileID: 1533245374952305400}
+  - component: {fileID: 1411428686423775630}
   m_Layer: 20
   m_Name: Rabbit PA Brown
   m_TagString: Untagged
@@ -968,6 +971,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 8
   initialHealth: 8
+--- !u!65 &1411428686423775630
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3892354748344490154}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.5, y: 1, z: 0.8}
+  m_Center: {x: 0, y: 0, z: 0.12}
 --- !u!1 &5157122006799811394
 GameObject:
   m_ObjectHideFlags: 0

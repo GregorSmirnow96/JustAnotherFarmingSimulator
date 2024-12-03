@@ -36,8 +36,7 @@ public class HitDetection : MonoBehaviour
                 if (healthToDamage != null)
                 {
                     int hitDamage = attackerScript.GetDamageForCurrentAttack();
-                    Debug.Log($"Dealing {hitDamage} damage");
-                    healthToDamage.TakeDamage(hitDamage);
+                    healthToDamage.TakeDamage(hitDamage, DamageType.Physical);
                 }
             }
         }

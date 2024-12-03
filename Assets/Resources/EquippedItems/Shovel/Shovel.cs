@@ -7,6 +7,8 @@ public class Shovel : MonoBehaviour
     private Animator animator;
     private int damage = 2;
 
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Physical);
+
     void Start()
     {
         animator = GetComponent<Animator>();
@@ -28,7 +30,7 @@ public class Shovel : MonoBehaviour
         if (collision.gameObject.tag == "Enemy")
         {
             Health enemyHealth = collision.gameObject.GetComponent<Health>();
-            enemyHealth.TakeDamage(damage);
+            enemyHealth.TakeDamage(scaledDamage, DamageType.Physical);
         }
     }
 }

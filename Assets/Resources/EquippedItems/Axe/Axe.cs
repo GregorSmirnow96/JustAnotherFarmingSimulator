@@ -12,6 +12,8 @@ public class Axe : MonoBehaviour, IUsable
     private Coroutine swingCoroutine;
     private bool swingCollided = false;
     private int damage = 3;
+    
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Physical);
 
     float previousSwingTime = 0f;
 
@@ -73,11 +75,11 @@ public class Axe : MonoBehaviour, IUsable
                 Shake shakeScript = treeObject.GetComponent<Shake>();
                 shakeScript.ShakeTree();
                 Choppable choppableScript = treeObject.GetComponent<Choppable>();
-                choppableScript.Chop(damage);
+                choppableScript.Chop(scaledDamage);
             }
 
             swingCollided = true;
-            chopScript.Chop(damage);
+            chopScript.Chop(scaledDamage);
             return;
         }
 
@@ -91,7 +93,7 @@ public class Axe : MonoBehaviour, IUsable
         }
         if (healthScript != null)
         {
-            healthScript.TakeDamage(damage);
+            healthScript.TakeDamage(scaledDamage, DamageType.Physical);
         }
     }
 

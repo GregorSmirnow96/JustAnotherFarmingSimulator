@@ -8,6 +8,8 @@ public class BlackHoleHitbox : MonoBehaviour
     public float displacementSpeed = 0.2f;
     public float displacementDuration = 0.4f;
 
+    private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Lightning);
+
     private List<GameObject> collidedObjects = new List<GameObject>();
 
     void OnTriggerEnter(Collider other)
@@ -26,7 +28,7 @@ public class BlackHoleHitbox : MonoBehaviour
         Health health = collidedObject.GetComponent<Health>();
         if (health != null)
         {
-            health.TakeDamage(damage);
+            health.TakeDamage(scaledDamage, DamageType.Lightning);
             Vector3 step = (transform.position - collidedObject.transform.position) * displacementSpeed;
             step = new Vector3(step.x, 0f, step.z);
 
