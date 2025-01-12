@@ -23,6 +23,7 @@ public static class SceneProperties
 
     public static Transform cameraTransform = GameObject.Find("Camera").transform;
     public static Transform playerTransform = GameObject.Find("Player").transform;
+    public static RectTransform canvasTransform = GameObject.Find("UICanvas").GetComponent<RectTransform>();
     public static Transform equippedItemContainerTransform = GameObject.Find("EquippedItemContainer").transform;
     public static Vector2 playerXZPosition => playerTransform.position.ToXZ();
     public static float playerDistanceFromCenter => (playerXZPosition - sceneCenter.ToXZ()).magnitude;
@@ -133,5 +134,31 @@ public static class VectorExtensions
     public static Vector2 ToXZ(this Vector3 v)
     {
         return new Vector2(v.x, v.z);
+    }
+}
+public static class MeshUtility
+{
+    public static Mesh GetMeshFromGameObject(GameObject obj)
+    {
+        // Check if the root object itself has a MeshFilter
+        MeshFilter meshFilter = obj.GetComponent<MeshFilter>();
+        if (meshFilter != null)
+        {
+            return meshFilter.sharedMesh;
+        }
+
+        // Check the immediate child objects for a MeshFilter
+        foreach (Transform child in obj.transform)
+        {
+            meshFilter = child.GetComponent<MeshFilter>();
+            Debug.Log($"meshFilter: {meshFilter}");
+            if (meshFilter != null)
+            {
+                return meshFilter.sharedMesh;
+            }
+        }
+
+        // No MeshFilter found, return null
+        return null;
     }
 }
