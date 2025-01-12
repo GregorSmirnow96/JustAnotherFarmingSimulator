@@ -5,7 +5,7 @@ using UnityEngine;
 public class Choppable : MonoBehaviour, IChoppable
 {
     public GameObject stumpPrefab;
-    public float durability;
+    public float durability = 10;
     public GameObject logGroundItemPrefab;
     public int minDroppedLogs = 2;
     public int maxDroppedLogs = 3;
@@ -24,8 +24,12 @@ public class Choppable : MonoBehaviour, IChoppable
 
         if (durability <= 0)
         {
-            Quaternion currentRotation = transform.rotation;
-            Instantiate(stumpPrefab, position, currentRotation);
+            if (stumpPrefab != null)
+            {
+                Quaternion currentRotation = transform.rotation;
+                Instantiate(stumpPrefab, position, currentRotation);
+            }
+
             Destroy(gameObject);
 
             SpawnLogs();

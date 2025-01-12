@@ -7,11 +7,16 @@ public class DespawnLocation : MonoBehaviour
     void Start()
     {
         DespawnLocations.GetInstance().locations.Add(transform.position);
+        Debug.Log(DespawnLocations.GetInstance().locations.Count);
     }
 
     void OnTriggerEnter(Collider other)
     {
-        // TODO: Refactor this. For some reason the animal isn't being destroyed, just one piece of them.
-        Destroy(other.gameObject);
+        GameObject collidedObject = other.gameObject;
+        AnimalBehaviour animalBehaviourScript = collidedObject.GetComponent<AnimalBehaviour>();
+        if (animalBehaviourScript.shouldDespawn)
+        {
+            Destroy(other.gameObject);
+        }
     }
 }

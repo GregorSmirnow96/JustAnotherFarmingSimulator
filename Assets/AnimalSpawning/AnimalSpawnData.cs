@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class AnimalSpawnData
@@ -21,7 +22,7 @@ public class AnimalSpawnData
         this.name = name;
         this.spawnTime = spawnTime;
         this.retreatTime = retreatTime;
-        this.animalPrefab = Resources.Load<GameObject>(animalPrefabPath);
+        this.animalPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(animalPrefabPath);
         this.targetPlants = targetPlants;
     }
 }
@@ -43,6 +44,15 @@ public class AnimalSpawnDataRepo
         animalSpawnDataMap = new Dictionary<string, AnimalSpawnData>();
 
         AddSpawnData(new RabbitSpawnData());
+        AddSpawnData(new RaccoonSpawnData());
+        AddSpawnData(new BoarSpawnData());
+        AddSpawnData(new FoxSpawnData());
+        AddSpawnData(new DeerSpawnData());
+        AddSpawnData(new CougarSpawnData());
+        AddSpawnData(new WolfSpawnData());
+        AddSpawnData(new BearSpawnData());
+        AddSpawnData(new MooseSpawnData());
+        AddSpawnData(new TigerSpawnData());
     }
 
     public AnimalSpawnData TryGetSpawnData(string animalName) => animalSpawnDataMap[animalName];

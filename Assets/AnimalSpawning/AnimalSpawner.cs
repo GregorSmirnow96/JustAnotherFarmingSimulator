@@ -14,13 +14,10 @@ public class AnimalSpawner : MonoBehaviour
     {
         spawnDataRepo = AnimalSpawnDataRepo.GetInstance();
 
-        Debug.Log(spawnDataRepo != null);
         spawnTimes = spawnDataRepo.animalSpawnDataList.Select(animalSpawnData => animalSpawnData.spawnTime).ToList();
 
-        spawnLocations.Add(new Vector3(240, 0, 240));
-        //spawnLocations.Add(new Vector3(30f, 0f, 70f));
-        //spawnLocations.Add(new Vector3(70f, 0f, 30f));
-        //spawnLocations.Add(new Vector3(70f, 0f, 70f));
+        //spawnLocations.Add(new Vector3(146.42f, 0f, 330.82f));
+        spawnLocations.Add(new Vector3(102f, 0f, 128.24f));
     }
 
     void Update()
@@ -40,6 +37,7 @@ public class AnimalSpawner : MonoBehaviour
                         ? catalogKeys.ToList()[0]
                         : catalogKeys.Select(k => catalog[k].name).Aggregate((s1, s2) => $"{s1},{s2}");
             
+            catalogKeys.ToList().ForEach(k => Debug.Log($"{k} -> {catalog[k]}"));
             catalogKeys
                 .Select(key => catalog[key])
                 .ToList()
@@ -66,29 +64,14 @@ public class AnimalSpawner : MonoBehaviour
                         Debug.Log("Getting behaviour script...");
                         IAnimalBehaviour behaviour = animalObject.GetComponent<IAnimalBehaviour>();
                         Debug.Log($"Setting the target: {catalogEntry.plantObject.transform.position}");
+                        Debug.Log(catalogEntry != null);
+                        Debug.Log(catalogEntry?.plantObject != null);
+                        Debug.Log(catalogEntry?.plantObject?.transform != null);
                         behaviour.SetTarget(catalogEntry.plantObject.transform);
                     });
 
             Debug.Log(spawningReport);
         }
-
-        /*
-        if (currentTime >= rabbitSpawning.spawnTime && previousTime < rabbitSpawning.spawnTime)
-        {
-            int spawnLocationIndex = UnityEngine.Random.Range(0, spawnLocations.Count);
-            Vector3 spawnLocation = spawnLocations[spawnLocationIndex];
-            // Use the animal's prefab. For now, I'm going to use a primitive.
-            GameObject animalObject = GameObject.CreatePrimitive(PrimitiveType.Cube);
-            animalObject.transform.position = spawnLocation;
-
-            Health health = animalObject.AddComponent<Health>();
-            DropLoot dropLoot = animalObject.AddComponent<DropLoot>();
-            AttackPlant behaviour = animalObject.AddComponent<AttackPlant>();
-
-            health.health = 10;
-            health.initialHealth = 10;
-        }
-        */
 
         previousTime = currentTime;
     }

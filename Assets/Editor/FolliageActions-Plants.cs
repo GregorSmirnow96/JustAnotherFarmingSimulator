@@ -87,34 +87,69 @@ public class PlantFolliageActions : MonoBehaviour
     [MenuItem("Tools/Folliage/Plants/GeneratePlants")]
     public static void GeneratePlants()
     {
-        Vector3 center = new Vector3(200f, 0f, 200f);
+        const int maxAttempts = 2000;
+        const int numberOfRocks = 450;
+        const float left = 41.62077f;
+        const float right = 245.2508f;
+        const float front = 134.6476f;
+        const float back = 333.3976f;
 
-        List<GameObject> plantPrefabs = assetNames.Select(asset =>
+        List<GameObject> prefabs = new List<GameObject>()
         {
-            Debug.Log($"{plantAssetsRoot}/{asset}");
-            return Resources.Load<GameObject>($"{plantAssetsRoot}/{asset}");
-        }).ToList();
-        bool resourcesExist = plantPrefabs.Any(prefab => prefab != null);
-        Debug.Log($"Plant prefabs exist: {resourcesExist}");
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/Environment/ProxyGames/Plants/Plant 1.prefab"),
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/Environment/ProxyGames/Plants/Plant 2.prefab"),
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/Resources/Environment/ProxyGames/Plants/Plant 3.prefab")
+        };
 
-        float minDegrees = 0f;
-        float maxDegrees = 359f;
-        float minDistance = 55f;
-        float maxDistance = 150f;
-        GameObject folliageContainer = GameObject.Find("Plants");
+        bool resourcesExist = prefabs.Any(prefab => prefab != null);
+        Debug.Log($"Rock prefabs exist: {resourcesExist}");
+
+        GameObject rockContainer = GameObject.Find("Plants");
         Terrain terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
-        for (int i = 0; i < numberOfPlants; i++)
+        int rocksCreated = 0;
+        for (int i = 0; i < maxAttempts; i++)
         {
-            float randomDegrees = Random.Range(minDegrees, maxDegrees);
-            float randomDistance = Random.Range(minDistance, maxDistance);
-            Vector3 direction = GetDirectionVector(randomDegrees);
-            Vector3 position = center + direction * randomDistance;
-            float terrainHeight = terrain.SampleHeight(position);
-            position.y = terrainHeight;
-            int prefabIndex = Random.Range(0, plantPrefabs.Count);
-            GameObject prefab = plantPrefabs[prefabIndex];
-            GameObject plant = Instantiate(prefab, position, Quaternion.identity);
-            plant.transform.parent = folliageContainer.transform;
+            if (rocksCreated >= numberOfRocks)
+            {
+                continue;
+            }
+
+            float x = Random.Range(left, right);
+            float z = Random.Range(front, back);
+            Vector3 position = new Vector3(x, 0f, z);
+            position = new Vector3(x, terrain.SampleHeight(position), z);
+
+            int prefabIndex = Random.Range(0, prefabs.Count);
+            GameObject prefab = prefabs[prefabIndex];
+            Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+            GameObject rock = Instantiate(prefab, position, randomRotation);
+            float randomVerticalScale = ((float)Random.Range(60, 160)) / 100f;
+            Vector3 scale = rock.transform.localScale;
+            scale.y = randomVerticalScale;
+            rock.transform.localScale = scale;
+            Collider rockCollider = rock.GetComponent<Collider>();
+            if (rockCollider != null)
+            {
+                Collider[] overlappingColliders = Physics.OverlapBox(
+                    rockCollider.bounds.center,
+                    rockCollider.bounds.extents,
+                    rock.transform.rotation);
+                overlappingColliders = overlappingColliders.Where(c => c.gameObject.name != "Terrain").ToArray();
+                
+                if (overlappingColliders.Length > 1)
+                {
+                    Debug.Log("The rock overlapped with another object.");
+                    foreach (Collider c in overlappingColliders)
+                    {
+                        Debug.Log(c.gameObject.name);
+                    }
+                    DestroyImmediate(rock);
+                    continue;
+                }
+            }
+
+            rocksCreated++;
+            rock.transform.parent = rockContainer.transform;
         }
     }
 }

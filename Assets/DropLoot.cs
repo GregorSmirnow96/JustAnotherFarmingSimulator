@@ -1,22 +1,32 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 using ItemMetaData;
 
-[System.Serializable]
+[Serializable]
 public class ItemDrop
 {
     public string itemName;
     public float dropRate;
 }
 
+[Serializable]
+public class DropQuantityWeight
+{
+    public int quantity;
+    public float weight;
+}
+
 public class DropLoot : MonoBehaviour
 {
     public ItemDrop[] itemDrops;
-    public bool multipleItemsCanDrop;
+    public DropQuantityWeight[] dropQuantityWeights;
 
     private Dictionary<string, float> dropRatesDictionary;
+    private Dictionary<int, float> dropQuantityWeightsDictionary;
 
     void Awake()
     {
@@ -32,24 +42,44 @@ public class DropLoot : MonoBehaviour
                 Debug.Log($"The drop table already contains the item: {itemDrop.itemName}");
             }
         }
+
+        // Normalize the weights in both dictionaries so the values in each add up to 1.
+        float dropRateSum = itemDrops.Sum(itemDrop => itemDrop.dropRate);
+        foreach (ItemDrop itemDrop in itemDrops)
+        {
+            itemDrop.dropRate = itemDrop.dropRate / dropRateSum;
+        }
+
+        dropQuantityWeightsDictionary = new Dictionary<int, float>();
+        float dropQuantityWeightSum = dropQuantityWeights.Sum(weightKvp => weightKvp.weight);
+        foreach (DropQuantityWeight kvp in dropQuantityWeights)
+        {
+            dropQuantityWeightsDictionary.Add(kvp.quantity, kvp.weight / dropQuantityWeightSum);
+        }
+
+        Debug.Log(dropQuantityWeightSum);
+        dropQuantityWeightsDictionary.Values.ToList().ForEach(v => Debug.Log(v));
     }
 
     void OnDestroy()
     {
-        if (multipleItemsCanDrop)
+        float roll = UnityEngine.Random.Range(0.0f, 1.0f);
+        Debug.Log(roll);
+        foreach (float dropQuantityWeight in dropQuantityWeightsDictionary.Values)
         {
-            HandleMultiDrop();
-        }
-        else
-        {
-            HandleSingleDrop();
+            DropItem();
+            roll -= dropQuantityWeight;
+            if (roll <= 0)
+            {
+                break;
+            }
         }
     }
 
-    void HandleSingleDrop()
+    void DropItem()
     {
-        float roll = Random.Range(0.0f, 1.0f);
-        Debug.Log($"Start roll: {roll}");
+        float roll = UnityEngine.Random.Range(0.0f, 1.0f);
+        // Debug.Log($"Start roll: {roll}");
         string itemToDrop = null;
         foreach (ItemDrop itemDrop in itemDrops)
         {
@@ -69,18 +99,14 @@ public class DropLoot : MonoBehaviour
             ItemType itemTypeToDrop = ItemTypeRepo.GetInstance().TryFindItemType(itemToDrop);
             if (itemTypeToDrop?.groundItemPrefab != null)
             {
-                Debug.Log($"Item to drop: {itemToDrop}");
+                // Debug.Log($"Item to drop: {itemToDrop}");
                 ObjectSpawnController.GetController().MakeRequest(itemTypeToDrop.groundItemPrefab, spawnPosition, Quaternion.identity);
             }
             else
             {
-                Debug.Log($"Ground item prefab is null for: {itemToDrop}");
-                Debug.Log($"ItemType is null: {itemTypeToDrop == null}");
+                // Debug.Log($"Ground item prefab is null for: {itemToDrop}");
+                // Debug.Log($"ItemType is null: {itemTypeToDrop == null}");
             }
         }
-    }
-
-    void HandleMultiDrop()
-    {
     }
 }

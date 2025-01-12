@@ -4,5 +4,5 @@ using UnityEngine;
 
 public interface IAnimalBehaviour
 {
-    public void SetTarget(Transform target);
+    public void SetTarget(Transform newTarget);
 }

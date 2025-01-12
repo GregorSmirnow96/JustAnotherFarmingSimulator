@@ -79,44 +79,75 @@ public class RockFolliageActions : MonoBehaviour
         return direction.normalized;
     }
 
-    private static bool IsInCircle(Vector3 position, Vector3 center, float radius)
-    {
-        float distanceSquared = (position.x - center.x) * (position.x - center.x) + (position.z - center.z) * (position.z - center.z);
-
-        return distanceSquared <= radius * radius;
-    }
-
     [MenuItem("Tools/Folliage/Rocks/GenerateRocks")]
     public static void GenerateRocks()
     {
-        Vector3 center = new Vector3(200f, 0f, 200f);
+        const int maxAttempts = 2000;
+        const int numberOfRocks = 750;
+        const float left = 41.62077f;
+        const float right = 245.2508f;
+        const float front = 134.6476f;
+        const float back = 333.3976f;
 
-        List<GameObject> rockPrefabs = assetNames.Select(asset =>
+        List<GameObject> prefabs = new List<GameObject>()
         {
-            Debug.Log($"{rockAssetsRoot}/{asset}");
-            return Resources.Load<GameObject>($"{rockAssetsRoot}/{asset}");
-        }).ToList();
-        bool resourcesExist = rockPrefabs.Any(prefab => prefab != null);
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_OldCliffs/Prefabs/Splinter1.prefab"),
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_OldCliffs/Prefabs/Splinter2.prefab"),
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_OldCliffs/Prefabs/SplinterS1.prefab"),
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_OldCliffs/Prefabs/SplinterS2.prefab"),
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_OldCliffs/Prefabs/SplinterS3.prefab"),
+            AssetDatabase.LoadAssetAtPath<GameObject>("Assets/_OldCliffs/Prefabs/SplinterS4.prefab")
+        };
+
+        bool resourcesExist = prefabs.Any(prefab => prefab != null);
         Debug.Log($"Rock prefabs exist: {resourcesExist}");
 
-        float minDegrees = 0f;
-        float maxDegrees = 359f;
-        float minDistance = 55f;
-        float maxDistance = 150f;
-        GameObject folliageContainer = GameObject.Find("Rocks");
+        GameObject rockContainer = GameObject.Find("Rocks");
         Terrain terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
-        for (int i = 0; i < numberOfRocks; i++)
+        int rocksCreated = 0;
+        for (int i = 0; i < maxAttempts; i++)
         {
-            float randomDegrees = Random.Range(minDegrees, maxDegrees);
-            float randomDistance = Random.Range(minDistance, maxDistance);
-            Vector3 direction = GetDirectionVector(randomDegrees);
-            Vector3 position = center + direction * randomDistance;
-            float terrainHeight = terrain.SampleHeight(position);
-            position.y = terrainHeight;
-            int treefabIndex = Random.Range(0, rockPrefabs.Count);
-            GameObject prefab = rockPrefabs[treefabIndex];
-            GameObject tree = Instantiate(prefab, position, Quaternion.identity);
-            tree.transform.parent = folliageContainer.transform;
+            if (rocksCreated >= numberOfRocks)
+            {
+                continue;
+            }
+
+            float x = Random.Range(left, right);
+            float z = Random.Range(front, back);
+            Vector3 position = new Vector3(x, 0f, z);
+            position = new Vector3(x, terrain.SampleHeight(position), z);
+
+            int prefabIndex = Random.Range(0, prefabs.Count);
+            GameObject prefab = prefabs[prefabIndex];
+            Quaternion randomRotation = Quaternion.Euler(0f, Random.Range(0f, 360f), 0f);
+            GameObject rock = Instantiate(prefab, position, randomRotation);
+            float randomVerticalScale = ((float)Random.Range(60, 160)) / 100f;
+            Vector3 scale = rock.transform.localScale;
+            scale.y = randomVerticalScale;
+            rock.transform.localScale = scale;
+            Collider rockCollider = rock.GetComponent<Collider>();
+            if (rockCollider != null)
+            {
+                Collider[] overlappingColliders = Physics.OverlapBox(
+                    rockCollider.bounds.center,
+                    rockCollider.bounds.extents,
+                    rock.transform.rotation);
+                overlappingColliders = overlappingColliders.Where(c => c.gameObject.name != "Terrain").ToArray();
+                
+                if (overlappingColliders.Length > 1)
+                {
+                    Debug.Log("The rock overlapped with another object.");
+                    foreach (Collider c in overlappingColliders)
+                    {
+                        Debug.Log(c.gameObject.name);
+                    }
+                    DestroyImmediate(rock);
+                    continue;
+                }
+            }
+
+            rocksCreated++;
+            rock.transform.parent = rockContainer.transform;
         }
     }
 }

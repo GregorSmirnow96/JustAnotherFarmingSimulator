@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,27 +15,64 @@ public class Health : MonoBehaviour
     public List<Action> maxHealthChangeCallbacks = new List<Action>();
 
     private IHasResistances resistances;
+    private AnimalBehaviour animalBehaviourScript;
+    private bool isAnimal;
+    private GameObject damageIndicatorPrefab;
 
     void Start()
     {
         health = maxHealth;
         resistances = GetComponent<IHasResistances>();
+
+        animalBehaviourScript = GetComponent<AnimalBehaviour>();
+        isAnimal = animalBehaviourScript != null;
+
+        damageIndicatorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>($"Assets/CustomUIElements/DamageIndicator.prefab");
     }
 
     public void TakeDamage(int damage, string damageType)
     {
+        if (health <= 0) return;
+
+        // Spawn damage indicator
+        if (isAnimal)
+        {
+            SpawnDamageIndicator(damage, damageType);
+        }
+
+        // Adjust incoming damage based on resistances
         if (resistances != null)
         {
             float resistanceMulti = resistances.GetResistanceMulti(damageType);
             float damageMulti = 1 - resistanceMulti;
             int baseDamage = damage;
             damage = (int) (damage * resistanceMulti);
-            Debug.Log($"DmgMulti: {resistanceMulti}, BaseDmg: {baseDamage}, Dmg: {damage}");
         }
 
+        // Calculate damage results
         health -= damage;
         healthChangeCallbacks.ForEach(callback => callback());
-        if (health <= 0) Destroy(gameObject);
+        if (health <= 0)
+        {
+            if (animalBehaviourScript == null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                animalBehaviourScript.TriggerDeath();
+            }
+        }
+    }
+
+    private void SpawnDamageIndicator(int damage, string damageType)
+    {
+        GameObject damageIndicator = Instantiate(damageIndicatorPrefab, SceneProperties.canvasTransform);
+        DamageIndicator damageIndicatorScript = damageIndicator.GetComponent<DamageIndicator>();
+        
+        damageIndicatorScript.damage = damage;
+        damageIndicatorScript.damageType = damageType;
+        damageIndicatorScript.damagedTransform = transform;
     }
 
     public void SetMaxHealth(int newMaxHealth)
