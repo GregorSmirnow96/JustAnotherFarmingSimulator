@@ -47,7 +47,7 @@ public class PlayerStats : MonoBehaviour, IHasResistances
         //      to keep it for now as a reminder that not all buffs have timers.
         //      The buffs from equipments must apply as long as the palyer is
         //      wearing them. Refactor this.
-        AddDamageBuff(BuffType.Water, BuffSource.Amulet,  0.15f, 10000f);
+        //AddDamageBuff(BuffType.Water, BuffSource.Amulet,  0.15f, 10000f);
     }
 
     void _Update()
@@ -165,9 +165,25 @@ public class PlayerStats : MonoBehaviour, IHasResistances
         float strength,
         float duration)
     {
-        damageBuffs.AddBuff(type, source, strength, duration);
+        damageBuffs.AddBuff(type, source, strength);
         StartCoroutine(
             ExpireBuffAfterDuration(damageBuffs, type, source, strength, duration));
+    }
+
+    public void AddPersistentDamageBuff(
+        BuffType type,
+        BuffSource source,
+        float strength)
+    {
+        damageBuffs.AddBuff(type, source, strength);
+    }
+
+    public void RemovePersistentDamageBuff(
+        BuffType type,
+        BuffSource source,
+        float strength)
+    {
+        RemoveBuff(damageBuffs, type, source, strength);
     }
 
     public void AddResistanceBuff(
@@ -176,9 +192,25 @@ public class PlayerStats : MonoBehaviour, IHasResistances
         float strength,
         float duration)
     {
-        resistanceBuffs.AddBuff(type, source, strength, duration);
+        resistanceBuffs.AddBuff(type, source, strength);
         StartCoroutine(
             ExpireBuffAfterDuration(resistanceBuffs, type, source, strength, duration));
+    }
+
+    public void AddPersistentResistanceBuff(
+        BuffType type,
+        BuffSource source,
+        float strength)
+    {
+        resistanceBuffs.AddBuff(type, source, strength);
+    }
+
+    public void RemovePersistentResistanceBuff(
+        BuffType type,
+        BuffSource source,
+        float strength)
+    {
+        RemoveBuff(resistanceBuffs, type, source, strength);
     }
 
     private IEnumerator ExpireBuffAfterDuration(
@@ -190,6 +222,15 @@ public class PlayerStats : MonoBehaviour, IHasResistances
     {
         yield return new WaitForSeconds(duration);
 
+        RemoveBuff(buffIndex, type, source, strength);
+    }
+
+    public void RemoveBuff(
+        BuffIndex buffIndex,
+        BuffType type,
+        BuffSource source,
+        float strength)
+    {
         // Continue only if Type key is valid.
         if (buffIndex.buffs.ContainsKey(type))
         {
@@ -204,12 +245,12 @@ public class PlayerStats : MonoBehaviour, IHasResistances
             }
             else
             {
-                Debug.Log($"Cannot remove buff ({type.name}:{source.name}:{strength}:{duration}) because the Source is invalid.");
+                Debug.Log($"Cannot remove buff ({type.name}:{source.name}:{strength}) because the Source is invalid.");
             }
         }
         else
         {
-            Debug.Log($"Cannot remove buff ({type.name}:{source.name}:{strength}:{duration}) because the Type is invalid.");
+            Debug.Log($"Cannot remove buff ({type.name}:{source.name}:{strength}) because the Type is invalid.");
         }
     }
     #endregion

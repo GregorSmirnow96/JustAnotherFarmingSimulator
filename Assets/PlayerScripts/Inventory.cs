@@ -15,6 +15,10 @@ public class Inventory : MonoBehaviour
 
     public Item[,] inventoryItems;
     public Item[] toolbarItems;
+    public Item quiver;
+    public Item armour;
+    public Item necklace;
+    public Item ring;
 
     public const int inventoryHeight = 3;
     public const int inventoryWidth = 8;
@@ -30,25 +34,28 @@ public class Inventory : MonoBehaviour
         inventoryItems = new Item[inventoryHeight, inventoryWidth];
         toolbarItems = new Item[toolbarSize];
         /* Delete this. I'm just seeding the inventory with items. */
-        inventoryItems[0,0] = new Item("Carrot");
+        inventoryItems[0,0] = new Item("LightningWand");
         inventoryItems[0,1] = new Item("BlueBerry");
-        inventoryItems[0,2] = new Item("Wheat");
-        inventoryItems[1,1] = new Item("Log");
+        inventoryItems[0,2] = new Item("IronArrow");
+        inventoryItems[0,3] = new Item("FireWand");
+        inventoryItems[1,1] = null;
         inventoryItems[1,2] = new Item("WaterWand");
-        inventoryItems[1,3] = new Item("BlueBerrySeed");
+        inventoryItems[1,3] = new Item("Axe");
         inventoryItems[1,4] = new Item("Pickaxe");
         inventoryItems[2,0] = new Item("FaeStaff");
-        inventoryItems[2,1] = new Item("FaeWand");
-        inventoryItems[2,2] = null;
-        inventoryItems[2,3] = null;
-        inventoryItems[2,4] = new Item("LightningWand");
+        inventoryItems[2,1] = new Item("IronOre");
+        inventoryItems[2,3] = new Item("Bow");
+        inventoryItems[2,4] = new Item("FaeStaff");
         inventoryItems[2,5] = new Item("LightningStaff");
+        inventoryItems[2,6] = new Item("Log");
 
-        toolbarItems[0] = new Item("WaterStaff");
-        toolbarItems[1] = new Item("IronOre");
-        toolbarItems[2] = new Item("IronOre");
-        toolbarItems[3] = new Item("FireWand");
-        toolbarItems[4] = new Item("FireStaff");
+        toolbarItems[0] = new Item("FaeWand");
+        toolbarItems[1] = new Item("FireFlowerSeed");
+        toolbarItems[2] = new Item("BlizzardFlowerSeed");
+        toolbarItems[3] = new Item("ZapFlowerSeed");
+        toolbarItems[4] = new Item("CharmFlowerSeed");
+
+        inventoryItems[0,2].stackSize = 12;
         /*                                                         */
         playerController = GetComponent<FPSMovement>();
     }
@@ -118,6 +125,23 @@ public class Inventory : MonoBehaviour
 
     public bool AddItemToInventory(Item item)
     {
+        if (item.stacks)
+        {
+            string itemId = item.type.id;
+            bool itemIsAlreadyInInventory = ItemExists(itemId);
+            if (itemIsAlreadyInInventory)
+            {
+                Vector2 existingItemCoord = GetFirstIndexOfItem(itemId);
+                bool coordIsValid = existingItemCoord.x >= 0 && existingItemCoord.y >= 0;
+                if (coordIsValid)
+                {
+                    Item existingItem = GetItem((int) existingItemCoord.y, (int) existingItemCoord.x);
+                    existingItem.stackSize++;
+                    return true;
+                }
+            }
+        }
+
         for (int y = 0; y < inventoryHeight; y++)
         {
             for (int x = 0; x < inventoryWidth; x++)
@@ -173,6 +197,29 @@ public class Inventory : MonoBehaviour
         }
     }
 
+    public void RemoveItemFromStack(string itemId, int count, int y, int x)
+    {
+        Item itemStackToDecrement = GetItem(y, x);
+        if (!itemStackToDecrement.type.id.Equals(itemId))
+        {
+            Debug.Log($"Item at index ({y}, {x}) has ID \"{itemStackToDecrement.type.id}\". Expected ID \"{itemId}\"");
+            return;
+        }
+        if (!itemStackToDecrement.stacks)
+        {
+            Debug.Log($"Item {itemId} does not stack");
+        }
+
+        if (itemStackToDecrement.stackSize > 1)
+        {
+            itemStackToDecrement.stackSize--;
+        }
+        else
+        {
+            SetInventoryItem(y, x, null);
+        }
+    }
+
     public bool PlayerHasItems(Dictionary<string, int> itemCounts)
     {
         Item[] flatInventoryItems = inventoryItems.Cast<Item>().ToArray();
@@ -201,5 +248,41 @@ public class Inventory : MonoBehaviour
         }
 
         return true;
+    }
+
+    public bool ItemExists(string itemId)
+    {
+        Item[] flatInventoryItems = inventoryItems.Cast<Item>().ToArray();
+        List<Item> heldItems = toolbarItems.Concat(flatInventoryItems).ToList();
+
+        Debug.Log(heldItems.Any(item => item?.type?.id != null && item.type.id.Equals(itemId)));
+
+        return heldItems.Any(item => item?.type?.id != null && item.type.id.Equals(itemId));
+    }
+
+    public Vector2 GetFirstIndexOfItem(string itemId)
+    {
+        for (int y = 0; y < inventoryHeight; y++)
+        {
+            for (int x = 0; x < inventoryWidth; x++)
+            {
+                string itemIdInSlot = inventoryItems[y, x]?.type.id;
+                if (itemIdInSlot != null && itemIdInSlot.Equals(itemId))
+                {
+                    return new Vector2(x, y);
+                }
+            }
+        }
+
+        for (int i = 0; i < toolbarSize; i++)
+        {
+            string itemIdInSlot = toolbarItems[i]?.type.id;
+            if (itemIdInSlot != null && itemIdInSlot.Equals(itemId))
+            {
+                return new Vector2(i, inventoryHeight);
+            }
+        }
+
+        return new Vector2(-1, -1);
     }
 }

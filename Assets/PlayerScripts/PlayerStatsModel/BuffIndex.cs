@@ -28,8 +28,7 @@ public class BuffIndex
     public void AddBuff(
         BuffType type,
         BuffSource source,
-        float strength,
-        float duration)
+        float strength)
     {
         // Get (& add if necessary) the Type KVP.
         Dictionary<BuffSource, List<float>> typeSourceBuffs;

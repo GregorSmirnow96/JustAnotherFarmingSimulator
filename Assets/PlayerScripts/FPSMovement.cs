@@ -61,6 +61,11 @@ public class FPSMovement : MonoBehaviour
         float moveX = Input.GetAxis("Horizontal");
         float moveZ = Input.GetAxis("Vertical");
 
+        if (moveZ < 0)
+        {
+            moveZ = moveZ * 0.6f;
+        }
+
         // Create a movement vector based on input and movementSpeed
         Vector3 move = transform.right * moveX + transform.forward * moveZ;
         move.y = -9.81f;
