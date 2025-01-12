@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 4410246841704130556}
   - component: {fileID: 9004913001629849925}
   - component: {fileID: 2889941802421739513}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4745076422261630776}
   - component: {fileID: 8733059795169862218}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: RosemarySeed
+  hasLootBeam: 1
   setTagDelay: 0.5

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 6023894878032194606}
   - component: {fileID: -8070502788731440771}
   - component: {fileID: 3687269555975595513}
+  - component: {fileID: 4718598098845891961}
   m_Layer: 0
   m_Name: WheatContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 1924406351566375095, guid: 08d9dd755d890f749897b2aa97629a0c, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 3654940175562402544, guid: e8d14a46ef6976c469bf2401c8cda9ff, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   plantName: Wheat
+  minLargePlantDistance: 2.4
 --- !u!114 &3642437037146515090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4718598098845891961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4319281979809503050}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

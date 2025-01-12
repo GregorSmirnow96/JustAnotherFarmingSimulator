@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8939956791314071352}
   - component: {fileID: 7700958839532715118}
   - component: {fileID: 2954096374066647384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6935420616178873267}
   - component: {fileID: 7463369831001339601}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: OrangeTreeSeed
+  hasLootBeam: 1
   setTagDelay: 0.5

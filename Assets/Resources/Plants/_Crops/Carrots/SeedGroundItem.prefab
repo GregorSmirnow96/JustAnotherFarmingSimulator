@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3863749360371427668}
   - component: {fileID: 687109744401640131}
   - component: {fileID: 5712097676309458023}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4031686745984611115}
   - component: {fileID: 3879622679076631808}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: CarrotSeed
+  hasLootBeam: 1
   setTagDelay: 0.5

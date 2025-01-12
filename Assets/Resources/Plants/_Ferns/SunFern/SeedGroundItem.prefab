@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6637464068772666594}
   - component: {fileID: 1400736258854504190}
   - component: {fileID: 698731954639213274}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7211384332401855430}
   - component: {fileID: 3439528048417574291}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: SunFernSeed
+  hasLootBeam: 1
   setTagDelay: 0.5

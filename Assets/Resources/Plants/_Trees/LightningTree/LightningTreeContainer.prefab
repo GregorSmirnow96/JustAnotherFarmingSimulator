@@ -59,6 +59,7 @@ MonoBehaviour:
     timeToGrow: 24
     growthAnimationTime: 2.1666667
   plantName: LightningTree
+  minLargePlantDistance: 6
 --- !u!114 &8587417742179131602
 MonoBehaviour:
   m_ObjectHideFlags: 0

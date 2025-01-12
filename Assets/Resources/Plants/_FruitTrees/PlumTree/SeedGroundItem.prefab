@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3508372715023965053}
   - component: {fileID: 403989259832101625}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: PlumTreeSeed
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &6066299363227556906
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 688812202652364422}
   - component: {fileID: 3066972774479605769}
   - component: {fileID: 6224331574091606146}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

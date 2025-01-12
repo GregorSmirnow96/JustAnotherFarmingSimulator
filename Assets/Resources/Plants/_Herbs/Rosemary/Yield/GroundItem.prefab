@@ -52,6 +52,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundItem
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df968cd0fefd0d8478e7fcbae0224d7d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8164078558771037576, guid: df968cd0fefd0d8478e7fcbae0224d7d, type: 3}
@@ -87,6 +91,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: Rosemary
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1001 &4696515336202421125
 PrefabInstance:
@@ -139,6 +144,14 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: d33a171ce2caaea47bccd56bfba557a4, type: 3}
       propertyPath: m_Name
       value: Rosemary
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: d33a171ce2caaea47bccd56bfba557a4, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: d33a171ce2caaea47bccd56bfba557a4, type: 3}
+      propertyPath: m_Layer
+      value: 6
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

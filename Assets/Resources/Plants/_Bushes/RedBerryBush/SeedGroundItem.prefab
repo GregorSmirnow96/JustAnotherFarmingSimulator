@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 746775987402099155}
   - component: {fileID: 2438246797855471548}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: RedBerrySeed
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &3922981144310761436
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 5607564886530197980}
   - component: {fileID: 7173123030360074990}
   - component: {fileID: 8633984601681177743}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

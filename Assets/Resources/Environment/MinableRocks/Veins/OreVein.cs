@@ -30,6 +30,7 @@ public class OreVein : MonoBehaviour, IMinable
         SetColliderMesh();
     }
 
+    /*
     void Update()
     {
         float timeSinceLastHit = clock.time - lastHitOrRegenTime;
@@ -38,6 +39,7 @@ public class OreVein : MonoBehaviour, IMinable
             Regenerate();
         }
     }
+    */
 
     private void SetColliderMesh()
     {
@@ -53,6 +55,7 @@ public class OreVein : MonoBehaviour, IMinable
         }
     }
 
+    /*
     private void RemoveColliderMesh()
     {
         parentCollider.sharedMesh = null;
@@ -63,6 +66,7 @@ public class OreVein : MonoBehaviour, IMinable
         Transform childtransform = transform.GetChild(0);
         return childtransform?.gameObject;
     }
+    */
 
     public void Mine(float damage)
     {
@@ -82,12 +86,12 @@ public class OreVein : MonoBehaviour, IMinable
 
     public void Degrade()
     {
-        GameObject previousRock = GetRockObject();
-        Destroy(previousRock);
+        //GameObject previousRock = GetRockObject();
+        //Destroy(previousRock);
 
-        health = 0;
+        //health = 0;
 
-        RemoveColliderMesh();
+        //RemoveColliderMesh();
 
         Vector3 veinPosition = transform.position;
         Vector3 cameraPosition = SceneProperties.cameraTransform.position;
@@ -99,10 +103,13 @@ public class OreVein : MonoBehaviour, IMinable
 
         Rigidbody oreRigidbody = oreMesh.GetComponent<Rigidbody>();
         oreRigidbody.AddForce(new Vector3(0, 140, 0));
+
+        Destroy(gameObject);
     }
 
     public void Regenerate()
     {
+    /*
         if (health == 0)
         {
             GameObject newRock = Instantiate(richPrefab, transform);
@@ -111,6 +118,7 @@ public class OreVein : MonoBehaviour, IMinable
 
         health = initialHealth;
         lastHitOrRegenTime = clock.time;
+    */
     }
 
     public GameObject GetCollisionParticleSystem()

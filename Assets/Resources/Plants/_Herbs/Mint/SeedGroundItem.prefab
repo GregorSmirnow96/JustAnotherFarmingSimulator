@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8985688275438639568}
   - component: {fileID: 7099169543497377455}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: MintSeed
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &6350742679568935708
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 854452032802606034}
   - component: {fileID: 1031695179702537489}
   - component: {fileID: 7626672256180565297}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

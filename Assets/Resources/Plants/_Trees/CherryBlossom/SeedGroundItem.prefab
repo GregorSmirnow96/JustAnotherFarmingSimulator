@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6717064147221831408}
   - component: {fileID: 7882084208172586072}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: CherryBlossomSeed
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &7381768593281368460
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 2016662773675774504}
   - component: {fileID: 5500271175001828570}
   - component: {fileID: 923087224933373651}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -59,6 +59,7 @@ MonoBehaviour:
     timeToGrow: 24
     growthAnimationTime: 2.1666667
   plantName: CherryBlossom
+  minLargePlantDistance: 6
 --- !u!114 &359341030024621561
 MonoBehaviour:
   m_ObjectHideFlags: 0

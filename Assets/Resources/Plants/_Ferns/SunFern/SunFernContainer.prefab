@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8458273002583750102}
   - component: {fileID: 6090274626184563053}
   - component: {fileID: 1643395568178210179}
+  - component: {fileID: 7060254192973769548}
   m_Layer: 0
   m_Name: SunFernContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 4339706368930273643, guid: 6546e6f5ddbf32343adc2e6eeaa20087, type: 3}
     timeToGrow: 24
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 7129473092310610470, guid: 67c196dcb1e005748a8c82a267ec72a0, type: 3}
     timeToGrow: 24
+    growthAnimationTime: 2.1666667
   plantName: SunFern
+  minLargePlantDistance: 2.4
 --- !u!114 &686676747831731743
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7060254192973769548
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813181369474341513}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

@@ -18,7 +18,8 @@ public class Regrow : MonoBehaviour
     {
         if (Time.time >= startTime + regrowTime)
         {
-            Instantiate(harvestablePrefab, transform.position, transform.rotation);
+            // Instantiate(harvestablePrefab, transform.position, transform.rotation);
+            Instantiate(harvestablePrefab, transform.parent);
 
             Destroy(gameObject);
         }

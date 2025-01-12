@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1889301907189206965}
   - component: {fileID: 6430347397714298033}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: LightningTreeSeed
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &6651221810069657700
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 3454867021500306883}
   - component: {fileID: 7590146958195667015}
   - component: {fileID: 735575103111927776}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

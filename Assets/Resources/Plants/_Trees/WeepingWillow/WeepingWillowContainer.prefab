@@ -59,6 +59,7 @@ MonoBehaviour:
     timeToGrow: 24
     growthAnimationTime: 2.1666667
   plantName: WeepingWillow
+  minLargePlantDistance: 6
 --- !u!114 &390496112690032314
 MonoBehaviour:
   m_ObjectHideFlags: 0

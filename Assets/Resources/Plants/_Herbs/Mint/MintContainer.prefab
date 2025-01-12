@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8682324116970632386}
   - component: {fileID: 2058846257138324632}
   - component: {fileID: 2404773301981767770}
+  - component: {fileID: -1475893141159671426}
   m_Layer: 0
   m_Name: MintContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 8943595673945823880, guid: a3596d529205a21489326839c0062023, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 8590442437380909231, guid: b3439acb5d40a7742aa7523871a5bc83, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   plantName: Mint
+  minLargePlantDistance: 2.4
 --- !u!114 &5765455758727933683
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-1475893141159671426
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2755125544832844713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

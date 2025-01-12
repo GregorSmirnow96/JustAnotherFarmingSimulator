@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 1663473311478935332}
   - component: {fileID: 7358065778976149742}
   - component: {fileID: -8207292350784693580}
+  - component: {fileID: 7852983646650410416}
   m_Layer: 0
   m_Name: FlaxContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 170600559194296956, guid: cf1aeadc8f46808408e95e842070c389, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 736250408322126231, guid: d4a65e9a01be4494f9b849cea2b6c97e, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   plantName: Flax
+  minLargePlantDistance: 2.4
 --- !u!114 &4803354700214264851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7852983646650410416
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6310079634388766988}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

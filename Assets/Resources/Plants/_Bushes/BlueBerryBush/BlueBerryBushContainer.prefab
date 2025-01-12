@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8261236500022772628}
   - component: {fileID: 4073544065621057030}
   - component: {fileID: -1730693237522484311}
+  - component: {fileID: -4706593815753234341}
   m_Layer: 0
   m_Name: BlueBerryBushContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 1143687786043657340, guid: d004f085056c4be4fbcdedd5aa6ab621, type: 3}
     timeToGrow: 1
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 7785171073066407785, guid: 6faab8517528d13429e83273d546eaeb, type: 3}
     timeToGrow: 1
+    growthAnimationTime: 2.1666667
   plantName: BlueBerryBush
+  minLargePlantDistance: 2.4
 --- !u!114 &-7084934199003449320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4706593815753234341
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8991975728976312921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

@@ -25,7 +25,7 @@ public class FireBlastHitbox : MonoBehaviour
             }
 
             ICCable ccable = collidedObject.GetComponent<ICCable>();
-            if (health != null)
+            if (ccable != null)
             {
                 ccable.KnockBack(knockBackDistance, knockBackDuration, transform.position);
                 ccable.Stun(stunDuration);

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3974306281305880656}
   - component: {fileID: 3339915258424479346}
   - component: {fileID: 6193694823633243126}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3507242567856114911}
   - component: {fileID: 1132529594096451283}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: ZapFlowerSeed
+  hasLootBeam: 1
   setTagDelay: 0.5

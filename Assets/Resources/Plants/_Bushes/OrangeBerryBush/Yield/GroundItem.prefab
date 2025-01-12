@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6695468162747758326}
   - component: {fileID: 8375634886977277884}
   - component: {fileID: 4979153441588079400}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -135,6 +135,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundItem
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df968cd0fefd0d8478e7fcbae0224d7d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8164078558771037576, guid: df968cd0fefd0d8478e7fcbae0224d7d, type: 3}
@@ -170,4 +174,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: OrangeBerry
+  hasLootBeam: 1
   setTagDelay: 0.5

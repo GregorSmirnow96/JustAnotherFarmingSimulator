@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2421328357209057960}
   - component: {fileID: 1405832558925336596}
   - component: {fileID: -4655860322369402272}
+  - component: {fileID: 2314921115471940050}
   m_Layer: 0
   m_Name: PeachTreeContainer
   m_TagString: Untagged
@@ -56,6 +57,7 @@ MonoBehaviour:
     timeToGrow: 36
     growthAnimationTime: 2.1666667
   plantName: PeachTree
+  minLargePlantDistance: 6
 --- !u!114 &2421328357209057960
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -97,3 +99,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   radius: 2
+--- !u!114 &2314921115471940050
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4840887916270477505}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 25
+  maxHealth: 25

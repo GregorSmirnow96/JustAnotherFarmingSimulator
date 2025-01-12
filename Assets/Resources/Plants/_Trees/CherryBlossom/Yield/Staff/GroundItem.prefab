@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5298986804656755710}
   - component: {fileID: 5079338869547891015}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: FaeStaff
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &5688241095310137323
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 3478641884986033360}
   - component: {fileID: 1770390747531541914}
   - component: {fileID: 3005039084820388110}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

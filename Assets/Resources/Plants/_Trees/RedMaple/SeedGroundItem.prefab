@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1802116080925837023}
   - component: {fileID: 6911079934575619123}
   - component: {fileID: 578106986750675612}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1870903192023008165}
   - component: {fileID: 2800721329654782980}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: RedMapleSeed
+  hasLootBeam: 1
   setTagDelay: 0.5

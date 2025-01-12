@@ -130,3 +130,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantPrefab: {fileID: 4631433659235303077, guid: 2ce44f671c21d35488b29a11869947ba, type: 3}
   maxInteractionRange: 4
+  isLargePlantSeed: 1

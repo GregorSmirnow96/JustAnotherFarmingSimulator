@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 5339941517404675286}
   - component: {fileID: 7119179291755423132}
   - component: {fileID: 6046608039992426760}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5298986804656755710}
   - component: {fileID: 5079338869547891015}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -130,4 +130,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: FireStaff
+  hasLootBeam: 1
   setTagDelay: 0.5

@@ -18,7 +18,7 @@ public class BreathHitbox : MonoBehaviour
             Health health = collidedObject.GetComponent<Health>();
             if (health != null)
             {
-                health.TakeDamage(scaledDamage, DamageType.Lightning);
+                health.TakeDamage(scaledDamage, DamageType.Fire);
             }
         }
     }

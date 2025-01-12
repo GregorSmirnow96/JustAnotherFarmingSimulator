@@ -30,14 +30,15 @@ public class Axe : MonoBehaviour, IUsable
         swingCollided = false;
         isSwinging = true;
         animator.SetBool("IsSwinging", true);
+        axeCollider.enabled = true;
+
         animator.SetTrigger("Swing");
-
         nextSwingTime = Time.time + swingCooldown;
-
         yield return new WaitForSeconds(animator.GetCurrentAnimatorStateInfo(0).length);
 
         isSwinging = false;
         animator.SetBool("IsSwinging", false);
+        axeCollider.enabled = false;
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -66,16 +67,10 @@ public class Axe : MonoBehaviour, IUsable
         }
         if (chopScript != null)
         {
-            if (hitObject.tag == "Tree")
+            Shake shakeScript = hitObject.GetComponent<Shake>();
+            if (shakeScript != null)
             {
-                LODGroup lodGroup = hitObject.GetComponent<LODGroup>();
-                GameObject treeObject = lodGroup == null
-                    ? hitObject.transform.parent.gameObject
-                    : hitObject;
-                Shake shakeScript = treeObject.GetComponent<Shake>();
                 shakeScript.ShakeTree();
-                Choppable choppableScript = treeObject.GetComponent<Choppable>();
-                choppableScript.Chop(scaledDamage);
             }
 
             swingCollided = true;
@@ -89,10 +84,11 @@ public class Axe : MonoBehaviour, IUsable
         Health healthScript = hitObject.gameObject.GetComponent<Health>();
         if (healthScript == null)
         {
-            healthScript = hitObject.gameObject.transform.parent.gameObject.GetComponentInParent<Health>();
+            healthScript = hitObject.gameObject.transform?.parent.gameObject.GetComponentInParent<Health>();
         }
         if (healthScript != null)
         {
+            swingCollided = true;
             healthScript.TakeDamage(scaledDamage, DamageType.Physical);
         }
     }

@@ -9,6 +9,8 @@ public class FireFlowerOrb : MonoBehaviour
     public float startSize = 0.2f;
     public float fadeOutDuration = 0.6f;
 
+    public Transform parentFlower;
+
     private Vector3 initialScale;
 
     void Start()
@@ -52,6 +54,10 @@ public class FireFlowerOrb : MonoBehaviour
 
     void OnTriggerEnter(Collider other)
     {
+        GameObject collidedObject = other.gameObject;
+
+        if (collidedObject.transform == parentFlower) return;
+
         Vector3 contactPosition = transform.position;
         contactPosition.y = SceneProperties.TerrainHeightAtPosition(contactPosition);
         Instantiate(impactPrefab, contactPosition, Quaternion.identity);

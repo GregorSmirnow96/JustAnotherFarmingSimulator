@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5298986804656755710}
   - component: {fileID: 5079338869547891015}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: LightningStaff
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &8173998214104155735
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 1142172056423830892}
   - component: {fileID: 2814433328221334566}
   - component: {fileID: 1597469527296444594}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

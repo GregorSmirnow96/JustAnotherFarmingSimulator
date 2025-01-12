@@ -52,6 +52,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Sage
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 41c3169e9cace4b4aaf7491dda0a15ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 8164078558771037576, guid: 41c3169e9cace4b4aaf7491dda0a15ac, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -114,6 +122,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundItem
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: df968cd0fefd0d8478e7fcbae0224d7d, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8164078558771037576, guid: df968cd0fefd0d8478e7fcbae0224d7d, type: 3}
@@ -149,4 +161,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: Sage
+  hasLootBeam: 1
   setTagDelay: 0.5

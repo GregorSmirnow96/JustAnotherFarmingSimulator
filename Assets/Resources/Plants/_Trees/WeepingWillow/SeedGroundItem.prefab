@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3233830629340309036}
   - component: {fileID: 5849377900154648937}
   - component: {fileID: 6739819375837839768}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2988976759782479272}
   - component: {fileID: 7259267329404530284}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: WeepingWillowSeed
+  hasLootBeam: 1
   setTagDelay: 0.5

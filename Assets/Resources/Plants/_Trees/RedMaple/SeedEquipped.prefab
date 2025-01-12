@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   plantPrefab: {fileID: 1455786926169793630, guid: dea540226db96b64585ebb5afcc4f326, type: 3}
   maxInteractionRange: 4
+  isLargePlantSeed: 1
 --- !u!1 &8966954432246148914
 GameObject:
   m_ObjectHideFlags: 0

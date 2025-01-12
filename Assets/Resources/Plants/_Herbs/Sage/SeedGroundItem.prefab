@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1217607940797699197}
   - component: {fileID: 3659304639734271720}
   - component: {fileID: 2803570030529278538}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5653042123804530785}
   - component: {fileID: 8545433099128340438}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: SageSeed
+  hasLootBeam: 1
   setTagDelay: 0.5

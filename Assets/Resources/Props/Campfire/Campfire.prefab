@@ -56,8 +56,8 @@ MonoBehaviour:
   addParticleSystem: {fileID: 8592858799219868587}
   glowParticleSystem: {fileID: 8592858800535300840}
   sparksParticleSystem: {fileID: 8592858801083513167}
-  light: {fileID: 0}
-  remainingFuel: 2
+  light: {fileID: 8592858800175501819}
+  remainingFuel: 24
 --- !u!114 &4310058852814668922
 MonoBehaviour:
   m_ObjectHideFlags: 0

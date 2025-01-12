@@ -43,7 +43,10 @@ public class BlackHoleHitbox : MonoBehaviour
         {
             timer += Time.deltaTime;
             float magnitude = Time.deltaTime / displacementDuration;
-            collidedTransform.position = collidedTransform.position + displacement * magnitude;
+            if (collidedTransform != null)
+            {
+                collidedTransform.position = collidedTransform.position + displacement * magnitude;
+            }
             yield return null;
         }
     }

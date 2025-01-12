@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8873332054845316632}
   - component: {fileID: 6049256935642261330}
   - component: {fileID: 7122158040977327046}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -136,6 +136,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GroundItem
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
+      propertyPath: m_Layer
+      value: 6
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 8164078558771037576, guid: 16f0f4fad72bcf6428965d159544d81c, type: 3}
@@ -166,6 +170,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: LightningWand
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!4 &5278575479333244952 stripped
 Transform:

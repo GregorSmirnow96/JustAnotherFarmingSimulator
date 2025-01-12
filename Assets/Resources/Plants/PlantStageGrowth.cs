@@ -16,6 +16,7 @@ public class PlantStageGrowth : MonoBehaviour, IWaterable
     public GameObject initialPrefab;
     public List<GrowthStage> growthStages;
     public string plantName;
+    public float minLargePlantDistance;
 
     private GameObject plantObject;
     private float growthTimer;

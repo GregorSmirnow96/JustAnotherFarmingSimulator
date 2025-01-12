@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2142066964080974500}
   - component: {fileID: -7692717203632110554}
   - component: {fileID: -8404503793899766273}
+  - component: {fileID: 677375068229032508}
   m_Layer: 0
   m_Name: RosemaryContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 6336236010954028659, guid: 7680ceea64a86cd4d8da7f4a7058a282, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 2970491844436989316, guid: a92ed21f776bb48428186bfe09ad7874, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   plantName: Rosemary
+  minLargePlantDistance: 2.4
 --- !u!114 &3448956714096386716
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &677375068229032508
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 417467684446931189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

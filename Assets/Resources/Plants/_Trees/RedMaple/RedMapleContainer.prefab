@@ -59,6 +59,7 @@ MonoBehaviour:
     timeToGrow: 24
     growthAnimationTime: 2.1666667
   plantName: RedMaple
+  minLargePlantDistance: 6
 --- !u!114 &8038612366309771799
 MonoBehaviour:
   m_ObjectHideFlags: 0

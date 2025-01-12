@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6600484628503450353}
   - component: {fileID: 6502185733097424890}
   - component: {fileID: 8242675198796382604}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 461267194914001992}
   - component: {fileID: 4225936202208120384}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: PotatoSeed
+  hasLootBeam: 1
   setTagDelay: 0.5

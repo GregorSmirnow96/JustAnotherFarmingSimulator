@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2396085174659638961}
   - component: {fileID: -4797503700252390514}
   - component: {fileID: 1545903181486727318}
+  - component: {fileID: 8697550032182302890}
   m_Layer: 0
   m_Name: CharmFlowerContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 758847182867750176, guid: 944da4e41f8daaa4f97ba76d02f233ca, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 1043518460843978933, guid: 26b82489b7c5ab540978552877c07b6a, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   plantName: CharmFlower
+  minLargePlantDistance: 2.4
 --- !u!114 &4938238591158223896
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8697550032182302890
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2580691031131479766}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

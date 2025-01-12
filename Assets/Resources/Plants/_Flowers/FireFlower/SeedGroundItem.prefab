@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 6801307369344755615}
   - component: {fileID: 5149549831611130927}
   - component: {fileID: 1492710565375416271}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -93,7 +93,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4094269421920815491}
   - component: {fileID: 3385201196379300971}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -129,4 +129,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: FireFlowerSeed
+  hasLootBeam: 1
   setTagDelay: 0.5

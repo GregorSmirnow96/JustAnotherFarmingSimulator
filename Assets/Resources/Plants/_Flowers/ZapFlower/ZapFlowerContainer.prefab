@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 4029191885761516313}
   - component: {fileID: -7191165259113362208}
   - component: {fileID: -7655434254352409893}
+  - component: {fileID: 6531650044191878938}
   m_Layer: 0
   m_Name: ZapFlowerContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 8635322781256089042, guid: 02b62231385980b41a22fbb83271f6d6, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 2189753582630425405, guid: 82f42339d46bbbd40925ec8f540922b9, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   plantName: ZapFlower
+  minLargePlantDistance: 2.4
 --- !u!114 &6121184636598491545
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6531650044191878938
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6722569174093229834}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

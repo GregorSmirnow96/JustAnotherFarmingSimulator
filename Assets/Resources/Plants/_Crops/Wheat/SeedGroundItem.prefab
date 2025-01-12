@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8310062342627869172}
   - component: {fileID: 5783649134438465871}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: WheatSeed
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &5378440007175853809
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 8415087741691816792}
   - component: {fileID: 2842824489319839502}
   - component: {fileID: 1396850300697620717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

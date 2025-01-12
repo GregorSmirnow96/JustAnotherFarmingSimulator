@@ -85,6 +85,12 @@ public class FireFlowerAura : MonoBehaviour
             {
                 Vector3 spawnPosition = transform.position + orbSpawnOffset;
                 GameObject newOrb = Instantiate(orbPrefab, spawnPosition, Quaternion.identity);
+
+                // This line seems so weird. The idea is thatt he FireFlowerOrb collision detection shouldn't detect
+                // a collision when it hits the flower container's hitbox. This container just happens to be the
+                // great grandparent of the script's object. That's where the "parent.parent" comes from.
+                newOrb.GetComponent<FireFlowerOrb>().parentFlower = transform.parent.parent;
+
                 Rigidbody orbRigidbody = newOrb.GetComponent<Rigidbody>();
 
                 LaunchOrb(orbRigidbody);

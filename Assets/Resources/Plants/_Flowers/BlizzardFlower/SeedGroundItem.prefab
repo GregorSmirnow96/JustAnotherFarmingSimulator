@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6335736568550355947}
   - component: {fileID: 939299555008669813}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: BlizzardFlowerSeed
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &5106336693972763440
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 7960612661529518195}
   - component: {fileID: 8093449858980637565}
   - component: {fileID: 3141300891495951292}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

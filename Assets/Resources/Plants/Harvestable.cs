@@ -21,9 +21,10 @@ public class Harvestable : MonoBehaviour, IInteractable
         Item harvestedItem = new Item(itemId);
         Inventory.instance.AddItemToInventory(harvestedItem);
 
-        if (regrows)
+        if (regrows && harvestedPrefab != null)
         {
-            Instantiate(harvestedPrefab, transform.position, transform.rotation);
+            // Instantiate(harvestedPrefab, transform.position, transform.rotation);
+            Instantiate(harvestedPrefab, transform.parent);
         }
 
         Destroy(gameObject);
@@ -43,7 +44,10 @@ public class Harvestable : MonoBehaviour, IInteractable
 
     public void HideIndicator()
     {
-        interactText.Disable();
+        if (interactText != null)
+        {
+            interactText.Disable();
+        }
     }
 
     void OnDestroy()
@@ -52,6 +56,9 @@ public class Harvestable : MonoBehaviour, IInteractable
         {
             Destroy(gameObject.transform.parent.gameObject);
         }
-        Destroy(interactText.textObject);
+        if (interactText != null)
+        {
+            Destroy(interactText.textObject);
+        }
     } 
 }

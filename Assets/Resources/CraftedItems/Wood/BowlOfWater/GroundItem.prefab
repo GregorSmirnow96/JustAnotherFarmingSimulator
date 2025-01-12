@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2717587113536237520}
   - component: {fileID: -7241225630851628289}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: GroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24,13 +24,14 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3226958129287453852}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 515207796468265689}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &-7241225630851628289
 MonoBehaviour:
@@ -45,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: BowlOfWater
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &4290860581767594278
 GameObject:
@@ -57,7 +59,7 @@ GameObject:
   - component: {fileID: 515207796468265689}
   - component: {fileID: 342617052277193515}
   - component: {fileID: 8862345487474267064}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,12 +73,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4290860581767594278}
+  serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.177, y: 0, z: 0.469}
   m_LocalScale: {x: 0.3692, y: 0.3692, z: 0.3692}
+  m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 2717587113536237520}
-  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!33 &342617052277193515
 MeshFilter:
@@ -97,6 +100,7 @@ MeshRenderer:
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
+  m_StaticShadowCaster: 0
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1

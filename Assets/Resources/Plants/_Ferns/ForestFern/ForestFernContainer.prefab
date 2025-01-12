@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 3041032304437659305}
   - component: {fileID: -1275187169734379587}
   - component: {fileID: 4602650306079678620}
+  - component: {fileID: -3314534283969946976}
   m_Layer: 0
   m_Name: ForestFernContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 5419422703931123719, guid: bc32c0df21e8889439ca4f2d7491592f, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 3247104504198022254, guid: 2cc0b40059c9b114ab2e837ace7c4c45, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   plantName: ForestFern
+  minLargePlantDistance: 2.4
 --- !u!114 &6145958035811755621
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-3314534283969946976
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3339284627773974400}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 7204815685906766158}
   - component: {fileID: 4952932952180063521}
   - component: {fileID: 8696080698472476265}
+  - component: {fileID: 4884125881178600385}
   m_Layer: 0
   m_Name: OrangeBerryBushContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 6569177206079641163, guid: bd98fccb304ec204eabca4240f63973c, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 765609549171985758, guid: ec71740a44954f749b2dcd927db45398, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   plantName: OrangeBerryBush
+  minLargePlantDistance: 2.4
 --- !u!114 &4569343616845324441
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &4884125881178600385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7974892826707933040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15

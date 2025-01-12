@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4791632670814687662}
   - component: {fileID: 7127306311035067126}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: ForestFernSeed
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &5946546292057130503
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 1909628240368015304}
   - component: {fileID: 4131410778764253797}
   - component: {fileID: 5298655332583262941}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

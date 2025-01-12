@@ -163,6 +163,8 @@ public class ZapZone : MonoBehaviour
     {
         GameObject collidedObject = other.gameObject;
 
+        if (transform.IsChildOf(collidedObject.transform)) return;
+
         Debug.Log($"ZapZone interacted: {collidedObject.name}");
         Health health = collidedObject.GetComponent<Health>();
         if (health != null)

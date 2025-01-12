@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6177523691971143324}
   - component: {fileID: 3133312221849713814}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: SeedGroundItem
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemId: PeachTreeSeed
+  hasLootBeam: 1
   setTagDelay: 0.5
 --- !u!1 &7191672194514727458
 GameObject:
@@ -58,7 +59,7 @@ GameObject:
   - component: {fileID: 757425207221026492}
   - component: {fileID: 579352522153229965}
   - component: {fileID: 4568307761769499386}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: default
   m_TagString: Untagged
   m_Icon: {fileID: 0}

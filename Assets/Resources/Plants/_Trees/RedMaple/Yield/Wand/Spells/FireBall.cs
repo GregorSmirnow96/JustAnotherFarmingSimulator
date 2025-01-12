@@ -10,6 +10,7 @@ public class FireBall : MonoBehaviour
     public float maxDuration = 2f;
 
     private float lifespanTimer = 0f;
+    private bool collided;
 
     void Start()
     {
@@ -32,8 +33,9 @@ public class FireBall : MonoBehaviour
         GameObject collidedObject = other.gameObject;
 
         string collidedLayerName = LayerMask.LayerToName(collidedObject.layer);
-        if (collidedLayerName != "Player")
+        if (collidedLayerName != "Player" && !collided)
         {
+            collided = true;
             Vector3 collisionPoint = other.ClosestPoint(transform.position);
             Instantiate(impactPrefab, collisionPoint, Quaternion.identity);
 

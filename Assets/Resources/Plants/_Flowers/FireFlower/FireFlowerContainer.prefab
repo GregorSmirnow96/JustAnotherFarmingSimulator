@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 2316016849552663291}
   - component: {fileID: 1591547636504653368}
   - component: {fileID: -3513681746087531359}
+  - component: {fileID: -4695080483704550506}
   m_Layer: 0
   m_Name: FireFlowerContainer
   m_TagString: Untagged
@@ -53,9 +54,12 @@ MonoBehaviour:
   growthStages:
   - stagePrefab: {fileID: 6634144588527609318, guid: bc5a952fa8c90234280cba052c0ba37e, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   - stagePrefab: {fileID: 8592148711743299618, guid: cafd26bd937443c46b4eda60cbf91267, type: 3}
     timeToGrow: 16
+    growthAnimationTime: 2.1666667
   plantName: FireFlower
+  minLargePlantDistance: 2.4
 --- !u!114 &57106172640015113
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -143,3 +147,17 @@ CapsuleCollider:
   m_Height: 1
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &-4695080483704550506
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8573048166613688506}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2877e1f3c7206c7439d167a39a3e3368, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 15
+  maxHealth: 15
