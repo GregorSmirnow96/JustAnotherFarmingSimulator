@@ -13,7 +13,8 @@ namespace ItemMetaData
             "IronOre",
             "Environment/MinableRocks/Rocks/Iron/Ore/GroundItem",
             "Environment/MinableRocks/Rocks/Iron/Ore/Sprite",
-            "Environment/MinableRocks/Rocks/Iron/Ore/Equipped") {}
+            "Environment/MinableRocks/Rocks/Iron/Ore/Equipped",
+            false) {}
     }
 
     public class IronBar : ItemType
@@ -22,7 +23,8 @@ namespace ItemMetaData
             "IronBar",
             "Environment/MinableRocks/Rocks/Iron/Bar/GroundItem",
             "Environment/MinableRocks/Rocks/Iron/Bar/Sprite",
-            "Environment/MinableRocks/Rocks/Iron/Bar/Equipped") {}
+            "Environment/MinableRocks/Rocks/Iron/Bar/Equipped",
+            false) {}
     }
 
     public class CopperOre : ItemType
@@ -31,6 +33,7 @@ namespace ItemMetaData
             "CopperOre",
             "Environment/MinableRocks/Veins/Copper/Ore/GroundItem",
             "Environment/MinableRocks/Veins/Copper/Ore/Sprite",
-            "Environment/MinableRocks/Veins/Copper/Ore/Equipped") {}
+            "Environment/MinableRocks/Veins/Copper/Ore/Equipped",
+            false) {}
     }
 }

@@ -10,6 +10,13 @@ public class Item
 {
     public ItemType type;
     public Guid guid;
+    // Pick up here tomorrow: Implement numbers over item sprites in the inventory for stacks of items.
+    // This shouldn't require any refactoring in the Item class itself. The inventory modification functions WILL need refactoring though. Specifically adding/removing items.
+    //  1) If an item is being added to the inventory that stacks and it already exists, it should be added to the stack.
+    //  2) A remove from stack function will be needed. It will be used by the crafting button, alchemy button, and upon firing an arrow (remove 1 of the equipped arrow). 
+    public int stackSize = 1;
+
+    public bool stacks => type?.stacks ?? false;
 
     public Item(ItemType itemType)
     {

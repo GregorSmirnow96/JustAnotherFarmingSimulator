@@ -7,7 +7,7 @@ using Spawning;
 
 namespace ItemMetaData
 {
-    public class ItemImplementations
+    public class PlantImplementations
     {
         public static List<ItemType> BUSHES = new List<ItemType>()
         {
@@ -90,7 +90,8 @@ namespace ItemMetaData
             "BlueBerrySeed",
             "Plants/_Bushes/BlueBerryBush/SeedGroundItem",
             "Plants/_Bushes/BlueBerryBush/Sprite",
-            "Plants/_Bushes/BlueBerryBush/SeedEquipped") {}
+            "Plants/_Bushes/BlueBerryBush/SeedEquipped",
+            false) {}
     }
 
     public class BlueBerry : ItemType
@@ -99,7 +100,8 @@ namespace ItemMetaData
             "BlueBerry",
             "Plants/_Bushes/BlueBerryBush/Yield/GroundItem",
             "Plants/_Bushes/BlueBerryBush/Yield/Sprite",
-            "Plants/_Bushes/BlueBerryBush/Yield/Equipped") {}
+            "Plants/_Bushes/BlueBerryBush/Yield/Equipped",
+            false) {}
     }
 
     public class OrangeBerrySeed : ItemType
@@ -108,7 +110,8 @@ namespace ItemMetaData
             "OrangeBerrySeed",
             "Plants/_Bushes/OrangeBerryBush/SeedGroundItem",
             "Plants/_Bushes/OrangeBerryBush/Sprite",
-            "Plants/_Bushes/OrangeBerryBush/SeedEquipped") {}
+            "Plants/_Bushes/OrangeBerryBush/SeedEquipped",
+            false) {}
     }
 
     public class OrangeBerry : ItemType
@@ -117,7 +120,8 @@ namespace ItemMetaData
             "OrangeBerry",
             "Plants/_Bushes/OrangeBerryBush/Yield/GroundItem",
             "Plants/_Bushes/OrangeBerryBush/Yield/Sprite",
-            "Plants/_Bushes/OrangeBerryBush/Yield/Equipped") {}
+            "Plants/_Bushes/OrangeBerryBush/Yield/Equipped",
+            false) {}
     }
 
     public class RedBerrySeed : ItemType
@@ -126,7 +130,8 @@ namespace ItemMetaData
             "RedBerrySeed",
             "Plants/_Bushes/RedBerryBush/SeedGroundItem",
             "Plants/_Bushes/RedBerryBush/Sprite",
-            "Plants/_Bushes/RedBerryBush/SeedEquipped") {}
+            "Plants/_Bushes/RedBerryBush/SeedEquipped",
+            false) {}
     }
 
     public class RedBerry : ItemType
@@ -135,7 +140,8 @@ namespace ItemMetaData
             "RedBerry",
             "Plants/_Bushes/RedBerryBush/Yield/GroundItem",
             "Plants/_Bushes/RedBerryBush/Yield/Sprite",
-            "Plants/_Bushes/RedBerryBush/Yield/Equipped") {}
+            "Plants/_Bushes/RedBerryBush/Yield/Equipped",
+            false) {}
     }
 
     // Crop Items
@@ -146,7 +152,8 @@ namespace ItemMetaData
             "CarrotSeed",
             "Plants/_Crops/Carrots/SeedGroundItem",
             "Plants/_Crops/Carrots/Sprite",
-            "Plants/_Crops/Carrots/SeedEquipped") {}
+            "Plants/_Crops/Carrots/SeedEquipped",
+            false) {}
     }
 
     public class Carrot : ItemType
@@ -155,7 +162,8 @@ namespace ItemMetaData
             "Carrot",
             "Plants/_Crops/Carrots/Yield/GroundItem",
             "Plants/_Crops/Carrots/Yield/Sprite",
-            "Plants/_Crops/Carrots/Yield/Equipped") {}
+            "Plants/_Crops/Carrots/Yield/Equipped",
+            false) {}
     }
 
     public class FlaxSeed : ItemType
@@ -164,7 +172,8 @@ namespace ItemMetaData
             "FlaxSeed",
             "Plants/_Crops/Flax/SeedGroundItem",
             "Plants/_Crops/Flax/Sprite",
-            "Plants/_Crops/Flax/SeedEquipped") {}
+            "Plants/_Crops/Flax/SeedEquipped",
+            false) {}
     }
 
     public class Flax : ItemType
@@ -173,7 +182,8 @@ namespace ItemMetaData
             "Flax",
             "Plants/_Crops/Flax/Yield/GroundItem",
             "Plants/_Crops/Flax/Yield/Sprite",
-            "Plants/_Crops/Flax/Yield/Equipped") {}
+            "Plants/_Crops/Flax/Yield/Equipped",
+            false) {}
     }
 
     public class PotatoSeed : ItemType
@@ -182,7 +192,8 @@ namespace ItemMetaData
             "PotatoSeed",
             "Plants/_Crops/Potatoes/SeedGroundItem",
             "Plants/_Crops/Potatoes/Sprite",
-            "Plants/_Crops/Potatoes/SeedEquipped") {}
+            "Plants/_Crops/Potatoes/SeedEquipped",
+            false) {}
     }
 
     public class Potato : ItemType
@@ -191,7 +202,8 @@ namespace ItemMetaData
             "Potato",
             "Plants/_Crops/Potatoes/Yield/GroundItem",
             "Plants/_Crops/Potatoes/Yield/Sprite",
-            "Plants/_Crops/Potatoes/Yield/Equipped") {}
+            "Plants/_Crops/Potatoes/Yield/Equipped",
+            false) {}
     }
 
     public class WheatSeed : ItemType
@@ -200,7 +212,8 @@ namespace ItemMetaData
             "WheatSeed",
             "Plants/_Crops/Wheat/SeedGroundItem",
             "Plants/_Crops/Wheat/Sprite",
-            "Plants/_Crops/Wheat/SeedEquipped") {}
+            "Plants/_Crops/Wheat/SeedEquipped",
+            false) {}
     }
 
     public class Wheat : ItemType
@@ -209,7 +222,8 @@ namespace ItemMetaData
             "Wheat",
             "Plants/_Crops/Wheat/Yield/GroundItem",
             "Plants/_Crops/Wheat/Yield/Sprite",
-            "Plants/_Crops/Wheat/Yield/Equipped") {}
+            "Plants/_Crops/Wheat/Yield/Equipped",
+            false) {}
     }
 
     // Fern Items
@@ -220,7 +234,8 @@ namespace ItemMetaData
             "ForestFernSeed",
             "Plants/_Ferns/ForestFern/SeedGroundItem",
             "Plants/_Ferns/ForestFern/Sprite",
-            "Plants/_Ferns/ForestFern/SeedEquipped") {}
+            "Plants/_Ferns/ForestFern/SeedEquipped",
+            false) {}
     }
 
     public class SunFernSeed : ItemType
@@ -229,7 +244,8 @@ namespace ItemMetaData
             "SunFernSeed",
             "Plants/_Ferns/SunFern/SeedGroundItem",
             "Plants/_Ferns/SunFern/Sprite",
-            "Plants/_Ferns/SunFern/SeedEquipped") {}
+            "Plants/_Ferns/SunFern/SeedEquipped",
+            false) {}
     }
 
     // Flower Items
@@ -240,7 +256,8 @@ namespace ItemMetaData
             "BlizzardFlowerSeed",
             "Plants/_Flowers/BlizzardFlower/SeedGroundItem",
             "Plants/_Flowers/BlizzardFlower/Sprite",
-            "Plants/_Flowers/BlizzardFlower/SeedEquipped") {}
+            "Plants/_Flowers/BlizzardFlower/SeedEquipped",
+            false) {}
     }
 
     public class CharmFlowerSeed : ItemType
@@ -249,7 +266,8 @@ namespace ItemMetaData
             "CharmFlowerSeed",
             "Plants/_Flowers/CharmFlower/SeedGroundItem",
             "Plants/_Flowers/CharmFlower/Sprite",
-            "Plants/_Flowers/CharmFlower/SeedEquipped") {}
+            "Plants/_Flowers/CharmFlower/SeedEquipped",
+            false) {}
     }
 
     public class FireFlowerSeed : ItemType
@@ -258,7 +276,8 @@ namespace ItemMetaData
             "FireFlowerSeed",
             "Plants/_Flowers/FireFlower/SeedGroundItem",
             "Plants/_Flowers/FireFlower/Sprite",
-            "Plants/_Flowers/FireFlower/SeedEquipped") {}
+            "Plants/_Flowers/FireFlower/SeedEquipped",
+            false) {}
     }
 
     public class ZapFlowerSeed : ItemType
@@ -267,7 +286,8 @@ namespace ItemMetaData
             "ZapFlowerSeed",
             "Plants/_Flowers/ZapFlower/SeedGroundItem",
             "Plants/_Flowers/ZapFlower/Sprite",
-            "Plants/_Flowers/ZapFlower/SeedEquipped") {}
+            "Plants/_Flowers/ZapFlower/SeedEquipped",
+            false) {}
     }
 
     // Fruit Tree Items
@@ -278,7 +298,8 @@ namespace ItemMetaData
             "OrangeTreeSeed",
             "Plants/_FruitTrees/OrangeTree/SeedGroundItem",
             "Plants/_FruitTrees/OrangeTree/Sprite",
-            "Plants/_FruitTrees/OrangeTree/SeedEquipped") {}
+            "Plants/_FruitTrees/OrangeTree/SeedEquipped",
+            false) {}
     }
 
     public class Orange : ItemType
@@ -287,7 +308,8 @@ namespace ItemMetaData
             "Orange",
             "Plants/_FruitTrees/OrangeTree/Yield/GroundItem",
             "Plants/_FruitTrees/OrangeTree/Yield/Sprite",
-            "Plants/_FruitTrees/OrangeTree/Yield/Equipped") {}
+            "Plants/_FruitTrees/OrangeTree/Yield/Equipped",
+            false) {}
     }
 
     public class PeachTreeSeed : ItemType
@@ -296,7 +318,8 @@ namespace ItemMetaData
             "PeachTreeSeed",
             "Plants/_FruitTrees/PeachTree/SeedGroundItem",
             "Plants/_FruitTrees/PeachTree/Sprite",
-            "Plants/_FruitTrees/PeachTree/SeedEquipped") {}
+            "Plants/_FruitTrees/PeachTree/SeedEquipped",
+            false) {}
     }
 
     public class Peach : ItemType
@@ -305,7 +328,8 @@ namespace ItemMetaData
             "Peach",
             "Plants/_FruitTrees/PeachTree/Yield/GroundItem",
             "Plants/_FruitTrees/PeachTree/Yield/Sprite",
-            "Plants/_FruitTrees/PeachTree/Yield/Equipped") {}
+            "Plants/_FruitTrees/PeachTree/Yield/Equipped",
+            false) {}
     }
 
     public class PlumTreeSeed : ItemType
@@ -314,7 +338,8 @@ namespace ItemMetaData
             "PlumTreeSeed",
             "Plants/_FruitTrees/PlumTree/SeedGroundItem",
             "Plants/_FruitTrees/PlumTree/Sprite",
-            "Plants/_FruitTrees/PlumTree/SeedEquipped") {}
+            "Plants/_FruitTrees/PlumTree/SeedEquipped",
+            false) {}
     }
 
     public class Plum : ItemType
@@ -323,7 +348,8 @@ namespace ItemMetaData
             "Plum",
             "Plants/_FruitTrees/PlumTree/Yield/GroundItem",
             "Plants/_FruitTrees/PlumTree/Yield/Sprite",
-            "Plants/_FruitTrees/PlumTree/Yield/Equipped") {}
+            "Plants/_FruitTrees/PlumTree/Yield/Equipped",
+            false) {}
     }
 
     // Herb Items
@@ -334,7 +360,8 @@ namespace ItemMetaData
             "MintSeed",
             "Plants/_Herbs/Mint/SeedGroundItem",
             "Plants/_Herbs/Mint/Sprite",
-            "Plants/_Herbs/Mint/SeedEquipped") {}
+            "Plants/_Herbs/Mint/SeedEquipped",
+            false) {}
     }
 
     public class Mint : ItemType
@@ -343,7 +370,8 @@ namespace ItemMetaData
             "Mint",
             "Plants/_Herbs/Mint/Yield/GroundItem",
             "Plants/_Herbs/Mint/Yield/Sprite",
-            "Plants/_Herbs/Mint/Yield/Equipped") {}
+            "Plants/_Herbs/Mint/Yield/Equipped",
+            false) {}
     }
 
     public class RosemarySeed : ItemType
@@ -352,7 +380,8 @@ namespace ItemMetaData
             "RosemarySeed",
             "Plants/_Herbs/Rosemary/SeedGroundItem",
             "Plants/_Herbs/Rosemary/Sprite",
-            "Plants/_Herbs/Rosemary/SeedEquipped") {}
+            "Plants/_Herbs/Rosemary/SeedEquipped",
+            false) {}
     }
 
     public class Rosemary : ItemType
@@ -361,7 +390,8 @@ namespace ItemMetaData
             "Rosemary",
             "Plants/_Herbs/Rosemary/Yield/GroundItem",
             "Plants/_Herbs/Rosemary/Yield/Sprite",
-            "Plants/_Herbs/Rosemary/Yield/Equipped") {}
+            "Plants/_Herbs/Rosemary/Yield/Equipped",
+            false) {}
     }
 
     public class SageSeed : ItemType
@@ -370,7 +400,8 @@ namespace ItemMetaData
             "SageSeed",
             "Plants/_Herbs/Sage/SeedGroundItem",
             "Plants/_Herbs/Sage/Sprite",
-            "Plants/_Herbs/Sage/SeedEquipped") {}
+            "Plants/_Herbs/Sage/SeedEquipped",
+            false) {}
     }
 
     public class Sage : ItemType
@@ -379,7 +410,8 @@ namespace ItemMetaData
             "Sage",
             "Plants/_Herbs/Sage/Yield/GroundItem",
             "Plants/_Herbs/Sage/Yield/Sprite",
-            "Plants/_Herbs/Sage/Yield/Equipped") {}
+            "Plants/_Herbs/Sage/Yield/Equipped",
+            false) {}
     }
 
     // Trees Items
@@ -390,7 +422,8 @@ namespace ItemMetaData
             "CherryBlossomSeed",
             "Plants/_Trees/CherryBlossom/SeedGroundItem",
             "Plants/_Trees/CherryBlossom/Sprite",
-            "Plants/_Trees/CherryBlossom/SeedEquipped") {}
+            "Plants/_Trees/CherryBlossom/SeedEquipped",
+            false) {}
     }
 
     public class FaeStaff : ItemType
@@ -399,7 +432,8 @@ namespace ItemMetaData
             "FaeStaff",
             "Plants/_Trees/CherryBlossom/Yield/Staff/GroundItem",
             "Plants/_Trees/CherryBlossom/Yield/Staff/Sprite",
-            "Plants/_Trees/CherryBlossom/Yield/Staff/Equipped") {}
+            "Plants/_Trees/CherryBlossom/Yield/Staff/Equipped",
+            false) {}
     }
 
     public class FaeWand : ItemType
@@ -408,7 +442,8 @@ namespace ItemMetaData
             "FaeWand",
             "Plants/_Trees/CherryBlossom/Yield/Wand/GroundItem",
             "Plants/_Trees/CherryBlossom/Yield/Wand/Sprite",
-            "Plants/_Trees/CherryBlossom/Yield/Wand/Equipped") {}
+            "Plants/_Trees/CherryBlossom/Yield/Wand/Equipped",
+            false) {}
     }
 
     public class LightningTreeSeed : ItemType
@@ -417,7 +452,8 @@ namespace ItemMetaData
             "LightningTreeSeed",
             "Plants/_Trees/LightningTree/SeedGroundItem",
             "Plants/_Trees/LightningTree/Sprite",
-            "Plants/_Trees/LightningTree/SeedEquipped") {}
+            "Plants/_Trees/LightningTree/SeedEquipped",
+            false) {}
     }
 
     public class LightningStaff : ItemType
@@ -426,7 +462,8 @@ namespace ItemMetaData
             "LightningStaff",
             "Plants/_Trees/LightningTree/Yield/Staff/GroundItem",
             "Plants/_Trees/LightningTree/Yield/Staff/Sprite",
-            "Plants/_Trees/LightningTree/Yield/Staff/Equipped") {}
+            "Plants/_Trees/LightningTree/Yield/Staff/Equipped",
+            false) {}
     }
 
     public class LightningWand : ItemType
@@ -435,7 +472,8 @@ namespace ItemMetaData
             "LightningWand",
             "Plants/_Trees/LightningTree/Yield/Wand/GroundItem",
             "Plants/_Trees/LightningTree/Yield/Wand/Sprite",
-            "Plants/_Trees/LightningTree/Yield/Wand/Equipped") {}
+            "Plants/_Trees/LightningTree/Yield/Wand/Equipped",
+            false) {}
     }
 
     public class RedMapleSeed : ItemType
@@ -444,7 +482,8 @@ namespace ItemMetaData
             "RedMapleSeed",
             "Plants/_Trees/RedMaple/SeedGroundItem",
             "Plants/_Trees/RedMaple/Sprite",
-            "Plants/_Trees/RedMaple/SeedEquipped") {}
+            "Plants/_Trees/RedMaple/SeedEquipped",
+            false) {}
     }
 
     public class FireStaff : ItemType
@@ -453,7 +492,8 @@ namespace ItemMetaData
             "FireStaff",
             "Plants/_Trees/RedMaple/Yield/Staff/GroundItem",
             "Plants/_Trees/RedMaple/Yield/Staff/Sprite",
-            "Plants/_Trees/RedMaple/Yield/Staff/Equipped") {}
+            "Plants/_Trees/RedMaple/Yield/Staff/Equipped",
+            false) {}
     }
 
     public class FireWand : ItemType
@@ -462,7 +502,8 @@ namespace ItemMetaData
             "FireWand",
             "Plants/_Trees/RedMaple/Yield/Wand/GroundItem",
             "Plants/_Trees/RedMaple/Yield/Wand/Sprite",
-            "Plants/_Trees/RedMaple/Yield/Wand/Equipped") {}
+            "Plants/_Trees/RedMaple/Yield/Wand/Equipped",
+            false) {}
     }
 
     public class WeepingWillowSeed : ItemType
@@ -471,7 +512,8 @@ namespace ItemMetaData
             "WeepingWillowSeed",
             "Plants/_Trees/WeepingWillow/SeedGroundItem",
             "Plants/_Trees/WeepingWillow/Sprite",
-            "Plants/_Trees/WeepingWillow/SeedEquipped") {}
+            "Plants/_Trees/WeepingWillow/SeedEquipped",
+            false) {}
     }
 
     public class WaterStaff : ItemType
@@ -480,7 +522,8 @@ namespace ItemMetaData
             "WaterStaff",
             "Plants/_Trees/WeepingWillow/Yield/Staff/GroundItem",
             "Plants/_Trees/WeepingWillow/Yield/Staff/Sprite",
-            "Plants/_Trees/WeepingWillow/Yield/Staff/Equipped") {}
+            "Plants/_Trees/WeepingWillow/Yield/Staff/Equipped",
+            false) {}
     }
 
     public class WaterWand : ItemType
@@ -489,6 +532,7 @@ namespace ItemMetaData
             "WaterWand",
             "Plants/_Trees/WeepingWillow/Yield/Wand/GroundItem",
             "Plants/_Trees/WeepingWillow/Yield/Wand/Sprite",
-            "Plants/_Trees/WeepingWillow/Yield/Wand/Equipped") {}
+            "Plants/_Trees/WeepingWillow/Yield/Wand/Equipped",
+            false) {}
     }
 }

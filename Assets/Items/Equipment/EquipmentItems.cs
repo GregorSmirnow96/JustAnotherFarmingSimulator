@@ -1,0 +1,41 @@
+using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
+
+public class EquipmentItems
+{
+    private static EquipmentItems Instance;
+    public static EquipmentItems GetInstance() =>
+        Instance == null
+            ? Instance = new EquipmentItems()
+            : Instance;
+
+    private List<string> quiverItemIds;
+    private List<string> necklaceItemIds;
+    private List<string> armourItemIds;
+    private List<string> ringItemIds;
+
+    private EquipmentItems()
+    {
+        quiverItemIds = new List<string>()
+        {
+            "IronArrow"
+        };
+        necklaceItemIds = new List<string>()
+        {
+        };
+        armourItemIds = new List<string>()
+        {
+            "FaeWand"
+        };
+        ringItemIds = new List<string>()
+        {
+        };
+    }
+
+    public bool ItemIdIsQuiverItem(string itemId) => itemId == null || quiverItemIds.Contains(itemId);
+    public bool ItemIdIsNecklaceItem(string itemId) => itemId == null || necklaceItemIds.Contains(itemId);
+    public bool ItemIdIsArmourItem(string itemId) => itemId == null || armourItemIds.Contains(itemId);
+    public bool ItemIdIsRingItem(string itemId) => itemId == null || ringItemIds.Contains(itemId);
+}

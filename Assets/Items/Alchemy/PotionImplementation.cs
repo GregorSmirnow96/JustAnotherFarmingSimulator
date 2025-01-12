@@ -13,6 +13,7 @@ namespace ItemMetaData
             "Potion",
             "CraftedItems/Potions/Prefabs/GroundItem",
             "CraftedItems/Potions/UntintedSprite",
-            "CraftedItems/Potions/Prefabs/Equipped") {}
+            "CraftedItems/Potions/Prefabs/Equipped",
+            false) {}
     }
 }
