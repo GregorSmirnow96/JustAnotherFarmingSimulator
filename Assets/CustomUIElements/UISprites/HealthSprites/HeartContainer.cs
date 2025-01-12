@@ -34,7 +34,7 @@ public class HeartContainer : MonoBehaviour
             SetHearts();
         }
 
-        int currentHealth = playerHealth.health;
+        int currentHealth = Mathf.Max(playerHealth.health, 0);
         int fullHearts = (int) currentHealth / healthPerHeart;
 
         float healthPerQuarterHeart = (float) ((float) healthPerHeart / 4.0f);
@@ -56,6 +56,19 @@ public class HeartContainer : MonoBehaviour
                 .GetComponent<HeartSprite>()
                 .SetFilledQuarters(quarters);
         }
+
+        if (quarters > 0)
+        {
+            int firstEmptyHeartIndex = fullHearts + 1;
+            for (int i = fullHearts + 1; i < maxHealth / healthPerHeart; i++)
+            {
+                transform
+                    .GetChild(i)
+                    .GetComponent<HeartSprite>()
+                    .SetFilledQuarters(0);
+            }
+        }
+
 
         previousMaxHealth = maxHealth;
     }

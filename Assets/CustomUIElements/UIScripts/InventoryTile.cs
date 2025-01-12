@@ -6,23 +6,25 @@ using UnityEngine.UI;
 
 public class InventoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandler, IPointerEnterHandler, IPointerExitHandler
 {
-    private static InventoryTile mouseDownTile;
-    private static InventoryTile hoveredTile;
+    protected static InventoryTile mouseDownTile;
+    protected static InventoryTile hoveredTile;
 
     public GameObject itemImagePrefab;
     public Vector2 tileCoord;
     public bool representsInventory = true;
     public Item backingItem;
 
-    private GameObject itemImageObject;
-    private Image itemImage;
-    private RectTransform itemImageTransform;
-    private Inventory inventory;
-    private bool draggingItem;
-    private Canvas draggedImageCanvas;
-    private TooltipOnHover tooltipScript;
+    protected GameObject itemImageObject;
+    protected Image itemImage;
+    protected RectTransform itemImageTransform;
+    protected Inventory inventory;
+    protected bool draggingItem;
+    protected Canvas draggedImageCanvas;
+    protected TooltipOnHover tooltipScript;
 
-    void Start()
+    protected ItemQuantityText itemQuantity;
+
+    void Awake()
     {
         itemImageObject = Instantiate(itemImagePrefab, transform);
         tooltipScript = itemImageObject.GetComponent<TooltipOnHover>();
@@ -30,6 +32,8 @@ public class InventoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         itemImageTransform = itemImageObject.GetComponent<RectTransform>();
 
         inventory = Inventory.instance;
+
+        itemQuantity = GetComponent<ItemQuantityText>();
     }
 
     void Update()
@@ -59,6 +63,13 @@ public class InventoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
             // Set the anchored position to the calculated local point
             itemImageTransform.anchoredPosition = localPoint;
         }
+
+        bool itemStacks = itemInSlot?.stacks ?? false;
+        if (itemStacks)
+        {
+            itemQuantity.SetQuantity(itemInSlot.stackSize);
+        }
+        itemQuantity.SetActive(itemStacks);
     }
 
     public void OnPointerDown(PointerEventData eventData)
@@ -76,8 +87,7 @@ public class InventoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
 
     public void OnPointerUp(PointerEventData eventData)
     {
-
-        if (hoveredTile == null)
+        if (hoveredTile == null || mouseDownTile == null)
         {
             Debug.Log($"Invalid target; reset dragged sprite position");
             itemImageTransform.anchoredPosition = Vector2.zero;
@@ -91,22 +101,30 @@ public class InventoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
                 ? inventory.GetItem((int) hoveredTile.tileCoord.y, (int) hoveredTile.tileCoord.x)
                 : hoveredTile?.backingItem;
 
-            if (hoveredTile != null && hoveredTile.representsInventory)
+            bool atLeastOneTileIsEquipement = mouseDownTile is EquipmentTile || hoveredTile is EquipmentTile;
+            if (atLeastOneTileIsEquipement)
             {
-                inventory.SetInventoryItem((int) hoveredTile.tileCoord.y, (int) hoveredTile.tileCoord.x, sourceItem);
+                HandleEquipmentSwap(mouseDownTile, sourceItem, hoveredTile, targetItem);
             }
-            else if (hoveredTile != null)
+            else
             {
-                hoveredTile.backingItem = sourceItem;
-            }
+                if (hoveredTile != null && hoveredTile.representsInventory)
+                {
+                    inventory.SetInventoryItem((int) hoveredTile.tileCoord.y, (int) hoveredTile.tileCoord.x, sourceItem);
+                }
+                else if (hoveredTile != null)
+                {
+                    hoveredTile.backingItem = sourceItem;
+                }
 
-            if (mouseDownTile != null && mouseDownTile.representsInventory)
-            {
-                inventory.SetInventoryItem((int) mouseDownTile.tileCoord.y, (int) mouseDownTile.tileCoord.x, targetItem);
-            }
-            else if (mouseDownTile != null)
-            {
-                mouseDownTile.backingItem = targetItem;
+                if (mouseDownTile != null && mouseDownTile.representsInventory)
+                {
+                    inventory.SetInventoryItem((int) mouseDownTile.tileCoord.y, (int) mouseDownTile.tileCoord.x, targetItem);
+                }
+                else if (mouseDownTile != null)
+                {
+                    mouseDownTile.backingItem = targetItem;
+                }
             }
         }
 
@@ -114,6 +132,80 @@ public class InventoryTile : MonoBehaviour, IPointerDownHandler, IPointerUpHandl
         mouseDownTile = null;
         draggingItem = false;
         itemImageTransform.anchoredPosition = Vector2.zero;
+    }
+
+    protected void HandleEquipmentSwap(InventoryTile mouseDownTile, Item mouseDownItem, InventoryTile hoveredTile, Item hoveredItem)
+    {
+        EquipmentTile mouseDownEquipmentTile = mouseDownTile as EquipmentTile;
+        EquipmentTile hoveredEquipmentTile = hoveredTile as EquipmentTile;
+
+        mouseDownItem = mouseDownEquipmentTile?.GetEquippedItem() ?? mouseDownItem;
+        hoveredItem = hoveredEquipmentTile?.GetEquippedItem() ?? hoveredItem;
+
+        bool onlyOneTileIsEquipmentTile = mouseDownEquipmentTile != null && hoveredEquipmentTile == null
+            || mouseDownEquipmentTile == null && hoveredEquipmentTile != null;
+
+        if (onlyOneTileIsEquipmentTile)
+        {
+            EquipmentTile equipmentTile = mouseDownEquipmentTile == null ? hoveredEquipmentTile : mouseDownEquipmentTile;
+            InventoryTile nonEquipmentTile = mouseDownEquipmentTile == null ? mouseDownTile : hoveredTile;
+
+            string mouseDownItemId = mouseDownItem?.type?.id;
+            string hoveredItemId = hoveredItem?.type?.id;
+            EquipmentItems equipmentItemRepo = EquipmentItems.GetInstance();
+            if (equipmentTile.isQuiver)
+            {
+                if (mouseDownEquipmentTile == null && equipmentItemRepo.ItemIdIsQuiverItem(mouseDownItemId))
+                {
+                    inventory.SetInventoryItem((int) mouseDownTile.tileCoord.y, (int) mouseDownTile.tileCoord.x, inventory.quiver);
+                    inventory.quiver = mouseDownItem;
+                }
+                else if (equipmentItemRepo.ItemIdIsQuiverItem(mouseDownItemId) && equipmentItemRepo.ItemIdIsQuiverItem(hoveredItemId))
+                {
+                    inventory.SetInventoryItem((int) hoveredTile.tileCoord.y, (int) hoveredTile.tileCoord.x, inventory.quiver);
+                    inventory.quiver = hoveredItem;
+                }
+            }
+            else if (equipmentTile.isNecklace)
+            {
+                if (mouseDownEquipmentTile == null && equipmentItemRepo.ItemIdIsNecklaceItem(mouseDownItemId))
+                {
+                    inventory.SetInventoryItem((int) mouseDownTile.tileCoord.y, (int) mouseDownTile.tileCoord.x, inventory.necklace);
+                    inventory.necklace = mouseDownItem;
+                }
+                else if (equipmentItemRepo.ItemIdIsNecklaceItem(mouseDownItemId) && equipmentItemRepo.ItemIdIsNecklaceItem(hoveredItemId))
+                {
+                    inventory.SetInventoryItem((int) hoveredTile.tileCoord.y, (int) hoveredTile.tileCoord.x, inventory.necklace);
+                    inventory.necklace = hoveredItem;
+                }
+            }
+            else if (equipmentTile.isArmour)
+            {
+                if (mouseDownEquipmentTile == null && equipmentItemRepo.ItemIdIsArmourItem(mouseDownItemId))
+                {
+                    inventory.SetInventoryItem((int) mouseDownTile.tileCoord.y, (int) mouseDownTile.tileCoord.x, inventory.armour);
+                    inventory.armour = mouseDownItem;
+                }
+                else if (equipmentItemRepo.ItemIdIsArmourItem(mouseDownItemId) && equipmentItemRepo.ItemIdIsArmourItem(hoveredItemId))
+                {
+                    inventory.SetInventoryItem((int) hoveredTile.tileCoord.y, (int) hoveredTile.tileCoord.x, inventory.armour);
+                    inventory.armour = hoveredItem;
+                }
+            }
+            else if (equipmentTile.isRing)
+            {
+                if (mouseDownEquipmentTile == null && equipmentItemRepo.ItemIdIsRingItem(mouseDownItemId))
+                {
+                    inventory.SetInventoryItem((int) mouseDownTile.tileCoord.y, (int) mouseDownTile.tileCoord.x, inventory.ring);
+                    inventory.ring = mouseDownItem;
+                }
+                else if (equipmentItemRepo.ItemIdIsRingItem(mouseDownItemId) && equipmentItemRepo.ItemIdIsRingItem(hoveredItemId))
+                {
+                    inventory.SetInventoryItem((int) hoveredTile.tileCoord.y, (int) hoveredTile.tileCoord.x, inventory.ring);
+                    inventory.ring = hoveredItem;
+                }
+            }
+        }
     }
 
     public void OnPointerEnter(PointerEventData eventData)

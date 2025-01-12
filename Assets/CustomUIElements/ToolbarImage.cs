@@ -14,12 +14,16 @@ public class ToolbarImage : MonoBehaviour
     private Toolbar toolbar;
     private ItemTypeRepo itemTypeRepo;
 
+    private ItemQuantityText itemQuantity;
+
     void Start()
     {
         slotImage = GetComponent<Image>();
         slotTileImage = transform.parent.gameObject.GetComponent<Image>();
         toolbar = Toolbar.instance;
         itemTypeRepo = ItemTypeRepo.GetInstance();
+
+        itemQuantity = GetComponent<ItemQuantityText>();
     }
 
     void Update()
@@ -37,6 +41,13 @@ public class ToolbarImage : MonoBehaviour
         {
             SetAlphas(false, hasItem);
         }
+
+        bool itemStacks = item?.stacks ?? false;
+        if (itemStacks)
+        {
+            itemQuantity.SetQuantity(item.stackSize);
+        }
+        itemQuantity.SetActive(itemStacks);
     }
 
     void SetAlphas(bool isEquipped, bool hasItem)
