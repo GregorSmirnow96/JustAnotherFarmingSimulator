@@ -16,7 +16,7 @@ public class TooltipOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitH
     }
     void OnDisable()
     {
-        tooltip.HideTooltip();
+        tooltip?.HideTooltip();
     }
 
     public void OnPointerEnter(PointerEventData eventData)
