@@ -42,21 +42,6 @@ public class PlayerStats : MonoBehaviour, IHasResistances
 
         damageBuffs = new BuffIndex();
         resistanceBuffs = new BuffIndex();
-
-        // DELETE THIS. It was added to test buffs from 2 sources, but I want
-        //      to keep it for now as a reminder that not all buffs have timers.
-        //      The buffs from equipments must apply as long as the palyer is
-        //      wearing them. Refactor this.
-        //AddDamageBuff(BuffType.Water, BuffSource.Amulet,  0.15f, 10000f);
-    }
-
-    void _Update()
-    {
-        string info = "CDR Buff:\n";
-        float score = cooldownReductionMods.Sum();
-        float multi = PlayerProperties.GetCDRMulti();
-        info += $"Score: {score} - Multi: {multi}";
-        Debug.Log(info);
     }
 
     #region "Movement Speed Functions"
@@ -92,16 +77,25 @@ public class PlayerStats : MonoBehaviour, IHasResistances
 
     private IEnumerator ApplySpeedModifier(float speedDelta, float duration, bool additive)
     {
+        AddPersistentSpeedModifier(speedDelta, additive);
+
+        yield return new WaitForSeconds(duration);
+
+        RemovePersistentSpeedModifier(speedDelta, additive);
+    }
+
+    public void AddPersistentSpeedModifier(float speedDelta, bool additive)
+    {
         if (additive)
             addativeMovementSpeedMods.Add(speedDelta);
         else
             multiplicativeMovementSpeedMods.Add(speedDelta);
 
         NotifyMovementSpeedChanged();
+    }
 
-        yield return new WaitForSeconds(duration);
-
-        
+    public void RemovePersistentSpeedModifier(float speedDelta, bool additive)
+    {
         if (additive)
             addativeMovementSpeedMods.Remove(speedDelta);
         else
@@ -131,12 +125,16 @@ public class PlayerStats : MonoBehaviour, IHasResistances
 
     private IEnumerator ApplyCooldownReductionBuff(int buffStrength, float duration)
     {
-        cooldownReductionMods.Add(buffStrength);
+        AddPersistentCDRBuff(buffStrength);
 
         yield return new WaitForSeconds(duration);
 
-        cooldownReductionMods.Remove(buffStrength);
+        RemovePersistentCDRBuff(buffStrength);
     }
+
+    public void AddPersistentCDRBuff(int buffStrength) => cooldownReductionMods.Add(buffStrength);
+
+    public void RemovePersistentCDRBuff(int buffStrength) => cooldownReductionMods.Remove(buffStrength);
     #endregion
 
     #region "Buff Index Functions"

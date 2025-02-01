@@ -34,6 +34,7 @@ public class Inventory : MonoBehaviour
         inventoryItems = new Item[inventoryHeight, inventoryWidth];
         toolbarItems = new Item[toolbarSize];
         /* Delete this. I'm just seeding the inventory with items. */
+        /*
         inventoryItems[0,0] = new Item("LightningWand");
         inventoryItems[0,1] = new Item("BlueBerry");
         inventoryItems[0,2] = new Item("IronArrow");
@@ -56,6 +57,7 @@ public class Inventory : MonoBehaviour
         toolbarItems[4] = new Item("CharmFlowerSeed");
 
         inventoryItems[0,2].stackSize = 12;
+        */
         /*                                                         */
         playerController = GetComponent<FPSMovement>();
     }
@@ -131,13 +133,20 @@ public class Inventory : MonoBehaviour
             bool itemIsAlreadyInInventory = ItemExists(itemId);
             if (itemIsAlreadyInInventory)
             {
-                Vector2 existingItemCoord = GetFirstIndexOfItem(itemId);
-                bool coordIsValid = existingItemCoord.x >= 0 && existingItemCoord.y >= 0;
-                if (coordIsValid)
+                if (quiver?.type.id == itemId)
                 {
-                    Item existingItem = GetItem((int) existingItemCoord.y, (int) existingItemCoord.x);
-                    existingItem.stackSize++;
-                    return true;
+                    quiver.stackSize++;
+                }
+                else
+                {
+                    Vector2 existingItemCoord = GetFirstIndexOfItem(itemId);
+                    bool coordIsValid = existingItemCoord.x >= 0 && existingItemCoord.y >= 0;
+                    if (coordIsValid)
+                    {
+                        Item existingItem = GetItem((int) existingItemCoord.y, (int) existingItemCoord.x);
+                        existingItem.stackSize++;
+                        return true;
+                    }
                 }
             }
         }
@@ -254,6 +263,7 @@ public class Inventory : MonoBehaviour
     {
         Item[] flatInventoryItems = inventoryItems.Cast<Item>().ToArray();
         List<Item> heldItems = toolbarItems.Concat(flatInventoryItems).ToList();
+        heldItems.Add(quiver);
 
         Debug.Log(heldItems.Any(item => item?.type?.id != null && item.type.id.Equals(itemId)));
 
