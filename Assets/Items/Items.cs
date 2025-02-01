@@ -26,9 +26,6 @@ namespace ItemMetaData
             items.Add(new Staff());
             items.Add(new Wand());
             items.Add(new Bow());
-            items.Add(new IronOre());
-            items.Add(new IronBar());
-            items.Add(new CopperOre());
             items.Add(new Log());
             items.Add(new Bowl());
             items.Add(new BowlOfWater());
@@ -36,7 +33,11 @@ namespace ItemMetaData
             items.Add(new Mushroom2());
             items.Add(new Mushroom3());
 
+            items.AddRange(MetalImplementations.ORES);
+            items.AddRange(MetalImplementations.BARS);
+            items.AddRange(MetalImplementations.DUSTS);
             items.AddRange(ArrowImplementations.ARROWS);
+            items.AddRange(ArmourImplementations.BODY_ARMOURS);
 
             items.AddRange(PlantImplementations.BUSHES);
             items.AddRange(PlantImplementations.CROPS);

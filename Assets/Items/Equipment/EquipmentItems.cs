@@ -20,14 +20,36 @@ public class EquipmentItems
     {
         quiverItemIds = new List<string>()
         {
-            "IronArrow"
+            "IronArrow",
+            "SilverArrow",
+            "GoldArrow",
+            "MoonstoneArrow",
+            "SunstalArrow",
+            "WaterArrow",
+            "LightningArrow",
+            "FireArrow",
+            "LunarArrow",
+            "SolarArrow",
         };
         necklaceItemIds = new List<string>()
         {
         };
         armourItemIds = new List<string>()
         {
-            "FaeWand"
+            "RoughTunic",
+            "QualityTunic",
+            "FireTunic",
+            "WaterTunic",
+            "LightningTunic",
+            "FaeTunic",
+            "IronArmour",
+            "SilverArmour",
+            "GoldArmour",
+            "CelestialArmour",
+            "FireArmour",
+            "WaterArmour",
+            "LightningArmour",
+            "FaeArmour"
         };
         ringItemIds = new List<string>()
         {
