@@ -22,6 +22,7 @@ Material:
   - _MK_WRAPPED_DIFFUSE
   m_InvalidKeywords:
   - _ALPHACLIPPING_ON
+  - _MK_BLEND_CUSTOM
   - _MK_RECEIVE_SHADOWS
   - _RECEIVESHADOWS_ON
   - _WRAPPEDLIGHTING_ON
@@ -146,23 +147,23 @@ Material:
     - _AdvancedTab: 1
     - _AlbedoMapIntensity: 1
     - _AlphaClipping: 1
-    - _AlphaCutoff: 0.365
+    - _AlphaCutoff: 0.5
     - _Artistic: 0
     - _ArtisticFrequency: 1
     - _ArtisticProjection: 0
     - _ArtisticShadowFilter: 0
-    - _Blend: 0
-    - _BlendDst: 0
-    - _BlendDstAlpha: 0
+    - _Blend: 4
+    - _BlendDst: 10
+    - _BlendDstAlpha: 1
     - _BlendSrc: 1
-    - _BlendSrcAlpha: 1
+    - _BlendSrcAlpha: 0
     - _Brightness: 1
     - _BumpScale: 1
     - _ColorGrading: 0
     - _Contrast: 1
-    - _Cutoff: 0.365
+    - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
-    - _DiffuseSmoothness: 1
+    - _DiffuseSmoothness: 0
     - _DiffuseThresholdOffset: 0.25
     - _Dissolve: 0
     - _DissolveAmount: 0.5
@@ -209,7 +210,7 @@ Material:
     - _SmoothnessTextureChannel: 0
     - _Specular: 1
     - _SpecularHighlights: 1
-    - _SpecularIntensity: 0
+    - _SpecularIntensity: 0.02
     - _SpecularSmoothness: 0
     - _SpecularThresholdOffset: 0.25
     - _SrcBlend: 1
@@ -229,7 +230,7 @@ Material:
     - _VertexAnimationIntensity: 0.04
     - _VertexAnimationStutter: 0
     - _WrappedLighting: 1
-    - _ZTest: 4
+    - _ZTest: 2
     - _ZWrite: 1
     m_Colors:
     - _AlbedoColor: {r: 1, g: 1, b: 1, a: 1}

@@ -18,7 +18,7 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: Petal
-    second: {fileID: 2100000, guid: fd9b6810dc4913e43ba99ba7125bb70c, type: 2}
+    second: {fileID: 2100000, guid: 01d39cdb81fd6444484f40897f1cb752, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

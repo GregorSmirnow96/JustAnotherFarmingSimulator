@@ -45,8 +45,10 @@ public class ShootBow : MonoBehaviour, IUsable
                     {
                         inventory.quiver = null;
                     }
-                    GameObject ironArrowPrefab = arrowItem.type.groundItemPrefab;
-                    spawnedArrow = Instantiate(ironArrowPrefab, transform.Find("NotchedArrowPosition"));
+                    GameObject arrowPrefab = arrowItem.type.groundItemPrefab;
+                    spawnedArrow = Instantiate(arrowPrefab, transform.Find("NotchedArrowPosition"));
+                    GroundItem groundItemScript = spawnedArrow.GetComponent<GroundItem>();
+                    Destroy(groundItemScript);
                 }
 
                 arrowExists = true;
@@ -59,7 +61,7 @@ public class ShootBow : MonoBehaviour, IUsable
         {
             spawnedArrow.transform.parent = null;
             // The arrow is now spawned. Implement a FireArrow script to control it's motion :)
-            Arrow arrowScript = spawnedArrow.GetComponent<Arrow>();
+            IArrow arrowScript = spawnedArrow.GetComponent<IArrow>();
             arrowScript.Fire();
         }
 

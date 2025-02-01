@@ -9879,15 +9879,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   heightAbovePlayer: 3
+  movementDelay: 0.8
   maxSpeedDistance: 3
   minSpeedDistance: 0.2
-  maxSpeed: 12
+  maxSpeed: 20
   minSpeed: 0
   pulseDuration: 4
   maxIntensity: 2
   minIntensity: 1
-  maxRange: 10
-  minRange: 8
+  maxRange: 20
+  minRange: 14
   maxGlowSize: {x: 0.42, y: 0.42, z: 0.42}
   minGlowSize: {x: 0.28, y: 0.28, z: 0.28}
   pulseCurve:
@@ -9896,17 +9897,17 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 0
       value: 0
-      inSlope: 1
-      outSlope: 1
+      inSlope: 2.078688
+      outSlope: 2.078688
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 0.48107272
-      value: 0.48107272
-      inSlope: 0.03732708
-      outSlope: 0.03732708
+      value: 1
+      inSlope: 0.07813698
+      outSlope: 0.07813698
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -9914,8 +9915,8 @@ MonoBehaviour:
     - serializedVersion: 3
       time: 1.0015259
       value: -0.0005264282
-      inSlope: -0.92534584
-      outSlope: -0.92534584
+      inSlope: -1.922414
+      outSlope: -1.922414
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
