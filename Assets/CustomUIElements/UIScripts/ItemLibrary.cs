@@ -22,11 +22,20 @@ public class CraftingRecipe
 {
     public string itemId;
     public List<string> materialItemIds;
+    public int quantityMadePerCraft;
 
     public CraftingRecipe(string itemId, List<string> materialItemIds)
     {
         this.itemId = itemId;
         this.materialItemIds = materialItemIds;
+        quantityMadePerCraft = 1;
+    }
+
+    public CraftingRecipe(string itemId, List<string> materialItemIds, int quantityMadePerCraft)
+    {
+        this.itemId = itemId;
+        this.materialItemIds = materialItemIds;
+        this.quantityMadePerCraft = quantityMadePerCraft;
     }
 }
 
@@ -46,60 +55,109 @@ public class ItemLibrary : MonoBehaviour
     private CraftingRecipe selectedRecipe;
     private Inventory inventory;
 
+    private void InjectCraftingRecipes(
+        string categoryButtonPrefabName,
+        List<CraftingRecipe> recipes,
+        bool isDefaultCategory = false)
+    {
+        CraftingCategory category = new CraftingCategory($"Assets/CustomUIElements/UISprites/CraftingMenuIcons/{categoryButtonPrefabName}.prefab");
+
+        craftableItemsByCategory.Add(category, recipes);
+
+        GameObject buttonIcon = Instantiate(category.buttonPrefab, itemCategoryButtonsTransform);
+        Button button = buttonIcon.GetComponent<Button>();
+        Action buttonOnClick = () =>
+        {
+            buttonIcon.GetComponent<SelectableButton>().OnPointerDown(null);
+            craftItemButton.GetComponent<CraftingButton>().selectedRecipe = null;
+            ClearUsedMaterialsData();
+            SetCratableItems(recipes);
+        };
+        button.onClick.AddListener(() => buttonOnClick());
+
+        if (isDefaultCategory)
+        {
+            buttonOnClick();
+        }
+    }
+
     void Start()
     {
         inventory = Inventory.instance;
 
+        itemCategoryButtonsTransform = itemCategoryButtonPanel.GetComponent<RectTransform>();
+        craftableItemsByCategory = new Dictionary<CraftingCategory, List<CraftingRecipe>>();
+
         /* Set up the category buttons and their callbacks. Probably do this dynamically? For now there are only a couple categories, so it's hardcoded. */
-        CraftingCategory wood = new CraftingCategory("Assets/CustomUIElements/UISprites/CraftingMenuIcons/WoodCraftingButton.prefab");
-        List<CraftingRecipe> woodRecipes = new List<CraftingRecipe>()
+        List<CraftingRecipe> toolRecipes = new List<CraftingRecipe>()
         {
-            new CraftingRecipe("Bowl", new List<string>() { "Log", "Log", "WaterStaff" })
+            new CraftingRecipe("SilverAxe", new List<string>() { "PinewoodLog", "PinewoodLog", "SilverBar", "SilverBar" }),
+            new CraftingRecipe("MoonstoneAxe", new List<string>() { "FruitwoodLog", "MoonstoneBar", "MoonstoneBar" }),
+            new CraftingRecipe("GoldPickaxe", new List<string>() { "FruitwoodLog", "GoldBar", "GoldBar" }),
+            new CraftingRecipe("SunstalPickaxe", new List<string>() { "SpiritwoodLog", "SunstalBar", "SunstalBar" }),
+            new CraftingRecipe("ButterflyNet", new List<string>() { "FruitwoodLog", "Flax", "Flax", "Flax", "Flax" })
         };
+        InjectCraftingRecipes("ButtonTools", toolRecipes, true);
 
-        itemCategoryButtonsTransform = itemCategoryButtonPanel.GetComponent<RectTransform>();
-        GameObject woodIcon = Instantiate(wood.buttonPrefab, itemCategoryButtonsTransform);
-        Button woodButton = woodIcon.GetComponent<Button>();
-        Action woodButtonOnClick = () =>
+        List<CraftingRecipe> armourRecipes = new List<CraftingRecipe>()
         {
-            woodIcon.GetComponent<SelectableButton>().OnPointerDown(null);
-            craftItemButton.GetComponent<CraftingButton>().selectedRecipe = null;
-            ClearUsedMaterialsData();
-            SetCratableItems(woodRecipes);
+            new CraftingRecipe("RoughTunic", new List<string>() { "RoughHide", "RoughHide", "RoughHide" }),
+            new CraftingRecipe("QualityTunic", new List<string>() { "QualityHide", "QualityHide", "QualityHide" }),
+            new CraftingRecipe("IronArmour", new List<string>() { "IronBar", "IronBar", "IronBar", "IronBar", "RoughHide" }),
+            new CraftingRecipe("SilverArmour", new List<string>() { "SilverBar", "SilverBar", "SilverBar", "SilverBar", "RoughHide" }),
+            new CraftingRecipe("GoldArmour", new List<string>() { "GoldBar", "GoldBar", "GoldBar", "GoldBar", "QualityHide" }),
+            new CraftingRecipe("CelestialArmour", new List<string>() { "MoonstoneBar", "MoonstoneBar", "MoonstoneBar", "SunstalBar", "SunstalBar", "SunstalBar", "QualityHide" })
         };
-        woodButton.onClick.AddListener(() => woodButtonOnClick());
+        InjectCraftingRecipes("ButtonArmour", armourRecipes);
 
-        /* DELETE THIS! Or replace it with the next crafting category. It's a duplication of the wood category for testing purposes */
-        CraftingCategory wood2 = new CraftingCategory("Assets/CustomUIElements/UISprites/CraftingMenuIcons/WoodCraftingButton.prefab");
-        List<CraftingRecipe> woodRecipes2 = new List<CraftingRecipe>()
+        List<CraftingRecipe> weaponRecipes = new List<CraftingRecipe>()
         {
-            new CraftingRecipe("Bowl", new List<string>() { "Log", "Log" }),
-            new CraftingRecipe("Bowl", new List<string>() { "Log" })
+            new CraftingRecipe("Staff", new List<string>() { "FruitwoodLog" }),
+            new CraftingRecipe("Wand", new List<string>() { "FruitwoodLog" }),
+            new CraftingRecipe("PinewoodBow", new List<string>() { "PinewoodLog", "Flax", "IronBar" }),
+            new CraftingRecipe("FruitwoodBow", new List<string>() { "FruitwoodLog", "Flax", "SilverBar" }),
+            new CraftingRecipe("SpiritwoodBow", new List<string>() { "SpiritwoodLog", "Flax", "MoonstoneBar" }),
+            new CraftingRecipe("IronArrow", new List<string>() { "PinewoodLog", "IronBar" /* "Feather" */ }, 3),
+            new CraftingRecipe("SilverArrow", new List<string>() { "PinewoodLog", "SilverBar" /* "Feather" */ }, 3),
+            new CraftingRecipe("GoldArrow", new List<string>() { "PinewoodLog", "GoldBar" /* "Feather" */ }, 3),
+            new CraftingRecipe("MoonstoneArrow", new List<string>() { "FruitwoodLog", "MoonstoneBar" /* "Feather" */ }, 3),
+            new CraftingRecipe("SunstalArrow", new List<string>() { "FruitwoodLog", "SunstalBar" /* "Feather" */ }, 3),
+            new CraftingRecipe("IronBomb", new List<string>() { "PinewoodLog", "IronBar", "IronDust" /* "String" */ }),
+            new CraftingRecipe("SilverBomb", new List<string>() { "PinewoodLog", "SilverBar", "SilverDust" /* "String" */ }),
+            new CraftingRecipe("GoldBomb", new List<string>() { "PinewoodLog", "GoldBar", "GoldDust" /* "String" */ }),
+            new CraftingRecipe("MoonstoneBomb", new List<string>() { "PinewoodLog", "MoonstoneBar", "MoonstoneDust" /* "String" */ }),
+            new CraftingRecipe("SunstalBomb", new List<string>() { "PinewoodLog", "SunstalBar", "SunstalDust" /* "String" */ })
         };
+        InjectCraftingRecipes("ButtonWeapons", weaponRecipes);
 
-        itemCategoryButtonsTransform = itemCategoryButtonPanel.GetComponent<RectTransform>();
-        GameObject woodIcon2 = Instantiate(wood2.buttonPrefab, itemCategoryButtonsTransform);
-        Button woodButton2 = woodIcon2.GetComponent<Button>();
-        woodButton2.onClick.AddListener(() =>
+        List<CraftingRecipe> jewelryRecipes = new List<CraftingRecipe>()
         {
-            woodIcon2.GetComponent<SelectableButton>().OnPointerDown(null);
-            craftItemButton.GetComponent<CraftingButton>().selectedRecipe = null;
-            ClearUsedMaterialsData();
-            SetCratableItems(woodRecipes2);
-        });
-        /* ------------------------------------------------------------------------------------------------------------------------ */
-
-        craftableItemsByCategory = new Dictionary<CraftingCategory, List<CraftingRecipe>>()
-        {
-            { wood, woodRecipes },
-            { wood2, woodRecipes2 }
+            new CraftingRecipe("AquamarineRing", new List<string>() { "SilverBar", "Aquamarine" }),
+            new CraftingRecipe("RubyRing", new List<string>() { "GoldBar", "Ruby" }),
+            new CraftingRecipe("TopazRing", new List<string>() { "SilverBar", "Topaz" }),
+            new CraftingRecipe("OnyxRing", new List<string>() { "GoldBar", "Onyx" }),
+            new CraftingRecipe("AquamarineNecklace", new List<string>() { "SilverBar", "Aquamarine" }),
+            new CraftingRecipe("RubyNecklace", new List<string>() { "GoldBar", "Ruby" }),
+            new CraftingRecipe("TopazNecklace", new List<string>() { "SilverBar", "Topaz" }),
+            new CraftingRecipe("OnyxNecklace", new List<string>() { "GoldBar", "Onyx" })
         };
+        InjectCraftingRecipes("ButtonJewelry", jewelryRecipes);
+
+        List<CraftingRecipe> miscRecipes = new List<CraftingRecipe>()
+        {
+            new CraftingRecipe("PinewoodBirdhouse", new List<string>() { "PinewoodLog", "PinewoodLog", "PinewoodLog", "IronBar" }),
+            new CraftingRecipe("FruitwoodBirdhouse", new List<string>() { "FruitwoodLog", "FruitwoodLog", "FruitwoodLog", "IronBar" }),
+            new CraftingRecipe("SpiritwoodBirdhouse", new List<string>() { "SpiritwoodLog", "SpiritwoodLog", "SpiritwoodLog", "IronBar" }),
+            new CraftingRecipe("Bowl", new List<string>() { "PinewoodLog" }),
+            new CraftingRecipe("Lantern", new List<string>() { "IronBar", "IronBar", "PinewoodLog", "Miremoss" }),
+            new CraftingRecipe("CampfireKit", new List<string>() { "PinewoodLog", "PinewoodLog", "Miremoss", "IronDust" }),
+            new CraftingRecipe("Beacon", new List<string>() { "PinewoodLog", "PinewoodLog", "Miremoss", "Miremoss", "SilverDust" }),
+            new CraftingRecipe("Brazier", new List<string>() { "IronBar", "IronBar", "MoonstoneBar", "PinewoodLog", "PinewoodLog", "PinewoodLog", "PinewoodLog", "SilverDust" })
+        };
+        InjectCraftingRecipes("ButtonMisc", miscRecipes);
 
         /* Set up "Craft" button callback */
         craftItemButton.onClick.AddListener(() => TryCraftItem());
-
-        /* Initially show wood items */
-        woodButtonOnClick();
     }
 
     private void SetCratableItems(List<CraftingRecipe> craftingRecipes)
@@ -169,10 +227,16 @@ public class ItemLibrary : MonoBehaviour
             int materialCount = materialCounts[materialId];
 
             GameObject materialItemImage = Instantiate(materialItemImagePrefab, slotTransform);
+            ItemType materialItem = ItemTypeRepo.GetInstance().TryFindItemType(materialId);
             Sprite materialItemSprite = ItemTypeRepo.GetInstance().TryFindItemType(materialId)?.inventorySprite;
             materialItemImage.GetComponent<Image>().sprite = materialItemSprite;
 
             materialItemImage.GetComponent<MaterialCountIcon>().SetItemQuantity(materialId, materialCount);
+
+            // Trying to implement tooltip on hover for input matieral here.
+            // The idea is: Attach TooltipOnHover script to the MaterialItem sprite (done), Use the TooltipOnHover's Item property to set the tooltip backing data.
+            TooltipOnHover inputMaterialTooltipScript = materialItemImage.GetComponent<TooltipOnHover>();
+            inputMaterialTooltipScript.item = new Item(materialItem);
 
             materialIndex++;
         }
@@ -210,6 +274,10 @@ public class ItemLibrary : MonoBehaviour
 
         ItemType creaftedItemType = ItemTypeRepo.GetInstance().TryFindItemType(selectedRecipe.itemId);
         Item craftedItem = new Item(creaftedItemType);
-        inventory.AddItemToInventory(craftedItem);
+
+        for (int i = 0; i < selectedRecipe.quantityMadePerCraft; i++)
+        {
+            inventory.AddItemToInventory(craftedItem);
+        }
     }
 }

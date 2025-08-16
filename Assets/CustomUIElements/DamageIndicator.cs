@@ -8,6 +8,7 @@ public class DamageIndicator : MonoBehaviour
     public int damage;
     public string damageType;
     public Transform damagedTransform;
+    public Vector3 transformOffset;
 
     private Vector2 offset;
     private Vector2 gravity;
@@ -58,14 +59,14 @@ public class DamageIndicator : MonoBehaviour
     {
         if (damagedTransform == null)
         {
-            Debug.Log("dam tran is null");
+            Destroy(gameObject);
             return;
         }
 
         velocity = velocity + gravity * Time.deltaTime;
         offset = offset + velocity * Time.deltaTime;
 
-        Vector3 parentWorldPosition = damagedTransform.position;
+        Vector3 parentWorldPosition = damagedTransform.position + transformOffset;
         Vector2 screenPosition = Camera.main.WorldToScreenPoint(parentWorldPosition);
         rectTransform.position = screenPosition + offset;
 

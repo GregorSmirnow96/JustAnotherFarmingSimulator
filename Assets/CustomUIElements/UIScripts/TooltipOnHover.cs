@@ -21,6 +21,7 @@ public class TooltipOnHover : MonoBehaviour, IPointerEnterHandler, IPointerExitH
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+        Debug.Log($"Hello!!! from tooltip on hover --- {gameObject.name}");
         if (item != null)
         {
             tooltip.transform.SetAsLastSibling();

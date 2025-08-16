@@ -24,7 +24,10 @@ public class ItemQuantityText : MonoBehaviour
 
     void Update()
     {
-        text.text = quantity.ToString();
+        if (text != null)
+        {
+            text.text = quantity.ToString();
+        }
     }
 
     public void SetQuantity(int newQuantity)

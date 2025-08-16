@@ -26,11 +26,6 @@ public class MaterialCountIcon : MonoBehaviour
     {
         if (itemId != null && itemQuantityDict != null)
         {
-            foreach (KeyValuePair<string, int> kvp in itemQuantityDict)
-            {
-                Debug.Log($"K: {kvp.Key}  v  P: {kvp.Value}");
-            }
-
             bool playerHasRequiredQuantity = inventory.PlayerHasItems(itemQuantityDict);
             quantityText.color =
                 playerHasRequiredQuantity

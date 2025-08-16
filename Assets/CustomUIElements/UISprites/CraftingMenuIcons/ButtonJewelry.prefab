@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 8919337762314728390}
   - component: {fileID: 744147126503261821}
   m_Layer: 5
-  m_Name: WoodCraftingButton
+  m_Name: ButtonJewelry
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 2151944147248020766}
   - component: {fileID: 3769041743484575989}
   m_Layer: 5
-  m_Name: WoodCraftingIcon
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: bc07f3df851f55645905c786654a94b1, type: 3}
+  m_Sprite: {fileID: 21300000, guid: c48ada632b562374998a7896d36ae2fb, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
