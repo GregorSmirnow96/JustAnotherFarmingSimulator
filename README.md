@@ -3,15 +3,16 @@ TODOs:
 1) Finish folliage generation (just some bushes+branches+flowers remaining)
 2) Add the remaining crafting recipes and item sprites to finalize the crafting UI
 3) Rework the animal & cryptid spawn logic to work without the day-night cycle
+   
 	a) Add charm behaviour (and maybe fence collision behaviour? Revisit at stepo 7)
-4) Finish item prefabs (mostly lighting assets)
-5) Create the cabin and internal decour
-6) Adjust the starting inventory and create an item container in the cabin
-7) Add the most basic building components
+5) Finish item prefabs (mostly lighting assets)
+6) Create the cabin and internal decour
+7) Adjust the starting inventory and create an item container in the cabin
+8) Add the most basic building components
 	a) Custom chests
 	b) Fences (they snap together at the posts)
 	c) Add lighting assets to this instead of having them be craftable
-8) Fix the little things you've been noticing
+9) Fix the little things you've been noticing
 	a) The damage numbers don't change size with distance
 	b) Standardize and prettify fonts
 	c) Make stacks of items splittable? (using right click)
