@@ -10,13 +10,13 @@ public class Health : MonoBehaviour
 {
     public int health;
     public int maxHealth;
+    public bool isAnimal = true;
 
     public List<Action> healthChangeCallbacks = new List<Action>();
     public List<Action> maxHealthChangeCallbacks = new List<Action>();
 
     private IHasResistances resistances;
     private AnimalBehaviour animalBehaviourScript;
-    private bool isAnimal;
     private GameObject damageIndicatorPrefab;
 
     void Start()
@@ -25,13 +25,13 @@ public class Health : MonoBehaviour
         resistances = GetComponent<IHasResistances>();
 
         animalBehaviourScript = GetComponent<AnimalBehaviour>();
-        isAnimal = animalBehaviourScript != null;
 
         damageIndicatorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>($"Assets/CustomUIElements/DamageIndicator.prefab");
     }
 
     public void TakeDamage(int damage, string damageType)
     {
+        Debug.Log(damage);
         if (health <= 0) return;
 
         // Spawn damage indicator
@@ -67,8 +67,11 @@ public class Health : MonoBehaviour
 
     private void SpawnDamageIndicator(int damage, string damageType)
     {
+        Debug.Log("--1");
         GameObject damageIndicator = Instantiate(damageIndicatorPrefab, SceneProperties.canvasTransform);
+        Debug.Log("--2");
         DamageIndicator damageIndicatorScript = damageIndicator.GetComponent<DamageIndicator>();
+        Debug.Log("--3");
         
         damageIndicatorScript.damage = damage;
         damageIndicatorScript.damageType = damageType;

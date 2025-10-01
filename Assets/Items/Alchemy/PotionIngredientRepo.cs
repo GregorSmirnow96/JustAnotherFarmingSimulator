@@ -19,7 +19,7 @@ public class PotionIngredientRepo
     {
         ingredientInfos = new Dictionary<string, IngredientInfo>()
         {
-            { "Carrot", new IngredientInfo( new []{ PP.HealOverTime, PP.CooldownReduction }, PP.None ) },
+            { "Carrot", new IngredientInfo( new []{ PP.HealOverTime, PP.LightningDamage }, PP.None ) },
             { "BlueBerry", new IngredientInfo( new []{ PP.HealOverTime, PP.WaterDamage, PP.MovementSpeed }, PP.CooldownReduction ) },
             { "Wheat", new IngredientInfo( new []{ PP.HealImmediately, PP.CooldownReduction }, PP.HealOverTime ) },
             { "WaterStaff", new IngredientInfo( new []{ PP.WaterDamage, PP.MovementSpeed }, PP.CooldownReduction ) },

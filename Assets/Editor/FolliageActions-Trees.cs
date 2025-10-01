@@ -92,10 +92,10 @@ public class RemoveFolliageIndices : MonoBehaviour
     {
         const int maxAttempts = 2000;
         const int numberOfTrees = 750;
-        const float left = 41.62077f;
-        const float right = 245.2508f;
-        const float front = 134.6476f;
-        const float back = 333.3976f;
+        const float left = 0f;
+        const float right = 400f;
+        const float front = 0f;
+        const float back = 400f;
 
         List<GameObject> treefabs = new List<GameObject>()
         {
@@ -170,6 +170,13 @@ public class RemoveFolliageIndices : MonoBehaviour
             float x = Random.Range(left, right);
             float z = Random.Range(front, back);
             Vector3 position = new Vector3(x, 0f, z);
+
+            float clearingRadius = 50f;
+            if ((position - new Vector3(200f, 0f, 200f)).magnitude < clearingRadius)
+            {
+                continue;
+            }
+
             position = new Vector3(x, terrain.SampleHeight(position), z);
 
             int treefabIndex = Random.Range(0, treefabs.Count);

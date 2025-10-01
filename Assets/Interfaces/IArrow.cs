@@ -5,4 +5,6 @@ using UnityEngine;
 public interface IArrow
 {
     public void Fire();
+
+    public void ScaleDamage(float multiplier);
 }

@@ -49,13 +49,123 @@ public class EquipmentEffectRepo
             new EquipmentEffect("FireArmour", ApplyFireArmour, RemoveFireArmour),
             new EquipmentEffect("LightningArmour", ApplyLightningArmour, RemoveLightningArmour),
             new EquipmentEffect("WaterArmour", ApplyWaterArmour, RemoveWaterArmour),
-            new EquipmentEffect("FaeArmour", ApplyFaeArmour, RemoveFaeArmour)
+            new EquipmentEffect("FaeArmour", ApplyFaeArmour, RemoveFaeArmour),
+
+            new EquipmentEffect("AquamarineRing", ApplyAquamarineRing, RemoveAquamarineRing),
+            new EquipmentEffect("OnyxRing", ApplyOnyxRing, RemoveOnyxRing),
+            new EquipmentEffect("RubyRing", ApplyRubyRing, RemoveRubyRing),
+            new EquipmentEffect("TopazRing", ApplyTopazRing, RemoveTopazRing),
+
+            new EquipmentEffect("AquamarineNecklace", ApplyAquamarineNecklace, RemoveAquamarineNecklace),
+            new EquipmentEffect("OnyxNecklace", ApplyOnyxNecklace, RemoveOnyxNecklace),
+            new EquipmentEffect("RubyNecklace", ApplyRubyNecklace, RemoveRubyNecklace),
+            new EquipmentEffect("TopazNecklace", ApplyTopazNecklace, RemoveTopazNecklace)
         };
     }
 
     public EquipmentEffect GetEquipmentEffect(string itemId)
     {
         return effects.FirstOrDefault(effect => effect.itemId.Equals(itemId));
+    }
+
+    // Aquamarine Ring
+    private void ApplyAquamarineRing()
+    {
+        playerStats.AddPersistentResistanceBuff(BuffType.Water, BuffSource.Ring, 3f);
+        playerStats.AddPersistentDamageBuff(BuffType.Water, BuffSource.Ring, 0.3f);
+    }
+
+    private void RemoveAquamarineRing()
+    {
+        playerStats.RemovePersistentResistanceBuff(BuffType.Water, BuffSource.Ring, 3f);
+        playerStats.RemovePersistentDamageBuff(BuffType.Water, BuffSource.Ring, 0.3f);
+    }
+
+    // Onyx Ring
+    private void ApplyOnyxRing()
+    {
+        playerStats.AddPersistentResistanceBuff(BuffType.Physical, BuffSource.Ring, 3f);
+        playerStats.AddPersistentDamageBuff(BuffType.Physical, BuffSource.Ring, 0.3f);
+    }
+
+    private void RemoveOnyxRing()
+    {
+        playerStats.RemovePersistentResistanceBuff(BuffType.Physical, BuffSource.Ring, 3f);
+        playerStats.RemovePersistentDamageBuff(BuffType.Physical, BuffSource.Ring, 0.3f);
+    }
+
+    // Ruby Ring
+    private void ApplyRubyRing()
+    {
+        playerStats.AddPersistentResistanceBuff(BuffType.Fire, BuffSource.Ring, 3f);
+        playerStats.AddPersistentDamageBuff(BuffType.Fire, BuffSource.Ring, 0.3f);
+    }
+
+    private void RemoveRubyRing()
+    {
+        playerStats.RemovePersistentResistanceBuff(BuffType.Fire, BuffSource.Ring, 3f);
+        playerStats.RemovePersistentDamageBuff(BuffType.Fire, BuffSource.Ring, 0.3f);
+    }
+
+    // Topaz Ring
+    private void ApplyTopazRing()
+    {
+        playerStats.AddPersistentResistanceBuff(BuffType.Lightning, BuffSource.Ring, 3f);
+        playerStats.AddPersistentDamageBuff(BuffType.Lightning, BuffSource.Ring, 0.3f);
+    }
+
+    private void RemoveTopazRing()
+    {
+        playerStats.RemovePersistentResistanceBuff(BuffType.Lightning, BuffSource.Ring, 3f);
+        playerStats.RemovePersistentDamageBuff(BuffType.Lightning, BuffSource.Ring, 0.3f);
+    }
+
+    // Aquamarine Necklace
+    private void ApplyAquamarineNecklace()
+    {
+        playerStats.AddPersistentResistanceBuff(BuffType.Physical, BuffSource.Armour, 4f);
+    }
+
+    private void RemoveAquamarineNecklace()
+    {
+        playerStats.RemovePersistentResistanceBuff(BuffType.Physical, BuffSource.Armour, 4f);
+    }
+
+    // Onyx Necklace
+    private void ApplyOnyxNecklace()
+    {
+        playerStats.AddPersistentResistanceBuff(BuffType.Water, BuffSource.Armour, 4f);
+        playerStats.AddPersistentResistanceBuff(BuffType.Lightning, BuffSource.Armour, 4f);
+        playerStats.AddPersistentResistanceBuff(BuffType.Fire, BuffSource.Armour, 4f);
+    }
+
+    private void RemoveOnyxNecklace()
+    {
+        playerStats.RemovePersistentResistanceBuff(BuffType.Water, BuffSource.Armour, 4f);
+        playerStats.RemovePersistentResistanceBuff(BuffType.Lightning, BuffSource.Armour, 4f);
+        playerStats.RemovePersistentResistanceBuff(BuffType.Fire, BuffSource.Armour, 4f);
+    }
+
+    // Ruby Necklace
+    private void ApplyRubyNecklace()
+    {
+        playerStats.AddPersistentCDRBuff(4);
+    }
+
+    private void RemoveRubyNecklace()
+    {
+        playerStats.RemovePersistentCDRBuff(4);
+    }
+
+    // Topaz Necklace
+    private void ApplyTopazNecklace()
+    {
+        playerStats.AddPersistentSpeedModifier(0.15f, true);
+    }
+
+    private void RemoveTopazNecklace()
+    {
+        playerStats.RemovePersistentSpeedModifier(0.15f, true);
     }
 
     // Rough Tunic

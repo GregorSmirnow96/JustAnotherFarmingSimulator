@@ -4,7 +4,7 @@ using UnityEngine;
 
 public interface IMinable
 {
-    public void Mine(float damage);
+    public void Mine(float damage, int pickaxeTier);
     public bool FullyDegraded();
     public void Degrade();
     public void Regenerate();

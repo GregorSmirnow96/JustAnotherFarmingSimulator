@@ -39,7 +39,7 @@ namespace ItemMetaData
         }
 
         public class QualityTunic : ItemType
-        {
+        { 
             public QualityTunic() : base(
                 "QualityTunic",
                 "Items/Armour/QualityTunic/GroundItem",

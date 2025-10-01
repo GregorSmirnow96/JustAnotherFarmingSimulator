@@ -20,24 +20,48 @@ namespace ItemMetaData
         private ItemTypeRepo()
         {
             items = new List<ItemType>();
-            items.Add(new Shovel());
-            items.Add(new Axe());
-            items.Add(new Pickaxe());
+
+            items.Add(new Beacon());
+            items.Add(new CampfireKit());
+
             items.Add(new Staff());
             items.Add(new Wand());
-            items.Add(new Bow());
-            items.Add(new Log());
+            items.Add(new PinewoodBow());
+            items.Add(new FruitwoodBow());
+            items.Add(new SpiritwoodBow());
+            items.Add(new PinewoodLog());
+            items.Add(new FruitwoodLog());
+            items.Add(new SpiritwoodLog());
             items.Add(new Bowl());
             items.Add(new BowlOfWater());
-            items.Add(new Mushroom1());
-            items.Add(new Mushroom2());
-            items.Add(new Mushroom3());
+            items.Add(new KingBolete());
+            items.Add(new OrangeFly());
+            items.Add(new YellowFieldcap());
+
+            items.Add(new ButterflyNet());
+            items.Add(new BlueButterflyWing());
+            items.Add(new RedButterflyWing());
+            items.Add(new YellowButterflyWing());
+
+            items.Add(new IronBomb());
+            items.Add(new SilverBomb());
+            items.Add(new GoldBomb());
+            items.Add(new MoonstoneBomb());
+            items.Add(new SunstalBomb());
 
             items.AddRange(MetalImplementations.ORES);
             items.AddRange(MetalImplementations.BARS);
             items.AddRange(MetalImplementations.DUSTS);
+
             items.AddRange(ArrowImplementations.ARROWS);
             items.AddRange(ArmourImplementations.BODY_ARMOURS);
+            items.AddRange(JewelryImplementations.JEWELS);
+            items.AddRange(JewelryImplementations.NECKLACES);
+            items.AddRange(JewelryImplementations.RINGS);
+
+            items.AddRange(WeaponImplementations.SWORDS);
+            items.AddRange(WeaponImplementations.AXES);
+            items.AddRange(WeaponImplementations.PICKAXES);
 
             items.AddRange(PlantImplementations.BUSHES);
             items.AddRange(PlantImplementations.CROPS);
@@ -109,26 +133,6 @@ namespace ItemMetaData
             false) {}
     }
 
-    public class Axe : ItemType
-    {
-        public Axe() : base(
-            "Axe",
-            "Tools/Axe/GroundItem",
-            "Tools/Axe/Sprite",
-            "EquippedItems/Axe/Axe",
-            false) {}
-    }
-
-    public class Pickaxe : ItemType
-    {
-        public Pickaxe() : base(
-            "Pickaxe",
-            "Tools/Pickaxe/GroundItem",
-            "Tools/Pickaxe/Sprite",
-            "EquippedItems/Pickaxe/Equipped",
-            false) {}
-    }
-
     public class Staff : ItemType
     {
         public Staff() : base(
@@ -149,23 +153,63 @@ namespace ItemMetaData
             false) {}
     }
 
-    public class Bow : ItemType
+    public class PinewoodBow : ItemType
     {
-        public Bow() : base(
-            "Bow",
-            "CraftedItems/Wood/Bow/GroundItem",
-            "CraftedItems/Wood/Bow/Sprite",
-            "CraftedItems/Wood/Bow/Equipped",
+        public PinewoodBow() : base(
+            "PinewoodBow",
+            "Items/Bows/PinewoodBow/GroundItem",
+            "Items/Bows/PinewoodBow/Sprite",
+            "Items/Bows/PinewoodBow/Equipped",
             false) {}
     }
 
-    public class Log : ItemType
+    public class FruitwoodBow : ItemType
     {
-        public Log() : base(
-            "Log",
-            "Environment/ProxyGames/Logs/Log",
-            "Environment/ProxyGames/Logs/Sprite",
-            "EquippedItems/Logs/Log",
+        public FruitwoodBow() : base(
+            "FruitwoodBow",
+            "Items/Bows/FruitwoodBow/GroundItem",
+            "Items/Bows/FruitwoodBow/Sprite",
+            "Items/Bows/FruitwoodBow/Equipped",
+            false) {}
+    }
+
+    public class SpiritwoodBow : ItemType
+    {
+        public SpiritwoodBow() : base(
+            "SpiritwoodBow",
+            "Items/Bows/SpiritwoodBow/GroundItem",
+            "Items/Bows/SpiritwoodBow/Sprite",
+            "Items/Bows/SpiritwoodBow/Equipped",
+            false) {}
+    }
+
+    public class PinewoodLog : ItemType
+    {
+        public PinewoodLog() : base(
+            "PinewoodLog",
+            "Items/Logs/PinewoodLog/GroundItem",
+            "Items/Logs/PinewoodLog/Sprite",
+            "Items/Logs/PinewoodLog/Equipped",
+            false) {}
+    }
+
+    public class FruitwoodLog : ItemType
+    {
+        public FruitwoodLog() : base(
+            "FruitwoodLog",
+            "Items/Logs/FruitwoodLog/GroundItem",
+            "Items/Logs/FruitwoodLog/Sprite",
+            "Items/Logs/FruitwoodLog/Equipped",
+            false) {}
+    }
+
+    public class SpiritwoodLog : ItemType
+    {
+        public SpiritwoodLog() : base(
+            "SpiritwoodLog",
+            "Items/Logs/SpiritwoodLog/GroundItem",
+            "Items/Logs/SpiritwoodLog/Sprite",
+            "Items/Logs/SpiritwoodLog/Equipped",
             false) {}
     }
 
@@ -189,33 +233,143 @@ namespace ItemMetaData
             false) {}
     }
 
-    public class Mushroom1 : ItemType
+    public class KingBolete : ItemType
     {
-        public Mushroom1() : base(
-            "Mushroom1",
-            "Environment/ProxyGames/Mushrooms/Mushroom1/Mushroom 1",
-            "Environment/ProxyGames/Mushrooms/Mushroom1/Sprite",
-            "EquippedItems/Mushrooms/INVALIDPATH",
+        public KingBolete() : base(
+            "KingBolete",
+            "Items/Mushrooms/KingBolete/GroundItem",
+            "Items/Mushrooms/KingBolete/Sprite",
+            "Items/Mushrooms/KingBolete/Equipped",
             false) {}
     }
 
-    public class Mushroom2 : ItemType
+    public class OrangeFly : ItemType
     {
-        public Mushroom2() : base(
-            "Mushroom2",
-            "Environment/ProxyGames/Mushrooms/Mushroom2/Mushroom 2",
-            "Environment/ProxyGames/Mushrooms/Mushroom2/Sprite",
-            "EquippedItems/Mushrooms/INVALIDPATH",
+        public OrangeFly() : base(
+            "OrangeFly",
+            "Items/Mushrooms/OrangeFly/GroundItem",
+            "Items/Mushrooms/OrangeFly/Sprite",
+            "Items/Mushrooms/OrangeFly/Equipped",
             false) {}
     }
 
-    public class Mushroom3 : ItemType
+    public class YellowFieldcap : ItemType
     {
-        public Mushroom3() : base(
-            "Mushroom3",
-            "Environment/ProxyGames/Mushrooms/Mushroom3/Mushroom 3",
-            "Environment/ProxyGames/Mushrooms/Mushroom3/Sprite",
-            "EquippedItems/Mushrooms/INVALIDPATH",
+        public YellowFieldcap() : base(
+            "YellowFieldcap",
+            "Items/Mushrooms/YellowFieldcap/GroundItem",
+            "Items/Mushrooms/YellowFieldcap/Sprite",
+            "Items/Mushrooms/YellowFieldcap/Equipped",
+            false) {}
+    }
+
+    public class ButterflyNet : ItemType
+    {
+        public ButterflyNet() : base(
+            "ButterflyNet",
+            "Items/Butterflies/ButterflyNet/GroundItem",
+            "Items/Butterflies/ButterflyNet/Sprite",
+            "Items/Butterflies/ButterflyNet/Equipped",
+            false) {}
+    }
+
+    public class BlueButterflyWing : ItemType
+    {
+        public BlueButterflyWing() : base(
+            "BlueButterflyWing",
+            "Items/Butterflies/BlueButterflyWing/GroundItem",
+            "Items/Butterflies/BlueButterflyWing/Sprite",
+            "Items/Butterflies/BlueButterflyWing/Equipped",
+            false) {}
+    }
+
+    public class RedButterflyWing : ItemType
+    {
+        public RedButterflyWing() : base(
+            "RedButterflyWing",
+            "Items/Butterflies/RedButterflyWing/GroundItem",
+            "Items/Butterflies/RedButterflyWing/Sprite",
+            "Items/Butterflies/RedButterflyWing/Equipped",
+            false) {}
+    }
+
+    public class YellowButterflyWing : ItemType
+    {
+        public YellowButterflyWing() : base(
+            "YellowButterflyWing",
+            "Items/Butterflies/YellowButterflyWing/GroundItem",
+            "Items/Butterflies/YellowButterflyWing/Sprite",
+            "Items/Butterflies/YellowButterflyWing/Equipped",
+            false) {}
+    }
+
+    public class IronBomb : ItemType
+    {
+        public IronBomb() : base(
+            "IronBomb",
+            "Items/Bombs/IronBomb/GroundItem",
+            "Items/Bombs/IronBomb/Sprite",
+            "Items/Bombs/IronBomb/Equipped",
+            false) {}
+    }
+
+    public class SilverBomb : ItemType
+    {
+        public SilverBomb() : base(
+            "SilverBomb",
+            "Items/Bombs/SilverBomb/GroundItem",
+            "Items/Bombs/SilverBomb/Sprite",
+            "Items/Bombs/SilverBomb/Equipped",
+            false) {}
+    }
+
+    public class GoldBomb : ItemType
+    {
+        public GoldBomb() : base(
+            "GoldBomb",
+            "Items/Bombs/GoldBomb/GroundItem",
+            "Items/Bombs/GoldBomb/Sprite",
+            "Items/Bombs/GoldBomb/Equipped",
+            false) {}
+    }
+
+    public class MoonstoneBomb : ItemType
+    {
+        public MoonstoneBomb() : base(
+            "MoonstoneBomb",
+            "Items/Bombs/MoonstoneBomb/GroundItem",
+            "Items/Bombs/MoonstoneBomb/Sprite",
+            "Items/Bombs/MoonstoneBomb/Equipped",
+            false) {}
+    }
+
+    public class SunstalBomb : ItemType
+    {
+        public SunstalBomb() : base(
+            "SunstalBomb",
+            "Items/Bombs/SunstalBomb/GroundItem",
+            "Items/Bombs/SunstalBomb/Sprite",
+            "Items/Bombs/SunstalBomb/Equipped",
+            false) {}
+    }
+
+    public class Beacon : ItemType
+    {
+        public Beacon() : base(
+            "Beacon",
+            "Items/LightSources/Beacon/GroundItem",
+            "Items/LightSources/Beacon/Sprite",
+            "Items/LightSources/Beacon/Equipped",
+            false) {}
+    }
+
+    public class CampfireKit : ItemType
+    {
+        public CampfireKit() : base(
+            "CampfireKit",
+            "Items/LightSources/CampfireKit/GroundItem",
+            "Items/LightSources/CampfireKit/Sprite",
+            "Items/LightSources/CampfireKit/Equipped",
             false) {}
     }
 }

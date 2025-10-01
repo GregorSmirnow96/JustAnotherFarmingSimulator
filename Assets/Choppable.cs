@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Choppable : MonoBehaviour, IChoppable
@@ -9,18 +10,27 @@ public class Choppable : MonoBehaviour, IChoppable
     public GameObject logGroundItemPrefab;
     public int minDroppedLogs = 2;
     public int maxDroppedLogs = 3;
+    public int requiredAxeTier = 1;
 
     private Vector3 position;
+    private GameObject damageIndicatorPrefab;
 
     void Start()
     {
         // Set the position here since, if it's read in the Chop func, it might take the updated position due to shaking.
         position = transform.position;
+        damageIndicatorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>($"Assets/CustomUIElements/DamageIndicator.prefab");
     }
 
-    public void Chop(float damage)
+    public void Chop(float damage, int axeTier)
     {
+        if (axeTier < requiredAxeTier)
+        {
+            damage = 0;
+        }
+
         durability -= damage;
+        SpawnDamageIndicator((int) damage, DamageType.Physical);
 
         if (durability <= 0)
         {
@@ -30,10 +40,28 @@ public class Choppable : MonoBehaviour, IChoppable
                 Instantiate(stumpPrefab, position, currentRotation);
             }
 
-            Destroy(gameObject);
+            if (transform.parent.GetComponent<PlantStageGrowth>() == null)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                Destroy(transform.parent.gameObject);
+            }
 
             SpawnLogs();
         }
+    }
+
+    private void SpawnDamageIndicator(int damage, string damageType)
+    {
+        GameObject damageIndicator = Instantiate(damageIndicatorPrefab, SceneProperties.canvasTransform);
+        DamageIndicator damageIndicatorScript = damageIndicator.GetComponent<DamageIndicator>();
+        
+        damageIndicatorScript.damage = damage;
+        damageIndicatorScript.damageType = damageType;
+        damageIndicatorScript.damagedTransform = transform;
+        damageIndicatorScript.transformOffset = new Vector3(0f, 1.2f, 0f);
     }
 
     private void SpawnLogs()

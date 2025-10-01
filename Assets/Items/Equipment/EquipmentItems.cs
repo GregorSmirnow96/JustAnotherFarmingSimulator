@@ -33,6 +33,10 @@ public class EquipmentItems
         };
         necklaceItemIds = new List<string>()
         {
+            "AquamarineNecklace",
+            "OnyxNecklace",
+            "RubyNecklace",
+            "TopazNecklace"
         };
         armourItemIds = new List<string>()
         {
@@ -53,6 +57,10 @@ public class EquipmentItems
         };
         ringItemIds = new List<string>()
         {
+            "AquamarineRing",
+            "OnyxRing",
+            "RubyRing",
+            "TopazRing"
         };
     }
 
