@@ -8,6 +8,7 @@ public class LunarArrow : MonoBehaviour, IArrow
 
     private Coroutine flightCoroutine;
     private bool wasFired;
+    private float damageMulti = 1;
 
     public void Fire()
     {
@@ -15,9 +16,14 @@ public class LunarArrow : MonoBehaviour, IArrow
         flightCoroutine = StartCoroutine(Move());
     }
 
+    public void ScaleDamage(float multiplier)
+    {
+        damageMulti = multiplier;
+    }
+
     private IEnumerator Move()
     {
-        const float maxFlightTime = 6f;
+        const float maxFlightTime = 24f;
         const float flightSpeed = 30f;
         const float rotationSpeed = 20f;
 
@@ -58,13 +64,13 @@ public class LunarArrow : MonoBehaviour, IArrow
         Health health = collidedObject.GetComponent<Health>();
         if (health != null)
         {
-            health.TakeDamage(ScaledDamage(20, DamageType.Water), DamageType.Water);
-            health.TakeDamage(ScaledDamage(20, DamageType.Lightning), DamageType.Lightning);
+            health.TakeDamage(ScaledDamage((int) (20 * damageMulti), DamageType.Water), DamageType.Water);
+            health.TakeDamage(ScaledDamage((int) (20 * damageMulti), DamageType.Lightning), DamageType.Lightning);
             StartCoroutine(SelfDestruct(0f));
         }
         else
         {
-            StartCoroutine(SelfDestruct(12f));
+            StartCoroutine(SelfDestruct(0f /* 12f */));
         }
     }
 

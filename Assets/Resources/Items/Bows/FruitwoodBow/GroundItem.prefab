@@ -1,0 +1,82 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &8136692800237912924
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 181.44586
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.00000059604645
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 171.54535
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -8679921383154817045, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      propertyPath: m_Name
+      value: GroundItem
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6122547710685610972}
+  m_SourcePrefab: {fileID: 100100000, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+--- !u!1 &8947033067946901005 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 8637cf70e32f70d4f8d279a09e2fd84c, type: 3}
+  m_PrefabInstance: {fileID: 8136692800237912924}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6122547710685610972
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8947033067946901005}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092b73e1805247d42bba6af8abc5b255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: FruitwoodBow
+  hasLootBeam: 0
+  setTagDelay: 2

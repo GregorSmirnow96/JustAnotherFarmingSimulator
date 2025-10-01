@@ -8,6 +8,7 @@ public class SolarArrow : MonoBehaviour, IArrow
 
     private Coroutine flightCoroutine;
     private bool wasFired;
+    private float damageMulti = 1;
 
     public void Fire()
     {
@@ -15,9 +16,14 @@ public class SolarArrow : MonoBehaviour, IArrow
         flightCoroutine = StartCoroutine(Move());
     }
 
+    public void ScaleDamage(float multiplier)
+    {
+        damageMulti = multiplier;
+    }
+
     private IEnumerator Move()
     {
-        const float maxFlightTime = 6f;
+        const float maxFlightTime = 24f;
         const float flightSpeed = 30f;
         const float rotationSpeed = 20f;
 
@@ -39,6 +45,8 @@ public class SolarArrow : MonoBehaviour, IArrow
     private void OnTriggerEnter(Collider other)
     {
         if (!wasFired) return;
+        if (other.gameObject.layer == LayerMask.NameToLayer("Spell"))
+            return;
 
         StopCoroutine(flightCoroutine);
 
@@ -49,11 +57,13 @@ public class SolarArrow : MonoBehaviour, IArrow
         if (health != null)
         {
             collidedObject.AddComponent<SolarDot>();
+            SolarDot dotScript = collidedObject.GetComponent<SolarDot>();
+            dotScript.SetDamageMulti(damageMulti);
             StartCoroutine(SelfDestruct(0f));
         }
         else
         {
-            StartCoroutine(SelfDestruct(12f));
+            StartCoroutine(SelfDestruct(0f /* 12f */));
         }
     }
 

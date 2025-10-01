@@ -1,0 +1,22 @@
+# Blender 3.6.20 MTL File: 'Pickaxe.blend'
+# www.blender.org
+
+newmtl SteelHead
+Ns 30.466122
+Ka 1.000000 1.000000 1.000000
+Ks 0.394545 0.394545 0.394545
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:/Users/grego/OneDrive/Documents/Blender/GameAssets/Pickaxe/PickaxeHead.png
+
+newmtl Wood
+Ns 123.137207
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Kd C:/Users/grego/OneDrive/Documents/Blender/GameAssets/Pickaxe/PickaxeHandle.png

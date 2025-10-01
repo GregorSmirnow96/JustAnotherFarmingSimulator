@@ -55,5 +55,28 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9800c5b7418aec4cabcb5ba2926d1f5, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -9169981364095869264}
   m_SourcePrefab: {fileID: 100100000, guid: d9800c5b7418aec4cabcb5ba2926d1f5, type: 3}
+--- !u!1 &4452927226752229189 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: d9800c5b7418aec4cabcb5ba2926d1f5, type: 3}
+  m_PrefabInstance: {fileID: 3533795641445999124}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &-9169981364095869264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4452927226752229189}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 092b73e1805247d42bba6af8abc5b255, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: OnyxRing
+  hasLootBeam: 0
+  setTagDelay: 2

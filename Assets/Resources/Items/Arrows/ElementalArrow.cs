@@ -19,9 +19,14 @@ public class ElementalArrow : MonoBehaviour, IArrow
         flightCoroutine = StartCoroutine(Move());
     }
 
+    public void ScaleDamage(float multiplier)
+    {
+        damage = (int) (damage * multiplier);
+    }
+
     private IEnumerator Move()
     {
-        const float maxFlightTime = 6f;
+        const float maxFlightTime = 24f;
         const float flightSpeed = 30f;
         const float rotationSpeed = 20f;
 
@@ -57,7 +62,7 @@ public class ElementalArrow : MonoBehaviour, IArrow
         }
         else
         {
-            StartCoroutine(SelfDestruct(12f));
+            StartCoroutine(SelfDestruct(0f));
         }
     }
 
