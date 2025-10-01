@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 1362813179628640804}
   - component: {fileID: 6397662321159867980}
   - component: {fileID: 3354518412007487097}
-  - component: {fileID: 6714676245786449950}
   m_Layer: 0
   m_Name: Mushroom_1_LOD1
   m_TagString: Untagged
@@ -84,28 +83,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6714676245786449950
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1314448047420455605}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 3721429596110103246, guid: cba8c2894223c7f47b40113846988cf1, type: 3}
 --- !u!1 &1384361601555117488
 GameObject:
   m_ObjectHideFlags: 0
@@ -117,7 +94,6 @@ GameObject:
   - component: {fileID: 1208115981980393312}
   - component: {fileID: 4442079073532482829}
   - component: {fileID: 6069937542137428082}
-  - component: {fileID: 3995945108496027577}
   m_Layer: 0
   m_Name: Mushroom_1_LOD4
   m_TagString: Untagged
@@ -190,28 +166,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3995945108496027577
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1384361601555117488}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 897507970619690546, guid: cba8c2894223c7f47b40113846988cf1, type: 3}
 --- !u!1 &4876097566392964590
 GameObject:
   m_ObjectHideFlags: 0
@@ -299,8 +253,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: defa2cad592f19845b2d0b43929275d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemId: Mushroom1
-  regrows: 1
+  itemId: YellowFieldcap
+  regrows: 0
   harvestedPrefab: {fileID: 0}
 --- !u!114 &8164427281113958263
 MonoBehaviour:
@@ -333,7 +287,7 @@ SphereCollider:
     serializedVersion: 2
     m_Bits: 0
   m_LayerOverridePriority: 0
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
@@ -350,7 +304,6 @@ GameObject:
   - component: {fileID: 22633483789759627}
   - component: {fileID: 8467415639264624129}
   - component: {fileID: 2271073003146856352}
-  - component: {fileID: 6343881300815342555}
   m_Layer: 0
   m_Name: Mushroom_1_LOD2
   m_TagString: Untagged
@@ -423,28 +376,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &6343881300815342555
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5619849310029914965}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -5845081339926443152, guid: cba8c2894223c7f47b40113846988cf1, type: 3}
 --- !u!1 &5633389228898645259
 GameObject:
   m_ObjectHideFlags: 0
@@ -456,7 +387,6 @@ GameObject:
   - component: {fileID: 8888307696277507367}
   - component: {fileID: 5534714936886449807}
   - component: {fileID: 1485312150255485002}
-  - component: {fileID: 717143362858078722}
   m_Layer: 0
   m_Name: Mushroom_1_LOD0
   m_TagString: Untagged
@@ -529,28 +459,6 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &717143362858078722
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5633389228898645259}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: -2078676845516630583, guid: cba8c2894223c7f47b40113846988cf1, type: 3}
 --- !u!1 &7381328064133672394
 GameObject:
   m_ObjectHideFlags: 0
@@ -562,7 +470,6 @@ GameObject:
   - component: {fileID: 5023855252237494498}
   - component: {fileID: 5726589169723261071}
   - component: {fileID: 1756760211067463548}
-  - component: {fileID: 3390344396472987160}
   m_Layer: 0
   m_Name: Mushroom_1_LOD3
   m_TagString: Untagged
@@ -635,25 +542,3 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!64 &3390344396472987160
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7381328064133672394}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 0
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 5
-  m_Convex: 0
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7424144075782836051, guid: cba8c2894223c7f47b40113846988cf1, type: 3}

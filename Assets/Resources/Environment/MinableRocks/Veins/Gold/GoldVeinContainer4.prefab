@@ -1,0 +1,138 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &43521833581295622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 43521833581295617}
+  - component: {fileID: 984609268700550801}
+  - component: {fileID: 2992262050857799459}
+  m_Layer: 0
+  m_Name: GoldVeinContainer4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &43521833581295617
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43521833581295622}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 6097458774696612307}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &984609268700550801
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43521833581295622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db23205e1bb230942ab990bde7e63d1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  richPrefab: {fileID: 0}
+  health: 16
+  regenerationTime: 24
+  orePrefab: {fileID: 5916815947896303075, guid: 0594a6b50b84c2f45a681923450e9e8b, type: 3}
+  sparksPrefab: {fileID: 312384103607836083, guid: 26373ae2582c69e4e8176d169043b7dc, type: 3}
+  requiredPickAxeTier: 2
+--- !u!64 &2992262050857799459
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 43521833581295622}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!1001 &3118339828058984529
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 43521833581295617}
+    m_Modifications:
+    - target: {fileID: 8400276889217375032, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_Name
+      value: GoldVein4
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+--- !u!4 &6097458774696612307 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 9212139419187396994, guid: e13b4c5610306754a99053bc48945e0b, type: 3}
+  m_PrefabInstance: {fileID: 3118339828058984529}
+  m_PrefabAsset: {fileID: 0}

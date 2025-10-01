@@ -1,0 +1,57 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5309563652419808726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1954153957513220250}
+  - component: {fileID: 669567661537646761}
+  m_Layer: 0
+  m_Name: PreciousMetalVeinContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1954153957513220250
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5309563652419808726}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &669567661537646761
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5309563652419808726}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7f1d62cbb34312341a662201b21e538b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resourcePrefabs:
+  - {fileID: 43521833581295622, guid: fdf6cadd03d6bba4b868d7afafb69a52, type: 3}
+  - {fileID: 43521833581295622, guid: d46b7d28590499d418dc7e274c66e4a0, type: 3}
+  - {fileID: 43521833581295622, guid: ecf6f7f9f298b33429c9ad4e6484d2a0, type: 3}
+  - {fileID: 43521833581295622, guid: 9371f83e2b1e8fb4497bfe722c9b387d, type: 3}
+  - {fileID: 43521833581295622, guid: 482dcf133f370a64da588c601f188416, type: 3}
+  - {fileID: 43521833581295622, guid: fb9e2f25dbfbc3644bb841d8ebb42793, type: 3}
+  - {fileID: 43521833581295622, guid: 581f25194f4dc7749b355b11b36a7182, type: 3}
+  - {fileID: 43521833581295622, guid: cefb3c84195114741bd2db6566b442b4, type: 3}
+  randomizeRotation: 0
+  spawnManagerName: PreciousMetalVeinSpawnManager

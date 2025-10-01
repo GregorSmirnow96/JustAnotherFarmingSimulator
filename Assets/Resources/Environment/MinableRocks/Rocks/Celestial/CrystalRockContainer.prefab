@@ -1,0 +1,137 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2697543133518115215
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6109474913303059512}
+  - component: {fileID: 3147757474537019107}
+  - component: {fileID: 4902147624871096366}
+  m_Layer: 0
+  m_Name: CrystalRockContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &6109474913303059512
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697543133518115215}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 4982762117440710392}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3147757474537019107
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697543133518115215}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e484d3cddbaeb254dbbc376349e531b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 20
+  regenerationTime: 24
+  moonstoneOrePrefab: {fileID: 1410636565426471561, guid: e228f94dff3ba314f8260bbcfec43a16, type: 3}
+  sunstalOrePrefab: {fileID: 555892902212601737, guid: daaa537d06745da40b1b12d34d385ede, type: 3}
+  sparksPrefab: {fileID: 312384103607836083, guid: 26373ae2582c69e4e8176d169043b7dc, type: 3}
+--- !u!64 &4902147624871096366
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2697543133518115215}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 5
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}
+--- !u!1001 &8751061048696243066
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 6109474913303059512}
+    m_Modifications:
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7373200535757074037, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+      propertyPath: m_Name
+      value: CelestialRock
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+--- !u!4 &4982762117440710392 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4347187597435446658, guid: 5f1a0bc0a07405e4f8f1e5d19530cf92, type: 3}
+  m_PrefabInstance: {fileID: 8751061048696243066}
+  m_PrefabAsset: {fileID: 0}

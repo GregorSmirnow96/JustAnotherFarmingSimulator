@@ -10,6 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2557222445249994821}
   - component: {fileID: -8905420950014669670}
+  - component: {fileID: -1737666444063137462}
+  - component: {fileID: 6713277627054229528}
   m_Layer: 0
   m_Name: MushroomContainer
   m_TagString: Untagged
@@ -48,3 +50,31 @@ MonoBehaviour:
   - {fileID: 4876097566392964590, guid: fb62cf8abfc4cdd49a0b0d01104e6905, type: 3}
   - {fileID: 8489174751494505129, guid: db8ea3b15ac49294fa8aa10e8f8fad62, type: 3}
   - {fileID: 4353292526679080624, guid: 679569cf35f0b6a4eb0e7760f861c672, type: 3}
+  randomizeRotation: 1
+  spawnManagerName: MushroomSpawnManager
+--- !u!114 &-1737666444063137462
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478102994868547073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 24f2d071ffb389a4da816bcf6b37e97f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxDistance: 90
+--- !u!114 &6713277627054229528
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6478102994868547073}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eedff8bf18b747f4ab6c268086171cd4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  reparentingTargetName: Mushrooms

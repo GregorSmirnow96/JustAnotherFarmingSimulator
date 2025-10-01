@@ -13,18 +13,21 @@ public class ResourceSpawnManager : MonoBehaviour
 
     void Start()
     {
-        resourceContainers = new List<ResourceContainer>();
-        foreach (Transform child in transform)
+        resourceContainers ??= new List<ResourceContainer>();
+
+        List<ResourceContainer> destroyedContainers = new List<ResourceContainer>();
+        for (int i = 0; i < resourceContainers.Count(); i++)
         {
-            ResourceContainer childContainer = child.GetComponent<ResourceContainer>();
-            if (childContainer == null)
+            ResourceContainer container = resourceContainers.ElementAt(i);
+            if (container == null)
             {
-                Debug.Log($"Child of {gameObject.name} ({child.gameObject.name}) has no ResourceContainer component.");
+                destroyedContainers.Add(container);
             }
-            else
-            {
-                resourceContainers.Add(childContainer);
-            }
+        }
+
+        foreach (ResourceContainer destroyedContainer in destroyedContainers)
+        {
+            resourceContainers.Remove(destroyedContainer);
         }
 
         FillContainers();
@@ -41,8 +44,22 @@ public class ResourceSpawnManager : MonoBehaviour
         }
     }
 
+    public void AddContainer(ResourceContainer newContainer)
+    {
+        resourceContainers ??= new List<ResourceContainer>();
+        resourceContainers.Add(newContainer);
+    }
+
+    public void RemoveContainer(ResourceContainer newContainer)
+    {
+        resourceContainers ??= new List<ResourceContainer>();
+        resourceContainers.Remove(newContainer);
+    }
+
     private void FillContainers()
     {
+        Debug.Log(gameObject.name);
+
         int filledContainerCount = resourceContainers.Count(container => container.resourceExists);
         int numberOfContainersToFill = System.Math.Max(maxFilledContainers - filledContainerCount, 0);
 

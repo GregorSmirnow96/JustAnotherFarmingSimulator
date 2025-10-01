@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class OreVein : MonoBehaviour, IMinable
@@ -9,6 +10,7 @@ public class OreVein : MonoBehaviour, IMinable
     public float regenerationTime = 24;
     public GameObject orePrefab;
     public GameObject sparksPrefab;
+    public int requiredPickAxeTier = 1;
 
     private MeshCollider parentCollider;
     private float lastHitOrRegenTime;
@@ -16,6 +18,7 @@ public class OreVein : MonoBehaviour, IMinable
     private float lastTime;
     private Clock clock;
     private bool fullyDegraded => health == 0;
+    private GameObject damageIndicatorPrefab;
 
     void Start()
     {
@@ -28,6 +31,8 @@ public class OreVein : MonoBehaviour, IMinable
 
         parentCollider = GetComponent<MeshCollider>();
         SetColliderMesh();
+
+        damageIndicatorPrefab = AssetDatabase.LoadAssetAtPath<GameObject>($"Assets/CustomUIElements/DamageIndicator.prefab");
     }
 
     /*
@@ -68,18 +73,35 @@ public class OreVein : MonoBehaviour, IMinable
     }
     */
 
-    public void Mine(float damage)
+    public void Mine(float damage, int pickaxeTier)
     {
+        if (pickaxeTier < requiredPickAxeTier)
+        {
+            damage = 0;
+        }
+
         if (!fullyDegraded)
         {
             lastHitOrRegenTime = clock.time;
 
             health -= damage;
+            SpawnDamageIndicator((int) damage, DamageType.Physical);
             if (health <= 0)
             {
                 Degrade();
             }
         }
+    }
+
+    private void SpawnDamageIndicator(int damage, string damageType)
+    {
+        GameObject damageIndicator = Instantiate(damageIndicatorPrefab, SceneProperties.canvasTransform);
+        DamageIndicator damageIndicatorScript = damageIndicator.GetComponent<DamageIndicator>();
+        
+        damageIndicatorScript.damage = damage;
+        damageIndicatorScript.damageType = damageType;
+        damageIndicatorScript.damagedTransform = transform;
+        damageIndicatorScript.transformOffset = new Vector3(0f, 0.9f, 0f);
     }
 
     public bool FullyDegraded() => fullyDegraded;

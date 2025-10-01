@@ -7,8 +7,17 @@ public class ResourceContainer : MonoBehaviour
 {
     public List<GameObject> resourcePrefabs;
     public bool randomizeRotation = true;
+    public string spawnManagerName;
 
     public bool resourceExists => transform.childCount > 0;
+
+    private ResourceSpawnManager spawnManager;
+
+    void Awake()
+    {
+        spawnManager = GameObject.Find(spawnManagerName).GetComponent<ResourceSpawnManager>();
+        spawnManager.AddContainer(this);
+    }
 
     public void FillContainer()
     {
@@ -24,5 +33,10 @@ public class ResourceContainer : MonoBehaviour
                 resourceObject.transform.eulerAngles = new Vector3(0f, Random.Range(0f, 360f), 0f);
             }
         }
+    }
+
+    public void OnDestroy()
+    {
+        spawnManager.RemoveContainer(GetComponent<ResourceContainer>());
     }
 }
