@@ -34,14 +34,31 @@ public class Inventory : MonoBehaviour
         inventoryItems = new Item[inventoryHeight, inventoryWidth];
         toolbarItems = new Item[toolbarSize];
         /* Delete this. I'm just seeding the inventory with items. */
+        inventoryItems[2,2] = new Item("FaeWand");
+        inventoryItems[2,3] = new Item("PinewoodBow");
+        inventoryItems[2,4] = new Item("FruitwoodBow");
+        inventoryItems[2,5] = new Item("SpiritwoodBow");
+        inventoryItems[0,0] = new Item("SolarArrow");     inventoryItems[0, 0].stackSize = 50;
+        inventoryItems[1,0] = new Item("LunarArrow");    inventoryItems[1, 0].stackSize = 50;
+        inventoryItems[1,1] = new Item("FruitwoodLog");
+        inventoryItems[1,1] = new Item("WaterStaff");
+        inventoryItems[1,2] = new Item("GoldBar");
+        inventoryItems[1,3] = new Item("MoonstoneBar");
+        inventoryItems[1,4] = new Item("FruitwoodLog");
+        inventoryItems[1,5] = new Item("FruitwoodLog");
+        inventoryItems[1,6] = new Item("FruitwoodLog");
+        inventoryItems[1,7] = new Item("PinewoodLog");
+        inventoryItems[0,1] = new Item("Carrot");
+        inventoryItems[0,2] = new Item("Carrot");
+        inventoryItems[0,3] = new Item("Carrot");
+        inventoryItems[0,4] = new Item("ButterflyNet");
+        inventoryItems[0,5] = new Item("MoonstoneAxe");
         /*
-        inventoryItems[0,0] = new Item("LightningWand");
         inventoryItems[0,1] = new Item("BlueBerry");
         inventoryItems[0,2] = new Item("IronArrow");
         inventoryItems[0,3] = new Item("FireWand");
         inventoryItems[1,1] = null;
         inventoryItems[1,2] = new Item("WaterWand");
-        inventoryItems[1,3] = new Item("Axe");
         inventoryItems[1,4] = new Item("Pickaxe");
         inventoryItems[2,0] = new Item("FaeStaff");
         inventoryItems[2,1] = new Item("IronOre");
@@ -50,14 +67,14 @@ public class Inventory : MonoBehaviour
         inventoryItems[2,5] = new Item("LightningStaff");
         inventoryItems[2,6] = new Item("Log");
 
-        toolbarItems[0] = new Item("FaeWand");
-        toolbarItems[1] = new Item("FireFlowerSeed");
+        inventoryItems[0,2].stackSize = 12;
+        */
+
+        toolbarItems[0] = new Item("WaterWand");
+        toolbarItems[1] = new Item("CarrotSeed");
         toolbarItems[2] = new Item("BlizzardFlowerSeed");
         toolbarItems[3] = new Item("ZapFlowerSeed");
         toolbarItems[4] = new Item("CharmFlowerSeed");
-
-        inventoryItems[0,2].stackSize = 12;
-        */
         /*                                                         */
         playerController = GetComponent<FPSMovement>();
     }

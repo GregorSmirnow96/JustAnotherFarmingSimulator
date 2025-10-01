@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class ForestCurse : MonoBehaviour
 {
-    public Vector2 sceneCenter = new Vector2(200f, 200f);
     public float maxDistance = 150f;
 
     private Vector2 xzPlayerPosition => new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
-    private float distanceFromCenter => (xzPlayerPosition - sceneCenter).magnitude;
 
     void Update()
     {
-        // THIS WON'T WORK!
-        // The player will be teleported infinitely because the new position will also trigger this condition.
-        // If you teleport them to the opposite side, but a little closer to the center, this could work, but consider camera orientation.
-        // Probably just face their camera towards the center. :) Good job, good solution
+        float distanceFromCenter = SceneProperties.playerDistanceFromCenter;
         if (distanceFromCenter > maxDistance)
         {
+            Vector2 sceneCenter = SceneProperties.sceneCenter.ToXZ();
             Vector2 playerSceneOffset = xzPlayerPosition - sceneCenter;
-            gameObject.transform.position = sceneCenter - playerSceneOffset;
+            Vector2 playerSceneOffsetNormal = playerSceneOffset.normalized;
+            Vector2 targetPosition = sceneCenter - playerSceneOffsetNormal * maxDistance * 0.9f;
+            float height = SceneProperties.TerrainHeightAtPosition(targetPosition) + 0.2f;
+            gameObject.transform.position = new Vector3(targetPosition.x, height, targetPosition.y);
+
         }
     }
 }

@@ -18,8 +18,13 @@ public static class PlayerProperties
 
 public static class SceneProperties
 {
-    public static float clearingRadius = 57f;
+    public static float clearingRadius = 30f;
     public static Vector3 sceneCenter = new Vector3(200f, 0f, 200f);
+
+    public static float minSceneX = 0f;
+    public static float maxSceneX = 400f;
+    public static float minSceneY = 0f;
+    public static float maxSceneY = 400f;
 
     public static Transform cameraTransform = GameObject.Find("Camera").transform;
     public static Transform playerTransform = GameObject.Find("Player").transform;
@@ -33,6 +38,10 @@ public static class SceneProperties
     private static Terrain terrain = GameObject.Find("Terrain").GetComponent<Terrain>();
     public static float TerrainHeightAtPosition(Vector2 position) => terrain.SampleHeight(new Vector3(position.x, 0f, position.y));
     public static float TerrainHeightAtPosition(Vector3 position) => terrain.SampleHeight(position);
+
+    public static float forestLineZPosition = 140f;
+    public static bool PlayerIsInClearing() => playerTransform.position.z < forestLineZPosition;
+    public static bool PlayerIsInForest() => playerTransform.position.z >= forestLineZPosition;
 
     public static bool IsInClearing(Vector3 position) => Vector2.Distance(position.ToXZ(), sceneCenter.ToXZ()) < clearingRadius + 4f;
     public static bool LineIntersectsClearing(Vector2 start, Vector2 end) => Calculations.LineIntersectsCircle(start, end, sceneCenter.ToXZ(), clearingRadius);
@@ -136,6 +145,7 @@ public static class VectorExtensions
         return new Vector2(v.x, v.z);
     }
 }
+
 public static class MeshUtility
 {
     public static Mesh GetMeshFromGameObject(GameObject obj)
