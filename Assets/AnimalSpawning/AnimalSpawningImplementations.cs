@@ -11,7 +11,8 @@ public class RabbitSpawnData : AnimalSpawnData
         18f,
         6f,
         "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Rabbit/Rabbit.prefab",
-        new List<string>() { "Carrots" }) { }
+        new List<string>() { "Carrots" },
+        1) { }
 }
 
 public class RaccoonSpawnData : AnimalSpawnData
@@ -21,7 +22,8 @@ public class RaccoonSpawnData : AnimalSpawnData
         18f,
         6f,
         "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Raccoon/Raccoon.prefab",
-        new List<string>() { "_Carrots" }) { }
+        new List<string>() { "_Carrots" },
+        1) { }
 }
 
 public class BoarSpawnData : AnimalSpawnData
@@ -31,7 +33,8 @@ public class BoarSpawnData : AnimalSpawnData
         18f,
         6f,
         "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Boar/Boar.prefab",
-        new List<string>() { "_Carrots" }) { }
+        new List<string>() { "_Carrots" },
+        2) { }
 }
 
 public class FoxSpawnData : AnimalSpawnData
@@ -41,7 +44,8 @@ public class FoxSpawnData : AnimalSpawnData
         18f,
         6f,
         "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Fox/Fox.prefab",
-        new List<string>() { "_BlueBerryBush" }) { }
+        new List<string>() { "_BlueBerryBush" },
+        2) { }
 }
 
 public class DeerSpawnData : AnimalSpawnData
@@ -51,17 +55,8 @@ public class DeerSpawnData : AnimalSpawnData
         18f,
         6f,
         "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Deer/Deer.prefab",
-        new List<string>() { "_Carrots" }) { }
-}
-
-public class CougarSpawnData : AnimalSpawnData
-{
-    public CougarSpawnData() : base(
-        "Cougar",
-        18f,
-        6f,
-        "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Cougar/Leopard.prefab",
-        new List<string>() { "_Wheat" }) { }
+        new List<string>() { "Carrots" },
+        3) { }
 }
 
 public class WolfSpawnData : AnimalSpawnData
@@ -71,7 +66,19 @@ public class WolfSpawnData : AnimalSpawnData
         18f,
         6f,
         "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Wolf/Wolf.prefab",
-        new List<string>() { "Wheat" }) { }
+        new List<string>() { "Wheat" },
+        3) { }
+}
+
+public class CougarSpawnData : AnimalSpawnData
+{
+    public CougarSpawnData() : base(
+        "Cougar",
+        18f,
+        6f,
+        "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Cougar/Leopard.prefab",
+        new List<string>() { "_Wheat" },
+        4) { }
 }
 
 public class BearSpawnData : AnimalSpawnData
@@ -81,7 +88,8 @@ public class BearSpawnData : AnimalSpawnData
         18f,
         6f,
         "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Bear/Bear.prefab",
-        new List<string>() { "_BlueBerryBush" }) { }
+        new List<string>() { "Carrots" },
+        4) { }
 }
 
 public class MooseSpawnData : AnimalSpawnData
@@ -91,7 +99,8 @@ public class MooseSpawnData : AnimalSpawnData
         18f,
         6f,
         "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Moose/Moose.prefab",
-        new List<string>() { "_BlueBerryBush" }) { }
+        new List<string>() { "_BlueBerryBush" },
+        4) { }
 }
 
 public class TigerSpawnData : AnimalSpawnData
@@ -101,5 +110,6 @@ public class TigerSpawnData : AnimalSpawnData
         18f,
         6f,
         "Assets/Malbers Animations/Animals Packs/01 Forest Pack/Tiger/Tiger.prefab",
-        new List<string>() { "BlueBerryBush" }) { }
+        new List<string>() { "BlueBerryBush" },
+        5) { }
 }

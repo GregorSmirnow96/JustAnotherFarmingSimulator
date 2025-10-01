@@ -16,7 +16,7 @@ public class DespawnLocation : MonoBehaviour
         AnimalBehaviour animalBehaviourScript = collidedObject.GetComponent<AnimalBehaviour>();
         if (animalBehaviourScript.shouldDespawn)
         {
-            Destroy(other.gameObject);
+            // Destroy(other.gameObject);
         }
     }
 }

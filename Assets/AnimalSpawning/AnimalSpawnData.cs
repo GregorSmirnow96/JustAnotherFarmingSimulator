@@ -11,19 +11,22 @@ public class AnimalSpawnData
     public float retreatTime; // ^ same
     public GameObject animalPrefab;
     public List<string> targetPlants;
+    public int difficulty;
 
     public AnimalSpawnData(
         string name,
         float spawnTime,
         float retreatTime,
         string animalPrefabPath,
-        List<string> targetPlants)
+        List<string> targetPlants,
+        int difficulty)
     {
         this.name = name;
         this.spawnTime = spawnTime;
         this.retreatTime = retreatTime;
         this.animalPrefab = AssetDatabase.LoadAssetAtPath<GameObject>(animalPrefabPath);
         this.targetPlants = targetPlants;
+        this.difficulty = difficulty;
     }
 }
 
@@ -60,5 +63,12 @@ public class AnimalSpawnDataRepo
     private void AddSpawnData(AnimalSpawnData spawnData)
     {
         animalSpawnDataMap.Add(spawnData.name, spawnData);
+    }
+
+    public List<AnimalSpawnData> GetAnimalsInterestedInPlant(string plantName)
+    {
+        return animalSpawnDataList
+            .Where(spawnData => spawnData.targetPlants.Contains(plantName))
+            .ToList();
     }
 }

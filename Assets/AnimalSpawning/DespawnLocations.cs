@@ -25,4 +25,11 @@ public class DespawnLocations
             .OrderBy(despawnLocation => Vector3.Distance(despawnLocation, position))
             .First();
     }
+
+    public Vector3 GetFurthestDespawnLocation(Vector3 position)
+    {
+        return locations
+            .OrderBy(despawnLocation => Vector3.Distance(despawnLocation, position))
+            .Last();
+    }
 }
