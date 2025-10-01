@@ -60,5 +60,5 @@ public class Harvestable : MonoBehaviour, IInteractable
         {
             Destroy(interactText.textObject);
         }
-    } 
+    }
 }

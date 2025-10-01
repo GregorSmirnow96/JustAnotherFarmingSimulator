@@ -62,6 +62,15 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9cf78be27c1f994bb1f243f6059a27b, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3268254980277699541}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9cf78be27c1f994bb1f243f6059a27b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -5515648870952758123}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9cf78be27c1f994bb1f243f6059a27b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -1405393107603342733}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: d9cf78be27c1f994bb1f243f6059a27b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: -3766644001732338112}
   m_SourcePrefab: {fileID: 100100000, guid: d9cf78be27c1f994bb1f243f6059a27b, type: 3}
 --- !u!1 &5011772705318262745 stripped
 GameObject:
@@ -112,3 +121,47 @@ CapsuleCollider:
   m_Height: 7
   m_Direction: 1
   m_Center: {x: -1, y: 0, z: 0}
+--- !u!114 &-5515648870952758123
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5011772705318262745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aaff164e76826c7408eb7ba73e63f456, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &-1405393107603342733
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5011772705318262745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93eb26640eb4a0747b789210a8942ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stumpPrefab: {fileID: 0}
+  durability: 20
+  logGroundItemPrefab: {fileID: 3876789836869407408, guid: c2c1486da55306d4eb05b3e80488cd17, type: 3}
+  minDroppedLogs: 1
+  maxDroppedLogs: 3
+  requiredAxeTier: 3
+--- !u!114 &-3766644001732338112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5011772705318262745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af23621c95be027488824e4e04eb1870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.5
+  shakeMagnitude: 0.02

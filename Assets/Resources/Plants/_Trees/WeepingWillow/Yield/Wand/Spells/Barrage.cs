@@ -7,7 +7,7 @@ public class Barrage : MonoBehaviour
     public GameObject explosionPrefab;
     public float maxDuration = 3f;
     public int damage = 8;
-    public float slowPercentage = 70f;
+    public float slowPercentage = 0.7f;
     public float slowDuration = 4f;
 
     private int scaledDamage => PlayerProperties.GetScaledPlayerDamage(damage, DamageType.Water);

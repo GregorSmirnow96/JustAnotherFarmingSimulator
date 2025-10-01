@@ -50,7 +50,7 @@ MonoBehaviour:
   explosionPrefab: {fileID: 6820961354025237272, guid: a2932ec30a7882c4baba740926418ab9, type: 3}
   maxDuration: 3
   damage: 8
-  slowPercentage: 70
+  slowPercentage: 0.7
   slowDuration: 4
 --- !u!65 &7800042213510736984
 BoxCollider:

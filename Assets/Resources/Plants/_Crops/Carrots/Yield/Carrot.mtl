@@ -1,14 +1,22 @@
-# Blender 3.1.0 MTL File: 'Crop_Carrot.blend'
+# Blender 3.6.20 MTL File: 'GroundItem.blend'
 # www.blender.org
 
-newmtl Text
+newmtl Carrot
 Ns 0.000000
 Ka 1.000000 1.000000 1.000000
-Kd 0.800000 0.800000 0.800000
 Ks 0.000000 0.000000 0.000000
 Ke 0.000000 0.000000 0.000000
 Ni 1.450000
-d 1.000000
 illum 1
-map_Kd  PlantItemTextSheet.png
-map_d  PlantItemTextSheet.png
+map_Kd C:/Users/grego/OneDrive/Documents/Arboretum/Crops/Carrots/CarrotTextureSheet.png
+map_d C:/Users/grego/OneDrive/Documents/Arboretum/Crops/Carrots/CarrotTextureSheet.png
+
+newmtl Leaves
+Ns 0.000000
+Ka 1.000000 1.000000 1.000000
+Ks 0.000000 0.000000 0.000000
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+illum 1
+map_Kd C:/Users/grego/OneDrive/Documents/Arboretum/Crops/Carrots/CarrotTextureSheet.png
+map_d C:/Users/grego/OneDrive/Documents/Arboretum/Crops/Carrots/CarrotTextureSheet.png

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UseSeed : MonoBehaviour, IUsable
 {
-    private string terrainObjectName = "Terrain";
+    private string terrainObjectNamePrefix = "Terrain";
 
     public GameObject plantPrefab;
     public float maxInteractionRange = 4;
@@ -33,7 +33,7 @@ public class UseSeed : MonoBehaviour, IUsable
         if (Physics.Raycast(ray, out hit, maxInteractionRange))
         {
             GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.name.Equals(terrainObjectName))
+            if (hitObject.name.StartsWith(terrainObjectNamePrefix))
             {
                 showIndicator = true;
 
@@ -61,7 +61,7 @@ public class UseSeed : MonoBehaviour, IUsable
         if (Physics.Raycast(ray, out hit, maxInteractionRange))
         {
             GameObject hitObject = hit.collider.gameObject;
-            if (hitObject.name.Equals(terrainObjectName))
+            if (hitObject.name.StartsWith(terrainObjectNamePrefix))
             {
                 Vector3 hitPoint = hit.point;
 

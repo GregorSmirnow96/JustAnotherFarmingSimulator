@@ -171,7 +171,7 @@ public class FaeWandSpells : MonoBehaviour, ISpellProvider
             hitPoint = new Vector3(hitPointXZ.x, hitPointY, hitPointXZ.y);
         }
         
-        Instantiate(spell2ExplosionPrefab, hitPoint, Quaternion.identity);
+        Instantiate(spell2ExplosionPrefab, hitPoint + new Vector3(0f, 0.1f, 0f), Quaternion.identity);
 
         inAnimation = false;
     }

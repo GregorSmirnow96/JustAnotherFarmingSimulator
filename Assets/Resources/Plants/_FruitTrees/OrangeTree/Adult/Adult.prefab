@@ -65,6 +65,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bee55b87bb611846a56ba03cea09068, type: 3}
       insertIndex: -1
       addedObject: {fileID: -3710963703586256883}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bee55b87bb611846a56ba03cea09068, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8151641091719610533}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 2bee55b87bb611846a56ba03cea09068, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 8531735265647339888}
   m_SourcePrefab: {fileID: 100100000, guid: 2bee55b87bb611846a56ba03cea09068, type: 3}
 --- !u!1 &389180079552757980 stripped
 GameObject:
@@ -125,3 +131,35 @@ CapsuleCollider:
   m_Height: 6
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &8151641091719610533
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389180079552757980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93eb26640eb4a0747b789210a8942ccc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stumpPrefab: {fileID: 0}
+  durability: 12
+  logGroundItemPrefab: {fileID: 7858163784063770549, guid: f455d6691656a1e4690eef278bac3260, type: 3}
+  minDroppedLogs: 2
+  maxDroppedLogs: 3
+  requiredAxeTier: 2
+--- !u!114 &8531735265647339888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 389180079552757980}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: af23621c95be027488824e4e04eb1870, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shakeDuration: 0.5
+  shakeMagnitude: 0.02

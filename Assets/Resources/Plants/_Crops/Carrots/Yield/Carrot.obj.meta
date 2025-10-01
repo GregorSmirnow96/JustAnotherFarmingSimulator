@@ -7,6 +7,16 @@ ModelImporter:
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
+      name: Carrot
+    second: {fileID: 2100000, guid: 053d6df315643f74fae4e4ea0e000631, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Leaves
+    second: {fileID: 2100000, guid: ecb016041e60b7144953aeb6cfa0d78b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
       name: Text
     second: {fileID: 2100000, guid: d2a85a579ccf92e4f9f90988c9ae85e2, type: 2}
   materials:

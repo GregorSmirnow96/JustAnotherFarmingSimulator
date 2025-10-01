@@ -90,7 +90,7 @@ public class ZapZone : MonoBehaviour
                     if (Time.time >= lastZapTime + zapFrequency)
                     {
                         Vector3 spawnLocation = health.gameObject.transform.position;
-                        spawnLocation.y = SceneProperties.TerrainHeightAtPosition(health.gameObject.transform.position) + 0.1f;
+                        spawnLocation.y = SceneProperties.TerrainHeightAtPosition(health.gameObject.transform.position) + 0.12f;
                         Instantiate(zapPrefab, spawnLocation, Quaternion.identity);
                         previousZapTimes[health] = Time.time;
                     }
@@ -165,11 +165,9 @@ public class ZapZone : MonoBehaviour
 
         if (transform.IsChildOf(collidedObject.transform)) return;
 
-        Debug.Log($"ZapZone interacted: {collidedObject.name}");
         Health health = collidedObject.GetComponent<Health>();
         if (health != null)
         {
-            Debug.Log($"ZapZone added: {health.gameObject.name}");
             creaturesInRadius.Add(health);
         }
     }
