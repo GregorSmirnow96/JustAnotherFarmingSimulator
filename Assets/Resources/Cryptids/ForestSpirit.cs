@@ -6,32 +6,48 @@ using UnityEngine.AI;
 
 public class ForestSpirit : MonoBehaviour
 {
+    public Transform headTransform;
+
     private GameObject player;
     private NavMeshAgent agent;
     private AIStateMachine stateMachine;
+    private Animator animator;
 
     private string STALK_IN_CLEARING = "STALK_IN_CLEARING";
     private string STALK_IN_FOREST = "STALK_IN_FOREST";
     private string ATTACK = "ATTACK";
+    private string GRAPPLE = "GRAPPLE";
+    private string DESPAWN = "DESPAWN";
 
     void Start()
     {
         player = GameObject.Find("Player");
         agent = GetComponent<NavMeshAgent>();
+        animator = GetComponent<Animator>();
 
         stateMachine = new AIStateMachine();
         stateMachine.AddState(STALK_IN_CLEARING);
         stateMachine.AddState(STALK_IN_FOREST);
         stateMachine.AddState(ATTACK);
+        stateMachine.AddState(GRAPPLE);
+        stateMachine.AddState(DESPAWN);
         stateMachine.AddTransition(STALK_IN_CLEARING, StalkInClearing_2_StalkInForest, STALK_IN_FOREST);
         stateMachine.AddTransition(STALK_IN_CLEARING, StalkInClearing_2_Attack, ATTACK);
+        stateMachine.AddTransition(STALK_IN_CLEARING, NightEnded, DESPAWN);
         stateMachine.AddTransition(STALK_IN_FOREST, StalkInForest_2_StalkInClearing, STALK_IN_CLEARING);
         stateMachine.AddTransition(STALK_IN_FOREST, StalkInForest_2_Attack, ATTACK);
+        stateMachine.AddTransition(STALK_IN_FOREST, NightEnded, DESPAWN);
         stateMachine.AddTransition(ATTACK, Attack_2_StalkInClearing, STALK_IN_CLEARING);
-        // stateMachine.AddTransition(ATTACK, Attack_2_StalkInForest, STALK_IN_FOREST);
+        stateMachine.AddTransition(ATTACK, Attack_2_Grapple, GRAPPLE);
+        stateMachine.AddTransition(ATTACK, Attack_2_StalkInForest, STALK_IN_FOREST);
+        stateMachine.AddTransition(ATTACK, NightEnded, DESPAWN);
+        stateMachine.AddTransition(GRAPPLE, Grapple_2_Attack, ATTACK);
+        stateMachine.AddTransition(GRAPPLE, NightEnded, DESPAWN);
         stateMachine.SetInitialState(STALK_IN_CLEARING);
 
         nextExtinguishInterval = 6; // Random.Range(minExtenguishInterval, maxExtenguishInterval);
+
+        GetComponent<Health>().RegisterHealthChangeCallback(() => hasBeenDamagedByPlayer = true);
     }
 
     // Properties shared between states
@@ -46,7 +62,7 @@ public class ForestSpirit : MonoBehaviour
         {
             Debug.Log("Extinguishing.");
             List<LightSource> lightsNearPlayer = LightSource.worldLights.Where(light => light.PlayerIsInVicinity(20)).ToList();
-            lightsNearPlayer.ForEach(light => light.FlickerOff(2, 20, 2));
+            lightsNearPlayer.ForEach(light => light.FlickerOff(2, 16, 2));
             timeSinceLastExtinguish = 0f;
             nextExtinguishInterval = Random.Range(minExtenguishInterval, maxExtenguishInterval);
         }
@@ -56,13 +72,9 @@ public class ForestSpirit : MonoBehaviour
         {
             if (stateMachine.previousState != stateMachine.state)
             {
-                destination = new Vector3(0f, 0f, 0f);
-                intermediateDestination = new Vector3(0f, 0f, 0f);
-                hasIntermediateDestination = false;
-                movingToTangent = false;
-                timeSinceDestinationSet = 9999f;
-                timeSpentStill = 0f;
-                lastPosition = new Vector3(0f, 0f, 0f);
+                Debug.Log($"Entering state: {stateMachine.state}");
+                // Reset state-specific properties.
+                hasSetTarget = false;
             }
             StalkInClearing();
         }
@@ -70,8 +82,12 @@ public class ForestSpirit : MonoBehaviour
         {
             if (stateMachine.previousState != stateMachine.state)
             {
+                Debug.Log($"Entering state: {stateMachine.state}");
+                // Reset state-specific properties.
                 time_in_state = 0f;
-                followPosition = new Vector3(0f, 0f, 0f);
+                followPosition = new Vector3(); 
+
+                animator.SetTrigger("WalkCycle");
             }
             StalkInForest();
         }
@@ -79,110 +95,123 @@ public class ForestSpirit : MonoBehaviour
         {
             if (stateMachine.previousState != stateMachine.state)
             {
+                Debug.Log($"Entering state: {stateMachine.state}");
+                // Reset state-specific properties.
                 timeSpentWindingUp = 0f;
+                startedRunning = false;
+                inRunningCycle = false;
             }
             Attack();
+        }
+        else if (stateMachine.state == GRAPPLE)
+        {
+            if (stateMachine.previousState != stateMachine.state)
+            {
+                Debug.Log($"Entering state: {stateMachine.state}");
+                Grapple();
+            }
+        }
+        else if (stateMachine.state == DESPAWN)
+        {
+            if (stateMachine.previousState != stateMachine.state)
+            {
+                Debug.Log($"Entering state: {stateMachine.state}");
+
+                retreatPosition = DespawnLocations.GetInstance().GetNearestDespawnLocation(transform.position);
+                agent.SetDestination(retreatPosition);
+
+                animator.SetTrigger("RunCycle");
+                agent.speed = 14f;
+            }
+
+            Retreat();
         }
     }
 
     // Transition methods
-    bool PlayerIsInDarkness() => !PlayerIsInLight();
     bool PlayerIsInLight() => LightSource.worldLights.Any(light => light.PlayerIsInRadius());
-    bool PlayerIsInClearing() => SceneProperties.playerDistanceFromCenter <= SceneProperties.clearingRadius;
-    bool PlayerIsInForest() => SceneProperties.playerDistanceFromCenter > SceneProperties.clearingRadius;
-    bool PlayerIsWithin40Units() => Vector3.Distance(transform.position.ToXZ(), SceneProperties.playerTransform.position.ToXZ()) <= 40f;
+    bool PlayerIsInDarkness() => !PlayerIsInLight();
+    bool PlayerIsInClearing() => SceneProperties.PlayerIsInClearing();
+    bool PlayerIsInForest() => SceneProperties.PlayerIsInForest();
+    bool PlayerIsWithinAttackRange() => Vector3.Distance(transform.position.ToXZ(), SceneProperties.playerTransform.position.ToXZ()) <= 40f;
+    bool PlayerIsWithinGrappleRange() => Vector3.Distance(transform.position.ToXZ(), SceneProperties.playerTransform.position.ToXZ()) <= 5.5f;
+    bool NightEnded() => Clock.globalClock.time % Clock.globalClock.dayDuration >= 6f && Clock.globalClock.time % Clock.globalClock.dayDuration <= 18f;
 
     bool StalkInClearing_2_StalkInForest()
     {
-        return PlayerIsInForest();
+        return PlayerIsInForest() && !NightEnded();
     }
 
     bool StalkInClearing_2_Attack()
     {
-        return PlayerIsInDarkness();
+        return (PlayerIsInDarkness() || hasBeenDamagedByPlayer) && !NightEnded();
     }
 
     bool StalkInForest_2_StalkInClearing()
     {
-        return PlayerIsInClearing();
+        return PlayerIsInClearing() && !NightEnded();
     }
 
     bool StalkInForest_2_Attack()
     {
-        return PlayerIsInDarkness() || PlayerIsWithin40Units();
+        return (PlayerIsInDarkness() || PlayerIsWithinAttackRange() || hasBeenDamagedByPlayer) && !NightEnded();
     }
 
     bool Attack_2_StalkInClearing()
     {
-        return PlayerIsInClearing() && PlayerIsInLight();
+        return (PlayerIsInClearing() && PlayerIsInLight() && !hasBeenDamagedByPlayer) && !NightEnded();
     }
 
     bool Attack_2_StalkInForest()
     {
-        return PlayerIsInForest() && !PlayerIsWithin40Units() && PlayerIsInLight();
+        return (PlayerIsInForest() && !PlayerIsWithinAttackRange() && PlayerIsInLight() && !hasBeenDamagedByPlayer) && !NightEnded();
     }
+
+    bool Attack_2_Grapple()
+    {
+        return (PlayerIsWithinGrappleRange()) && !NightEnded(); // Add condition to check that the cryptid is facing the player.
+                                                                // Also, in the Grapple function:
+                                                                //  1) freeze position in case the cryptid slides a little further
+                                                                //  3) rotate the cryptid to face the player. The already must be mostly facing the player, but make it dead-on
+    }
+
+    bool Grapple_2_Attack() => false;
 
     // If the player is in the clearing, stay in the trees until they walk out of light.
     // Properties specific to StalkInClearing:
-    private const float minDestinationChangeInterval = 1f;
-    private Vector3 destination = new Vector3(0f, 0f, 0f);
-    private Vector3 intermediateDestination = new Vector3(0f, 0f, 0f);
-    private bool hasIntermediateDestination = false;
-    private bool movingToTangent = false;
-    private float timeSinceDestinationSet = 9999f;
-    private float timeSpentStill = 0f;
-    private Vector3 lastPosition = new Vector3(0f, 0f, 0f);
+    private const float targetDistanceSetThreshold = 6f;
+    private const float maxTimeSpentAtTarget = 4f;
+    private bool hasSetTarget;
+    private Vector3 currentTarget;
+    private float timeSpentAtTarget = 0f;
     public void StalkInClearing()
     {
-        agent.speed = 6f;
-        // Calculate desired end position
-        Vector2 centerToPlayerNormalized = (SceneProperties.playerXZPosition - SceneProperties.sceneCenter.ToXZ()).normalized;
-        float distanceBeyondClearing = 25f;
-        Vector2 treeLinePositionXZ = centerToPlayerNormalized * (SceneProperties.clearingRadius + distanceBeyondClearing) + SceneProperties.sceneCenter.ToXZ();
-        float terrainHeight = SceneProperties.TerrainHeightAtPosition(treeLinePositionXZ);
-        Vector3 desiredPosition = new Vector3(treeLinePositionXZ.x, terrainHeight, treeLinePositionXZ.y);
+        agent.speed = 3f;
 
-        // Check if a new destination needs to be set. If not, return.
-        timeSpentStill = transform.position == lastPosition
-            ? timeSpentStill += Time.deltaTime
-            : timeSpentStill;
-        lastPosition = transform.position;
-        bool stoodStillForTooLong = timeSpentStill > 3f;
-
-        bool finalDestinationSignificantlyChanged = Vector3.Distance(desiredPosition.ToXZ(), destination.ToXZ()) >= 10f;
-
-        float distanceToIntermediateDestination = (transform.position - intermediateDestination).magnitude;
-        bool reachedIntermediateDestination = distanceToIntermediateDestination < 1.5f;
-
-        bool shouldUpdateDestination = finalDestinationSignificantlyChanged || reachedIntermediateDestination || stoodStillForTooLong;
-        if (!shouldUpdateDestination) return;
-
-        // Determine whether or not to set the next destination is the desired end position, or a tangential path
-        // If the previous "next destination" was tangential, don't calculate a new "next destination" unless the final destination has significantly changed
-        float patrolRadius = 10f;
-        float angle = Random.Range(0f, 360f);
-        float rad = angle * Mathf.Deg2Rad;
-        float radius = Random.Range(0, patrolRadius);
-        float patrolX = desiredPosition.x + Mathf.Cos(rad) * radius;
-        float patrolZ = desiredPosition.z + Mathf.Sin(rad) * radius;
-        destination = new Vector3(patrolX, desiredPosition.y, patrolZ);
-        bool isAlreadyInClearing = SceneProperties.IsInClearing(transform.position);
-        bool willMoveThroughClearing = !isAlreadyInClearing && SceneProperties.LineIntersectsClearing(transform.position.ToXZ(), destination.ToXZ());
-        if (willMoveThroughClearing)
+        if (!hasSetTarget)
         {
-            intermediateDestination = SceneProperties.GetTangentPointNearestToDestination(transform.position, distanceBeyondClearing, destination);
-            float intermediateTerrainHeight = SceneProperties.TerrainHeightAtPosition(intermediateDestination.ToXZ());
-            intermediateDestination.y = intermediateTerrainHeight;
-            movingToTangent = true;
+            animator.SetTrigger("WalkCycle");
+        }
+
+        if (!hasSetTarget || timeSpentAtTarget >= maxTimeSpentAtTarget)
+        {
+            // Calculate & use player's X position
+            currentTarget = SceneProperties.playerTransform.position;
+            // Choose a random Z location. Constrain the location to a narrow band just behind the forest's front Z position.
+            currentTarget.z = Random.Range(SceneProperties.forestLineZPosition + 30f, SceneProperties.forestLineZPosition + 80f);
+            agent.SetDestination(currentTarget);
+
+            timeSpentAtTarget = 0f;
+            hasSetTarget = true;
         }
         else
         {
-            intermediateDestination = destination; // This is a bit of a code-smell. AI will always move to intermediateDestination, but this can be equal to the final destination
-            movingToTangent = false;
+            float distanceToTarget = (headTransform.position - currentTarget).magnitude;
+            if (targetDistanceSetThreshold >= distanceToTarget)
+            {
+                timeSpentAtTarget += Time.deltaTime;
+            }
         }
-
-        agent.SetDestination(intermediateDestination);
-        destination = desiredPosition;
     }
 
     // If the player is in the forest, follow them more closely and wait less time to attack.
@@ -216,20 +245,121 @@ public class ForestSpirit : MonoBehaviour
     // Attack specific properties
     const float windUpTime = 2f;
     float timeSpentWindingUp = 0f;
+    const float runningStartDuration = 0.542f;
+    float startRunningTime;
+    float previousTime;
+    bool inRunningCycle;
+    bool startedRunning = false;
+    bool hasBeenDamagedByPlayer;
     public void Attack()
     {
         // Charge after being in this state for 4 seconds
         if (timeSpentWindingUp <= windUpTime)
         {
             timeSpentWindingUp += Time.deltaTime;
+            startRunningTime = Time.time;
             // Rotate towards player
+            previousTime = Time.time;
             return;
+        }
+        else if (!startedRunning)
+        {
+            agent.speed = 14f;
+            animator.SetTrigger("RunStart");
+            startedRunning = true;
+        }
+
+        if (!inRunningCycle)
+        {
+            float runCycleStart = startRunningTime + runningStartDuration;
+            if (previousTime < runCycleStart && Time.time >= runCycleStart)
+            {
+                animator.SetTrigger("RunCycle");
+                inRunningCycle = true;
+            }
         }
 
         // Refactor once animations exist. The spirit will ready a charge, begin its charge, then grapple the player with vines once in range.
         // If player reaches light DURING the charge, transition into a halt animation. Stare at the player for a couple seconds, then walk back into the woods.
-        destination = SceneProperties.playerTransform.position;
+        Vector3 destination = SceneProperties.playerTransform.position;
         agent.speed = 14f;
         agent.SetDestination(destination);
+
+        previousTime = Time.time;
+    }
+
+    public void Grapple()
+    {
+        agent.speed = 0f;
+
+        FPSMovement playerFPSMovement = SceneProperties.playerTransform.GetComponent<FPSMovement>();
+        playerFPSMovement.enabled = false;
+
+        animator.SetTrigger("EatPlayer");
+        StartCoroutine(RotatePlayerTowardsCryptid());
+        
+        Vector3 cryptidDirectionToPlayer = SceneProperties.playerTransform.position - transform.position;
+        Quaternion cryptidRotation = Quaternion.LookRotation(cryptidDirectionToPlayer, Vector3.up);
+        transform.rotation = cryptidRotation;
+
+        StartCoroutine(KeepPlayerInPlace());
+    }
+
+    private IEnumerator RotatePlayerTowardsCryptid()
+    {
+        const float rotationDuration = 2f;
+
+        Transform playerTransform = SceneProperties.playerTransform;
+        Vector3 playerDirectionToCryptid = headTransform.position - playerTransform.position;
+        Quaternion rotation = Quaternion.LookRotation(playerDirectionToCryptid, Vector3.up);
+        Quaternion initialPlayerRotation = playerTransform.rotation;
+
+        float rotationTimer = 0f;
+        while (rotationTimer <= rotationDuration)
+        {
+            playerTransform.rotation = Quaternion.Lerp(initialPlayerRotation, rotation, rotationTimer / rotationDuration);
+            rotationTimer += Time.deltaTime;
+            yield return null;
+        }
+
+        playerTransform.rotation = rotation;
+    }
+
+    private IEnumerator KeepPlayerInPlace()
+    {
+        const float holdDuration = 1f;
+        float holdTimer = 0f;
+        if (holdTimer <= holdDuration)
+        {
+            Transform playerTransform = SceneProperties.playerTransform;
+            playerTransform.position = transform.position + transform.forward * 7.5f - Vector3.up * 0.5f;
+            holdTimer += Time.time;
+
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(2f);
+
+        FadeToBlack.instance.StartFading();
+    }
+
+    private Vector3 retreatPosition;
+    private void Retreat()
+    {
+        if ((SceneProperties.playerTransform.position - transform.position).magnitude < 20)
+        {
+            retreatPosition = DespawnLocations.GetInstance().GetFurthestDespawnLocation(transform.position);
+        }
+
+        if ((retreatPosition - transform.position).magnitude < 5)
+        {
+            DropLoot dropLootScripts = GetComponent<DropLoot>();
+            if (dropLootScripts != null)
+            {
+                Destroy(dropLootScripts);
+            }
+
+            Destroy(gameObject);
+        }
     }
 }
