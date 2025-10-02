@@ -1,0 +1,30 @@
+Item's to add to crafting bench:
+- .
+
+Sprites to comission (use text squares temporarily):
+- Stick
+- Rock
+- Feather
+- Fence
+- Bowl ? (Might have this. not sure)
+- Button Icons
+	- ButtonTools
+	- ButtonArmour
+	- ButtonWeapons
+	- ButtonJewelry
+	- ButtonWood
+
+- Plant beds??? Revisit this.
+
+Item prefabs to finish:
+- PinewoodBirdhouse
+- FruitwoodBirdhouse
+- SpiritwoodBirdhouse
+- Miremoss
+- Stick
+- Rock
+- Feather
+- Fence
+- Bowl ? (Might have this. not sure)
+
+- Plant beds??? Revisit this.

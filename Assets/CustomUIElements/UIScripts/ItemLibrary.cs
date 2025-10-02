@@ -91,6 +91,7 @@ public class ItemLibrary : MonoBehaviour
         /* Set up the category buttons and their callbacks. Probably do this dynamically? For now there are only a couple categories, so it's hardcoded. */
         List<CraftingRecipe> toolRecipes = new List<CraftingRecipe>()
         {
+            new CraftingRecipe("StoneAxe", new List<string>() { "PinewoodStick", "PinewoodStick", "Stone", "Stone" }),
             new CraftingRecipe("SilverAxe", new List<string>() { "PinewoodLog", "PinewoodLog", "SilverBar", "SilverBar" }),
             new CraftingRecipe("MoonstoneAxe", new List<string>() { "FruitwoodLog", "MoonstoneBar", "MoonstoneBar" }),
             new CraftingRecipe("GoldPickaxe", new List<string>() { "FruitwoodLog", "GoldBar", "GoldBar" }),
@@ -152,9 +153,10 @@ public class ItemLibrary : MonoBehaviour
             new CraftingRecipe("Lantern", new List<string>() { "IronBar", "IronBar", "PinewoodLog", "Miremoss" }),
             new CraftingRecipe("CampfireKit", new List<string>() { "PinewoodLog", "PinewoodLog", "Miremoss", "IronDust" }),
             new CraftingRecipe("Beacon", new List<string>() { "PinewoodLog", "PinewoodLog", "Miremoss", "Miremoss", "SilverDust" }),
-            new CraftingRecipe("Brazier", new List<string>() { "IronBar", "IronBar", "MoonstoneBar", "PinewoodLog", "PinewoodLog", "PinewoodLog", "PinewoodLog", "SilverDust" })
+            new CraftingRecipe("Brazier", new List<string>() { "IronBar", "IronBar", "MoonstoneBar", "PinewoodLog", "PinewoodLog", "PinewoodLog", "PinewoodLog", "SilverDust" }),
+            new CraftingRecipe("Fence", new List<string>() { "PinewoodLog", "PinewoodLog", "PinewoodLog" })
         };
-        InjectCraftingRecipes("ButtonMisc", miscRecipes);
+        InjectCraftingRecipes("ButtonWood", miscRecipes);
 
         /* Set up "Craft" button callback */
         craftItemButton.onClick.AddListener(() => TryCraftItem());

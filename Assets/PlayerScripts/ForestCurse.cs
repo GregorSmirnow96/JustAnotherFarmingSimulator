@@ -8,18 +8,18 @@ public class ForestCurse : MonoBehaviour
 
     private Vector2 xzPlayerPosition => new Vector2(gameObject.transform.position.x, gameObject.transform.position.z);
 
-    void Update()
+    void LateUpdate()
     {
         float distanceFromCenter = SceneProperties.playerDistanceFromCenter;
+        Debug.Log($"{transform.position}: {distanceFromCenter}");
         if (distanceFromCenter > maxDistance)
         {
             Vector2 sceneCenter = SceneProperties.sceneCenter.ToXZ();
             Vector2 playerSceneOffset = xzPlayerPosition - sceneCenter;
             Vector2 playerSceneOffsetNormal = playerSceneOffset.normalized;
             Vector2 targetPosition = sceneCenter - playerSceneOffsetNormal * maxDistance * 0.9f;
-            float height = SceneProperties.TerrainHeightAtPosition(targetPosition) + 0.2f;
+            float height = SceneProperties.TerrainHeightAtPosition(targetPosition) + 0.8f;
             gameObject.transform.position = new Vector3(targetPosition.x, height, targetPosition.y);
-
         }
     }
 }
