@@ -2,6 +2,9 @@ TODOs:
 
 1) Finish folliage generation (just some bushes+branches+flowers remaining)
 2) Add the remaining crafting recipes and item sprites to finalize the crafting UI
+	
+	a) Make Forge operational, too
+
 3) Rework the animal & cryptid spawn logic to work without the day-night cycle
 
 	a) Add charm behaviour (and maybe fence collision behaviour? Revisit at stepo 7)
