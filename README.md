@@ -1,10 +1,18 @@
 TODOs:
 
 1) Finish folliage generation (just some bushes+branches+flowers remaining)
-2) Add the remaining crafting recipes and item sprites to finalize the crafting UI
-3) Rework the animal & cryptid spawn logic to work without the day-night cycle
+2) Finish crafting UIs
+
+	a) Finish adding crafting recipe button Icons. Add tooltips to the recipe cards. Add title-card	to top-middle of UI that displays selected item's name
+
+	b) Make Forge operational
+
+	c) Add all imbue recipes to all 4 trees
+
+4) Rework the animal & cryptid spawn logic to work without the day-night cycle
 
 	a) Add charm behaviour (and maybe fence collision behaviour? Revisit at stepo 7)
+
 5) Finish item prefabs (mostly lighting assets)
 6) Create the cabin and internal decour
 7) Adjust the starting inventory and create an item container in the cabin
