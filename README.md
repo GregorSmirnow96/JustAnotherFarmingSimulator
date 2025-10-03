@@ -34,6 +34,8 @@ TODOs:
 
 	d) Make 'shift-click' send items to the other open container when applicable
 
+	e) Make damage splats for inanimate objects appear where you hit them, not on their base
+
 11) PLAY TEST WITH FRIENDS! :D
 12) Add audio EVERYWHERE
 
