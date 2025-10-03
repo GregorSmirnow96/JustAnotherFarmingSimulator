@@ -36,6 +36,10 @@ TODOs:
 
 	e) Make damage splats for inanimate objects appear where you hit them, not on their base
 
+	f) Add herblore properties to all ingredients
+
+	g) Improve item toolstips. Currently they show ItemId. Make it show ID with spaces, and info for relevent items
+
 11) PLAY TEST WITH FRIENDS! :D
 12) Add audio EVERYWHERE
 
